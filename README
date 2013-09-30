@@ -1,0 +1,52 @@
+###############################################################################
+# Conference OCaml - 11 octobre 2013         Philemon GARDET -  Rafael GOZLAN #
+###############################################################################
+
+###############################################################################
+# Plan ########################################################################
+> Intoduction : Pourquoi faire du OCaml\Imperatif vs Fonctionnel [Philemon]
+
+> 0 - Rappel Partie Fontionnel [15 mins] [Rafael] (zaper des slides en fonction
+	du public) : 
+     Valeurs, declarations, listes... (zappable)
+     Structure de controle (zappable)
+     Polymorphisme (zappable)
+     Filtrage (zappable)
+     Les types (enregistrement, somme, recursifs, parametrer)
+     Les exceptions (failwith, declaration, recuperation)
+     Tricks (Parametres optionnels, d'autres truc ?)
+> 1 - L'aspect Imperatif [5 mins] [Rafeal] :
+     Sequences
+     Entrees-sorties (gneeeeee)
+     Boucles
+> 2 Structures de donnes [5-10 mins] [Rafael] :
+     Vecteurs
+     Piles/Files
+     Tables de Hachages
+> 3 - L'aspect Objet [30 mins] [Philemon] :
+     Creation d'objets / Initialisation / Methodes...
+     Heritage
+     Interface Polymorphisme 
+     ....
+> 4 - La programmation Modulaire [15-20 mins] [Philemon] :
+     Les modules
+     Les fichiers interface
+     La compilation
+     Generer de la doc
+> 5 - La Bibliotheque SDL [45-60 mins] [Philemon] :
+     Introduction : objectif - principe des surface
+     Initialisation
+     ....
+
+> Conclusion : Les choses qu'on n'a pas abordees (libs, stdlib, liens)
+
+###############################################################################
+# TPs #########################################################################
+
+> Sup/Spe : La programmation objet
+
+> Sup : SDL is fun
+> Spe : SDL et traitement d'images
+
+###############################################################################
+# Notes / Infos ###############################################################

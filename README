@@ -24,10 +24,16 @@
      Piles/Files
      Tables de Hachages
 > 3 - L'aspect Objet [30 mins] [Philemon] :
-     Creation d'objets / Initialisation / Methodes...
-     Heritage
-     Interface Polymorphisme 
-     ....
+     Explication POO
+     Declaration d'objets :
+          Syntaxe
+          Attribut (normal/mutable/option)
+          Methodes (normal/privee-accesLocal)
+          Attributs polymorphes (classes parametree)
+          Initialisation
+          Creation d'instance
+     Heritages
+     Polymorphisme de sous-type
 > 4 - La programmation Modulaire [15-20 mins] [Philemon] :
      Les modules
      Les fichiers interface

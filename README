@@ -1,23 +1,34 @@
 ###############################################################################
-# Conference OCaml - 11 octobre 2013         Philemon GARDET -  Rafael GOZLAN #
+# Conférence OCaml - 11 octobre 2013         Philemon GARDET -  Rafael GOZLAN #
 ###############################################################################
 
 ###############################################################################
 # Plan ########################################################################
-> Intoduction : Pourquoi faire du OCaml\Imperatif vs Fonctionnel [Philemon]
+> Introduction : Pourquoi faire du OCaml [Philemon]
+     Programmation Fonctionnelle : (en vrac pour l'instant)
+          Fonctions pures (Non effet de bords) - Non modification d'état
+          Unitarité des fonctions (indépendante car sans utiliser autre chose 
+	que l'entrée).
+          Récursivité
+     "Powered by OCaml" :
+          Impure (possibilité de faire de l'impératif)
+          Exécution : Interprété/Byte-code/natif
+          (pratiquement aussi rapide que du C)
+          Logiciel Libre 
+          "Produit du terroir" 
 
-> 0 - Rappel Partie Fontionnel [15 mins] [Rafael] (zaper des slides en fonction
-	du public) : 
-     Valeurs, declarations, listes... (zappable)
-     Structure de controle (zappable)
+> 0 - Rappel Partie Fonctionnelle [15 mins] [Rafael] (zaper des slides en 
+	fonction du public) : 
+     Valeurs, déclarations, listes... (zappable)
+     Structure de contrôle (zappable)
      Polymorphisme (zappable)
      Filtrage (zappable)
      Les types (enregistrement, somme, recursifs, parametrer)
-     Les exceptions (failwith, declaration, recuperation)
-     Tricks (Parametres optionnels, d'autres truc ?)
-> 1 - L'aspect Imperatif [5 mins] [Rafeal] :
-     Sequences
-     Entrees-sorties (gneeeeee)
+     Les exceptions (failwith, déclaration, récupération)
+     Tricks (Paramètres optionnels, d'autres truc ?)
+> 1 - L'aspect Impératif [5 mins] [Rafeal] :
+     Séquences (gneeeeee-hautement zappable)
+     Entrées-sorties (gneeeeee)
      Boucles
 > 2 Structures de donnes [5-10 mins] [Rafael] :
      Vecteurs
@@ -25,26 +36,26 @@
      Tables de Hachages
 > 3 - L'aspect Objet [30 mins] [Philemon] :
      Explication POO
-     Declaration d'objets :
+     Déclaration d'objets :
           Syntaxe
           Attribut (normal/mutable/option)
-          Methodes (normal/privee-accesLocal)
-          Attributs polymorphes (classes parametree)
+          Méthodes (normal/privée-accesLocal)
+          Attributs polymorphes (classes paramétrée)
           Initialisation
-          Creation d'instance
-     Heritages
+          Création d'instance
+     Héritages
      Polymorphisme de sous-type
 > 4 - La programmation Modulaire [15-20 mins] [Philemon] :
      Les modules
      Les fichiers interface
      La compilation
-     Generer de la doc
-> 5 - La Bibliotheque SDL [45-60 mins] [Philemon] :
+     Générer de la doc
+> 5 - La Bibliothèque SDL [45-60 mins] [Philemon] :
      Introduction : objectif - principe des surface
      Initialisation
      ....
 
-> Conclusion : Les choses qu'on n'a pas abordees (libs, stdlib, liens)
+> Conclusion : Les choses qu'on n'a pas abordées (libs, stdlib, liens)
 
 ###############################################################################
 # TPs #########################################################################

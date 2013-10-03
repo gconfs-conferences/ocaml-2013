@@ -28,6 +28,7 @@
      Tricks (Paramètres optionnels, d'autres truc ?)
 > 1 - L'aspect Impératif [5 mins] [Rafeal] :
      Séquences (gneeeeee-hautement zappable)
+     Tricks (let _ = ... par exemple)
      Entrées-sorties (gneeeeee)
      Boucles
 > 2 Structures de donnes [5-10 mins] [Rafael] :
@@ -37,12 +38,12 @@
 > 3 - L'aspect Objet [30 mins] [Philemon] :
      Explication POO
      Déclaration d'objets :
+          Création d'instance
           Syntaxe
           Attribut (normal/mutable/option)
           Méthodes (normal/privée-accesLocal)
-          Attributs polymorphes (classes paramétrée)
           Initialisation
-          Création d'instance
+          Attributs polymorphes (classes paramétrée)
      Héritages
      Polymorphisme de sous-type
 > 4 - La programmation Modulaire [15-20 mins] [Philemon] :

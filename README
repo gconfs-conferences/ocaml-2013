@@ -4,18 +4,23 @@
 
 ###############################################################################
 # Plan ########################################################################
-> Introduction : Pourquoi faire du OCaml [Philemon]
-     Programmation Fonctionnelle : (en vrac pour l'instant)
+> Acroche (fall of caml...) [parodie McPixel] - Denombrement Sup/Spe
+> Enonciation du contenu de la conf [oral]
+> Introduction : Pourquoi faire du OCaml [oral/ilustration] [Philemon]
+     Rapide historique Prog Functionnel
+     La situation de OCaml 
+     "Powered by OCaml" :
+          Exécution : Interprété/Byte-code/natif
+          Logiciel Libre 
+          "Produit du terroir" 
+          Impure (possibilité de faire de l'impératif/objet)...
+          ... Mais neanmoins fonctionnel (ouverture section suivante)
+     Programmation Fonctionnelle
+          Ordre Superieur
           Fonctions pures (Non effet de bords) - Non modification d'état
           Unitarité des fonctions (indépendante car sans utiliser autre chose 
 	que l'entrée).
           Récursivité
-     "Powered by OCaml" :
-          Impure (possibilité de faire de l'impératif)
-          Exécution : Interprété/Byte-code/natif
-          (pratiquement aussi rapide que du C)
-          Logiciel Libre 
-          "Produit du terroir" 
 
 > 0 - Rappel Partie Fonctionnelle [15 mins] [Rafael] (zaper des slides en 
 	fonction du public) : 
@@ -28,34 +33,66 @@
      Tricks (Paramètres optionnels, d'autres truc ?)
 > 1 - L'aspect Impératif [5 mins] [Rafeal] :
      Séquences (gneeeeee-hautement zappable)
-     Tricks (let _ = ... par exemple)
+     Tricks :
+          let _ = ...
+          at_exit
+          (autres)
      Entrées-sorties (gneeeeee)
      Boucles
-> 2 Structures de donnes [5-10 mins] [Rafael] :
+> 2 Quelques structures de donnes [5-10 mins] [Rafael] :
      Vecteurs
      Piles/Files
      Tables de Hachages
 > 3 - L'aspect Objet [30 mins] [Philemon] :
-     Explication POO
+     Explication POO :
+          Classe/Instance
+          Methodes/Attributs
+          Utilisation d'objet en OCaml
      Déclaration d'objets :
-          Création d'instance
           Syntaxe
           Attribut (normal/mutable/option)
           Méthodes (normal/privée-accesLocal)
           Initialisation
           Attributs polymorphes (classes paramétrée)
      Héritages
-     Polymorphisme de sous-type
+     Polymorphisme de sous-type (:>)
 > 4 - La programmation Modulaire [15-20 mins] [Philemon] :
-     Les modules
+     Les modules (juste fichiers separes pas la structure)
      Utilisation des modules (open... et sans)
-     Les fichiers interface
-     La compilation
-     Générer de la doc
+     Les fichiers interface (.mli)
+     La compilation :
+          ocaml,ocamlc,ocamlopt
+          ocamlbuild
+          faire de la documentation (ocamldoc)
 > 5 - La Bibliothèque SDL [45-60 mins] [Philemon] :
      Introduction : objectif - principe des surface
-     Initialisation
-     ....
+     Presentation des modules (sommaire de la presentation SDL)
+          Sdl : Init
+          Sdlwm : Controle de la fenetre
+          Sdlvideo : Gestion des surface (plus important)
+          Sdltime : delay (pratique pour les animation et flip)
+          Sdlevent : clavier, souris et le reste (Sdlkey/Sdlmouse)
+          Sdlttf : Affichage de texte
+          Sdlmixer : La gestion du son 
+     Initialisation :
+          SDLinit
+          creation d'une fenetre
+     Le bas niveau de l'affichage
+          gestion des surfaces
+               rect
+               type de surfaces
+               la couleur
+               blit
+          Sup : la modification pixel par pixel
+               Verouillage de surface
+               Les fonctions
+     Affichage de texte
+     Gestion des evenements
+     Le son (Yospecialdedicaselorysisitavu)
+     Une boucle classique
+          Event
+          Flip/Sdltime : actualiser l'ecran
+          Modification et deplacement
 
 > Conclusion : Les choses qu'on n'a pas abordées (libs, stdlib, liens)
 
@@ -69,3 +106,6 @@
 
 ###############################################################################
 # Notes / Infos ###############################################################
+- Deadline des slides : Dimanche 6 Octobre - 23h42
+- Phil : Retrouver des vetement correctes
+

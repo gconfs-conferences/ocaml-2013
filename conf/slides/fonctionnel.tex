@@ -3,8 +3,57 @@
 \begin{frame}
   \begin{center}
   Le noyau fonctionnel, la sup, le bon temps, toussa toussa....
-\end{center}
+  \end{center}
 \end{frame}
-\subsection{}
+
+\subsection{Les nombres}
 \begin{frame}
-  \end {frame}
+  \begin{center}
+  Que serait un langage sans nombre, sans quantification ? 
+  \end{center}
+  Il existe donc deux "types" de nombres en Ocaml (bien plus enfaite mais c'est un mensonge) qui sont ... Les Int et les Floats !\\
+  \vspace{0.5cm} 
+  \begin{minipage}[t]{5cm}
+  \#42;;\\
+  - : int  = 42
+\end{minipage}
+\begin{minipage}[t]{5cm}
+\#4.2;;\\
+- : float = 4.2
+\end{minipage}
+
+\end{frame}
+
+
+  \subsubsection{Les operation}
+  \begin{frame}
+    Une fois que l'on a ces nombres il nous faut donc les manipuler. 
+    operation chez les Int : "+" : addition / "-" : soustraction / "/" : division / "*" : multiplication\\
+    \begin{center}
+    C'est chiant les bases non ?\\ 
+  \end{center}
+    Aller on vous epargne les floattant c'est la même chose mais on rajoute juste un point aprés le symbole (ex : *.)\\
+    \vspace{0.5cm}
+    \begin{minipage}[t]{5cm}
+      \#4 * 10 + 2;;\\
+      - : int = 42
+     \end{minipage}
+     \begin{minipage}[t]{5cm}
+       \#41.5 +. 0.5;;\\
+       - : float = 42
+     \end{minipage}
+   \end{frame}
+  \subsection{on enchaine les caractères pour les utiliser}
+  \begin{frame}
+    Les caractères sont bien pratique si l'on veux faire un interfacage avec l'utilisateur ou d'autre ... truc (*caugh* ocr *caugh*)
+    \vspace{0.5cm}
+    \begin{minipage}[t]{10cm}
+      \#"coucou moi aussi je post sur JVC";;\\
+      - : string = "coucou moi aussi je post sur JVC"
+    \end{minipage}
+    \begin{minipage}[t]{5cm}
+      \#'4';;\\
+      - : char = '4'
+    \end{minipage}
+     
+  \end{frame}

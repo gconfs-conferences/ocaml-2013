@@ -11,7 +11,7 @@ class point (ix,iy) =
         ("("^string_of_int(x)^","
         ^string_of_int(y)^")")
   end
-;;
+
 
 class colored_point (ix,iy) ic =
   object
@@ -25,4 +25,4 @@ class colored_point (ix,iy) ic =
       motherPoint#print;
       print_string (" "^string_of_int(c))
   end
-;;
+

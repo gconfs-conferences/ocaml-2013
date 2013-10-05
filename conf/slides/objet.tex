@@ -101,22 +101,36 @@ class name pa1..pan =
 \begin{frame}[fragile]
 	\frametitle{Initialisation}
 	\begin{lstlisting}
-  class ... =
+  class ... (l:int list) =
     object (self)
     
-    (*Attributs*)
-    
+    val data = Queue.create ()
+
     initializer
-      expr
+      let rec storage = function
+        | [] -> ()
+        | e::q -> 
+          push e data;
+          storage q
+      in storage l
     
-    (*Methods*)
+    ...
     end
 	\end{lstlisting}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Attributs polymorphiques}
-	
+	\begin{lstlisting}
+  class ['a] ... =
+    object 
+    val data = ref []
+
+    method add e =
+      data := e::!data
+
+    end
+	\end{lstlisting}
 \end{frame}
 
 \subsection{L'heritage} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

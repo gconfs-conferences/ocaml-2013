@@ -46,7 +46,6 @@ class name pa1..pan =
     
     (*Methods*)
   end
-;;
 	\end{lstlisting}
 \end{frame}
 
@@ -73,7 +72,7 @@ class name pa1..pan =
 	\frametitle{Déclaration de méthode}
 	\textbf{simple}
 	\begin{lstlisting}
-  method name p1 ...pn = expr
+method name p1 ...pn = expr
 	\end{lstlisting}
 	\textbf{privée}\\
 	\begin{minipage}{0.4\textwidth}
@@ -93,52 +92,131 @@ class name pa1..pan =
 		\end{lstlisting}
 	\end{minipage}
 	\begin{lstlisting}
-  method private name p1 ...pn = expr
-  self#privateMethod ...
+method private name p1 ...pn = expr
+self#privateMethod ...
 	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Initialisation}
 	\begin{lstlisting}
-  class ... (l:int list) =
-    object (self)
+class ... (l:int list) =
+  object (self)
     
-    val data = Queue.create ()
+  val data = Queue.create ()
 
-    initializer
-      let rec storage = function
-        | [] -> ()
-        | e::q -> 
-          push e data;
-          storage q
-      in storage l
-    
-    ...
-    end
+  initializer
+    let rec storage = function
+      | [] -> ()
+      | e::q -> 
+        push e data;
+        storage q
+    in storage l
+
+  ...
+  end
 	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Attributs polymorphiques}
 	\begin{lstlisting}
-  class ['a] ... =
-    object 
-    val data = ref []
+class ['a] ... =
+  object 
+  val data = ref []
 
-    method add e =
-      data := e::!data
+  method add e =
+    data := e::!data
 
-    end
+  end
 	\end{lstlisting}
 \end{frame}
 
 \subsection{L'heritage} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
+\begin{frame}[fragile]
+	\frametitle{Syntaxe de l'heritage}
+	\begin{lstlisting}
+class ... =
+  object
+  inherit motherClass p1..pn
 
+  end
+	\end{lstlisting}
+	\begin{lstlisting}
+class ... =
+  object
+  inherit motherClass p1..p2 as motherSelf
+
+  end
+	\end{lstlisting}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Accès aux méthodes de la classe mère 1/2}
+	\lstinputlisting[firstline=1, lastline=14]{code/heritage.ml}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Accès aux méthodes de la classe mère 2/2}
+	\textit{Le type de la nouvelle version de la méthode doit correspondre à celle de la méthode mère.}
+	\lstinputlisting[firstline=16, lastline=28]{code/heritage.ml}
+\end{frame}
 \subsection{Le polymorphisme d'inclusion} %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+	\frametitle{Le polymorphisme de sous-inclusion}
+	\begin{center}
+		\includegraphics[width=9cm]{pics/inclusionObjet.png}
+	\end{center}
+\end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Interface et opérateur de sous-type}
+	\textit{Le type des méthodes doit correspondres à celui de la méthode de l'interface.}\\
+	\begin{center}
+		\begin{minipage}{0.4\textwidth}
+			\lstset{basicstyle=\scriptsize}
+  		\begin{lstlisting}
+  class c1 =
+    object
+    method m1 = ...
+    method ma = ...
+    method m2 = ...
+    method mb = ...
+    end
+			\end{lstlisting}
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth}
+		  \lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+  class c2 =
+    object (self)
+    method mc = ...
+    method m2 = ...
+    method md = ...
+    method m1 = ...
+    end
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
+	\begin{center}
+		\begin{minipage}{0.4\textwidth}
+			\lstset{basicstyle=\footnotesize}
+			\begin{lstlisting}
+class type i1 =
+  object
+    method m1 : string
+    method m2 : int list
+  end
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
+	\begin{center}
+		\begin{minipage}{0.4\textwidth}
+			\lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+    let a = (new c1):>i1
+    and b = (new c2):>i1
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
 \end{frame}

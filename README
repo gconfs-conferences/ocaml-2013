@@ -30,7 +30,10 @@
      Filtrage (zappable)
      Les types (enregistrement, somme, recursifs, parametrer)
      Les exceptions (failwith, déclaration, récupération)
-     Tricks (Paramètres optionnels, d'autres truc ?)
+     Tricks 
+          Contrainte de type
+          Paramètres optionnels
+          d'autres truc ?
 > 1 - L'aspect Impératif [5 mins] [Maxime] :
      Séquences (gneeeeee-hautement zappable)
      Tricks :

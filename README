@@ -4,7 +4,7 @@
 
 ###############################################################################
 # Plan ########################################################################
-> Acroche (fall of caml...) [parodie McPixel] - Denombrement Sup/Spe
+> Acroche (fall of caml... parodie McPixel) - Denombrement Sup/Spe
 > Enonciation du contenu de la conf [oral]
 > Introduction : Pourquoi faire du OCaml [oral/ilustration] [Philemon]
      Rapide historique Prog Functionnel
@@ -16,13 +16,13 @@
           Impure (possibilité de faire de l'impératif/objet)...
           ... Mais neanmoins fonctionnel (ouverture section suivante)
      Programmation Fonctionnelle
+          Récursivité
           Ordre Superieur
           Fonctions pures (Non effet de bords) - Non modification d'état
           Unitarité des fonctions (indépendante car sans utiliser autre chose 
 	que l'entrée).
-          Récursivité
 
-> 0 - Rappel Partie Fonctionnelle [15 mins] [Rafael] (zaper des slides en 
+> 0 - Rappel Partie Fonctionnelle [15 mins] [Maxime] (zaper des slides en 
 	fonction du public) : 
      Valeurs, déclarations, listes... (zappable)
      Structure de contrôle (zappable)
@@ -31,7 +31,7 @@
      Les types (enregistrement, somme, recursifs, parametrer)
      Les exceptions (failwith, déclaration, récupération)
      Tricks (Paramètres optionnels, d'autres truc ?)
-> 1 - L'aspect Impératif [5 mins] [Rafeal] :
+> 1 - L'aspect Impératif [5 mins] [Maxime] :
      Séquences (gneeeeee-hautement zappable)
      Tricks :
           let _ = ...
@@ -55,10 +55,10 @@
           Initialisation
           Attributs polymorphes (classes paramétrée)
      Héritages
-     Polymorphisme de sous-type (:>)
+     Polymorphisme de sous-type (l'operateur :>)
 > 4 - La programmation Modulaire [15-20 mins] [Philemon] :
-     Les modules (juste fichiers separes pas la structure)
-     Utilisation des modules (open... et sans)
+     Utilisation des modules (open... et sans - Gneeeeee)
+     Les modules (juste fichiers separes, pas la structure)
      Les fichiers interface (.mli)
      La compilation :
           ocaml,ocamlc,ocamlopt
@@ -83,13 +83,13 @@
                type de surfaces
                la couleur
                blit
-          Sup : la modification pixel par pixel
+          Spe : la modification pixel par pixel
                Verouillage de surface
-               Les fonctions
+               Les fonctions correspondantes
      Affichage de texte
      Gestion des evenements
      Le son (Yospecialdedicaselorysisitavu)
-     Une boucle classique
+     Une boucle d'affichage classique en SDL.
           Event
           Flip/Sdltime : actualiser l'ecran
           Modification et deplacement
@@ -99,13 +99,14 @@
 ###############################################################################
 # TPs #########################################################################
 
-> Sup/Spe : La programmation objet
+> Sup/Spe : La programmation objet [Theory]
 
-> Sup : SDL is fun
-> Spe : SDL et traitement d'images
+> Sup : SDL is fun [Phil]
+> Spe : SDL et traitement d'images [Rafael]
 
 ###############################################################################
 # Notes / Infos ###############################################################
 - Deadline des slides : Dimanche 6 Octobre - 23h42
 - Phil : Retrouver des vetement correctes
+- Rush ce week-end (5-6) a VJ.
 

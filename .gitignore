@@ -1,0 +1,9 @@
+*.aux
+*.pdf
+*.log
+*.out
+*.snm
+*.toc
+*.vrb
+*.nav
+*.tex.swp

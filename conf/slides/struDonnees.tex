@@ -1,7 +1,7 @@
 \section{Les structures de données}
 \subsection{Les vecteurs}
 \begin{frame}[fragile]
-\frametitle{Création}
+\frametitle{Les vecteurs}
 	\begin{itemize}
 	\item
 	\begin{lstlisting}
@@ -94,12 +94,14 @@ let t = [|
 \subsection{Les enregistrements}
 
 \begin{frame}[fragile]
-\frametitle{Utilisation simple}
+\frametitle{Enregistrements}
 \begin{itemize}
 	\item Déclaration de type: 
 		\begin{lstlisting}
-			type pixel = { mutable  r:int ; mutable g:string ; b:int } 
+			type pixel = 
+		{ mutable  r:int ; mutable g:string ; b:int } 
 		\end{lstlisting}
+		Un champ mutable signifie qu'il peut être modifié.
 	
 	\item Modifiaction des champs de valeur:
 		\begin{lstlisting}
@@ -108,3 +110,31 @@ let t = [|
 		\end{lstlisting}
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Les références}
+	Une référence est considéré comme l'équivalent du type pointeur en OCaml.
+	\begin{lstlisting}
+		type 'a ref = {mutable contents:'a}
+	\end{lstlisting}
+	Déclaration:
+	\begin{lstlisting}
+		let a = ref 0
+
+		let l = ref [];;
+		val l : '_a list ref = {contents=[]}
+	\end{lstlisting}
+	Utilisation:
+	\begin{lstlisting}
+		!a ;;
+		- : int = 0
+		a := !a + 1 ;;
+		- : unit = ()
+	\end{lstlisting}
+
+\end{frame}
+
+
+
+

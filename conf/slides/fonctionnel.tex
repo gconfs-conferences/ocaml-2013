@@ -8,51 +8,60 @@
 \end{frame}
 
 \subsection{Les nombres}
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{le noyaux fonctionnel}
   \framesubtitle{Les nombres}
-  \begin{center}
-    les nombres ...\\
    \begin{minipage}[t]{5cm}
-    les ints : \\
-    \#42;;\\
-    - : int  = 42\\
+    les ints : 
+    \begin{lstlisting}
+    42;;
+    - : int  = 42
+    \end{lstlisting}
    \end{minipage}
    \begin{minipage}[t]{5cm}
-    les floats :\\
-    \#4.2;;\\
+    les floats :
+    \begin{lstlisting}
+    4.2;;
     - : float = 4.2
+    \end{lstlisting}
    \end{minipage}
    \vspace{0.5cm}
-    et leurs utilisations\\
+    et leurs utilisations :\\
    \begin{minipage}[t]{5cm}
-    \#4 * 10 + 2;;\\
+     \begin{lstlisting}
+    4 * 10 + 2;;
       - : int = 42
+      \end{lstlisting}
    \end{minipage}
    \begin{minipage}[t]{5cm}
-     \#41.5 +. 0.5;;\\
+     \begin{lstlisting}
+    41.5 +. 0.5;;
      - : float = 42
+     \end{lstlisting}
    \end{minipage}
-  \end{center}
 \end{frame}
 
   \subsection{les chars et chaines de chars}
-  \begin{frame}
+\begin{frame}[fragile]
     \frametitle{le noyaux fonctionnel}
     \framesubtitle{caractères et chaines de caractère}
     Les caractères sont bien pratique si l'on veux faire un interfacage avec l'utilisateur ou d'autre ... truc (*caugh* ocr *caugh*)\\
     \begin{minipage}[t]{10cm}
-      \#"coucou moi aussi je post sur JVC";;\\
-      - : string = "coucou moi aussi je post sur JVC"
+      \begin{lstlisting}
+      "coucou je suis une chaine";;
+      - : string = "coucou je suis une chaine"
+      \end{lstlisting}
     \end{minipage}
     \begin{minipage}[t]{5cm}
-      \#'4';;\\
+      \begin{lstlisting}
+      '4';;
       - : char = '4'
+      \end{lstlisting}
     \end{minipage}
-  \end{frame}
+\end{frame}
 
   \subsection{les boolèens}
-  \begin{frame}
+\begin{frame}
     \frametitle{le noyaux fonctionnel}
     \framesubtitle{les boolèens}
       la logique booléenne est composé de 2 "termes" true et false qui s'utilise avec les operateur suivant :
@@ -82,14 +91,14 @@
 	    \item ">=" : superieur égale
 	  \end{itemize}
 	\end{minipage}
-    \end{frame}
+\end{frame}
 
     \subsection{le controle conditionnel}
-    \begin{frame}
+\begin{frame}
       \frametitle{le noyaux fonctionnel}
       \framesubtitle{le controle conditionnel}
       if a then b else c;;
-    \end{frame}
+\end{frame}
 
     \subsection{les declarations}
 \begin{frame}[fragile]
@@ -148,27 +157,29 @@
      function (x , y) -> x * y;;
      - : int * int -> int = <fun>
     \end{lstlisting}
-    \begin{lstlisting}
+   \begin{lstlisting}
      fun x y -> x + y;;
      - : int -> int -> int = <fun>
     \end{lstlisting}
   \end{itemize}
-\end{center}
+  \end{center}
   \end{minipage}
 \end{frame}
+
+
 \subsection{Declaration de fonction}
 \begin{frame}[fragile]
   \frametitle{Le noyaux fonctionnel}
   \framesubtitle{Declaration de fonctions}
     \begin{lstlisting}
 	let nom p1 ... pn = expr
-	\end{lstlisting}
+    \end{lstlisting}
 	\begin{center}
 	  \begin{rotate}{90}
      $\Leftrightarrow$
    \end{rotate}
- \end{center}
-	\begin{lstlisting}
+\end{center}
+\begin{lstlisting}
 let nom = function p1 ->-> function pn -> expr
   \end{lstlisting}
   \vspace{1cm}

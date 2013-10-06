@@ -1,0 +1,338 @@
+%
+% Theophile Ranquet <ranquet@lrde.epita.fr>
+% dim. oct.  6 05:52:34 CEST 2013
+%
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{fixltx2e}
+\usepackage{nth}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+\lhead{{\sc{OCaml}}\\ {\sc TP} Objet - 11 oct. 2013}
+\rhead{{\small \sc{GConfs}}\\ {\sc Epita}}
+\rfoot{\includegraphics[width=0.15\linewidth]{gconfs.png}}
+
+\begin{document}
+\begin{center}
+{\Large {\bf La Programmation Orientée Objet en OCaml}}
+\end{center}
+
+\bigskip
+
+\section*{Introduction\protect\footnote{\url{http://fr.wikipedia.org/wiki/OCaml\#Orient.C3.A9\_objet}}}
+
+\textsc{OCaml} se distingue particulièrement par son extension du typage
+\textsc{ML} vers un système objet comparable à ceux utilisés par les langages
+objets classiques.  Cela permet un sous-typage structurel, dans lequel les
+objets sont de types compatibles si les types de leurs méthodes sont
+compatibles, indépendamment de leurs arbres d'héritage respectifs. Cette
+fonctionnalité, que l'on peut considérer comme l'équivalent du \textit{duck
+typing} des langages \textbf{dynamiques}, permet une intégration naturelle des
+concepts objets dans un langage globalement fonctionnel.
+
+Ainsi, à la différence des langages orientés objet tels \textsc{C++} ou
+\textsc{Java} pour lesquels toute classe définit un type, les classes
+\textsc{OCaml} définissent plutôt des abréviations de types. En effet, pour peu
+que le type des méthodes soient compatibles, deux objets de deux classes
+différentes peuvent être utilisés indifféremment dans un même contexte. Cette
+caractéristique de la couche objet de \textsc{OCaml} rompt bon nombre de
+principes communément admis : \textbf{il est en effet possible de faire du
+sous-typage sans héritage}, par exemple. Le côté polymorphe rompt le principe
+inverse. Des exemples de code, bien que rares, exhibant des cas d'héritage sans
+sous-typage existent
+également.
+
+\section{I Can Win}
+
+\subsection{Classe, objet, et méthode}
+
+Ecrivez la \textbf{classe} \verb|cat|, dotée d'une \textbf{méthode} \verb|meow|
+pour faire miauler votre chat.
+
+\vspace{3mm}
+\begin{verbatim}
+  class cat : object
+    method meow : unit -> unit
+  end
+\end{verbatim}
+\vspace{3mm}
+
+Instanciez un chat Dinah\footnote{Dinah est le chat d'Alice, dans \textit{Alice
+au pays des merveilles}}, et faites le miauler. Par exemple, le code suivant:
+
+\vspace{3mm}
+\verb|  let dinah = (* FIXME : Some code was deleted here. *) in dinah#meow()|
+\vspace{3mm}
+
+Affichera:
+
+\vspace{3mm}
+\verb|  Meeeow!|
+\vspace{3mm}
+
+\subsection{Attribut}
+
+Ajoutez quatre pattes (cet \textbf{attribut} est une valeur mutable initialisée
+à 4) à votre class \verb|cat|, ainsi qu'une méthode \textbf{break\_a\_leg} qui
+décrémente ce nombre de pattes.
+
+La nouvelle
+interface de votre classe est:
+\vspace{3mm}
+\begin{verbatim}
+  class cat : object
+    val legs : int
+    method meow : unit -> unit
+    method break_a_leg : unit -> unit
+  end
+\end{verbatim}
+\vspace{3mm}
+
+Utilisez une boucle (dans votre méthode \verb|meow|) pour que votre chat
+communique désormais en miaulant une fois par patte.
+
+\newpage
+
+Vous pouvez tester avec ceci:
+
+\begin{verbatim}
+let cats = Array.init 3 (fun _ -> new cat) in
+Array.iter (fun c -> if Random.int 2 == 0 then c#break_a_leg ()) cats;
+Array.iter (fun c -> c#meow (); print_newline()) cats
+\end{verbatim}
+
+Vous devriez constater que certains chats miaulent une fois de moins que les
+autres. Vous pouvez, selon votre degré de cruauté, duplique la ligne du milieu
+deux ou trois fois pour de meilleurs résultats.
+
+\section{Bring It On}
+
+\subsection{Héritage}
+
+Avoir des pattes, qui plus est en avoir quatre, ce n'est pas une
+caractéristique propre aux chats; c'est également le cas des chiens, et en fait
+de tous les quadrupèdes.
+
+Retirez les pattes de votre classe \verb|cat|; vous allez placer cet attribut
+dans une classe mère \verb|quadrupede| dont vous allez hériter. Son interface:
+
+\begin{verbatim}
+class quadrupede : object
+  val mutable legs : int
+end
+\end{verbatim}
+
+N'oubliez pas de changer votre classe \verb|cat| pour mettre en place la
+relation d'héritage. (Note: ceci ne change pas son interface) Si vous n'avez
+pas pensé à retirer l'attribut \verb|legs| de votre chat, vous aurez cet
+avertissement:
+
+\begin{verbatim}
+Warning 13: the instance variable legs is overridden.
+\end{verbatim}
+
+\subsection{Méthodes virtuelles}
+
+En programmation orientée objet, une fonction virtuelle est une fonction
+définie dans une classe, et qui est destinée à être redéfinie dans les
+classes qui en hérite.
+
+Modifiez votre classe \verb|quadrupede| pour lui ajouter une méthode virtuelle
+\verb|species|, qui vous implémenterez ensuite dans votre classe dérivée
+\verb|cat|, et qui retourne une chaîne de cractères qui décrit l'espèce de
+votre bestiole. La nouvelle interface de \verb|quadrupede| est:
+
+\begin{verbatim}
+class virtual quadrupede : object
+  val mutable legs : int
+  method virtual species : unit -> string
+end
+\end{verbatim}
+
+Faites également une classe \verb|dog| qui hérite de quadrupède, et implémente
+bien entendu cette méthode \verb|species|.
+
+\subsection{Sous-typage\protect\footnote{There is no actual subtyping in
+\textsc{OCaml}
+(\protect\url{http://brianmckenna.org/blog/row\_polymorphism\_isnt\_subtyping}), but no one
+seems to care.}}
+
+In programming language theory, \textbf{subtyping} (also \textbf{subtype
+polymorphism} or
+\textbf{inclusion polymorphism}) is a form of type polymorphism in which a
+\textbf{subtype} is a
+datatype that is related to another datatype (the \textbf{supertype}) by some
+notion of \textit{substitutability}, meaning that program elements, typically
+subroutines or functions, written to operate on elements of the supertype can
+also operate on elements of the subtype.
+
+In object-oriented programming the term `polymorphism' is commonly used to
+refer solely to this subtype polymorphism, while the techniques of parametric
+polymorphism would be considered \textit{generic programming}.
+
+In the branch of mathematical logic known as type theory, \textbf{System
+F\textsubscript{<:}},
+pronounced "F-sub", is an extension of system F with subtyping. System
+F\textsubscript{<:} has
+been of central importance to programming language theory since the 1980s
+because the core of functional programming languages, like those in the ML
+family, support both parametric polymorphism and record subtyping, which can be
+expressed in System F\textsubscript{<:}.\footnote{Computer \textbf{Science} is
+about more than making shit compile}
+
+\newpage
+
+Tentons de faire une liste d'animaux:
+
+\begin{verbatim}
+type farm = quadrupede list
+\end{verbatim}
+
+Si on tente d'y aller naivement, on échoue:
+
+\begin{verbatim}
+let li : farm = new cat :: new dog :: []
+(* Error: This expression has type cat but an expression was expected of type
+            quadrupede *)
+\end{verbatim}
+
+Il faut faire une \textit{coercion} explicite pour effectuer du sous-typage:
+
+\begin{verbatim}
+let li : farm = (new cat :> quadrupede) :: (new dog :> quadrupede) :: [] in
+List.iter (fun c -> print_endline (c#species())) li
+\end{verbatim}
+
+Plus simplement:
+
+\begin{verbatim}
+# let x : quadrupede = new cat;;
+(* Error *)
+
+# let x :> quadrupede = new cat;;
+val x : quadrupede = <obj>
+\end{verbatim}
+
+\section{Hurt Me Plenty}
+
+Ajoutez une méthode \verb|fallout| qui incrémente le nombre de pattes de vos
+chiens.
+
+Modifiez les méthodes \verb|species| pour qu'elles donnent également le
+nombre de pattes de votre animal:
+
+\begin{verbatim}
+method species () = string_of_int legs ^"-legged dog"
+\end{verbatim}
+
+
+\subsection{Design pattern: Visitor}
+
+Si déporter des opérations contenues dans une classe vers une autre peut
+sembler mauvais au sens POO, il y a de bonnes raisons pour le faire. En effet,
+si ces opérations sont identiques pour chaque classe au lieu de dupliquer cette
+méthode il est préférable de mettre ces opérations dans un visiteur
+(centralisation de l'opération). Le visiteur utilisera ensuite les données
+internes de chaque objet pour effectuer l'opération demandée.
+
+En pratique, le modèle de conception visiteur est réalisé de la façon suivante
+: chaque classe pouvant être « visitée » doit mettre à disposition une méthode
+publique « accepter » prenant comme argument un objet du type « visiteur ». La
+méthode « accepter » appellera la méthode « visite » de l'objet du type «
+visiteur » avec pour argument l'objet visité. De cette manière, un objet
+visiteur pourra connaître la référence de l'objet visité et appeler ses
+méthodes publiques pour obtenir les données nécessaires au traitement à
+effectuer (calcul, génération de rapport, etc.).
+
+En programmation orientée objet et en génie logiciel, le patron de conception
+comportemental visiteur est une manière de séparer un algorithme d'une
+structure de données.
+
+\subsection{Implémentation}
+
+Modifiez vos animaux pour qu'ils soient paramétrés par votre visiteur, et
+ajouter une méthode \verb|accept| qui prend en argument un visiteur. Le
+visiteur implémentera les méthodes \verb|visitCat| et \verb|visitDog|, utilisez
+dans vos implentations de \verb|accept|.
+
+Solution:
+
+\begin{verbatim}
+class virtual ['visitor] quadrupede =
+object
+  ...
+  method virtual accept : 'visitor -> unit
+end
+
+class ['visitor] cat =
+object(self)
+  inherit ['visitor] quadrupede
+  ...
+  method accept v = v#visitCat self
+end
+
+class ['visitor] dog =
+object(self)
+  inherit ['visitor] quadrupede
+  ..
+  method accept v = v#visitDog self
+end
+\end{verbatim}
+
+Implémentez maintenant les visiteurs, qui dérivent de la classe \verb|visitor|,
+qui définie les méthodes \verb|visitCat| et \verb|visitDog|, qui prennent en
+argument un objet de la classe qui va bien.
+
+Le visiteur \verb|legsVisitor|, qui implémente les deux méthodes
+\verb|visitCat| et \verb|visitDog|, va appeler la méthode qui modifie le nombre
+de pattes de son argument.
+
+Le visiteur \verb|speciesVisitor| va appeler \verb|species| de son argument.
+
+\begin{verbatim}
+class virtual visitor =
+object
+  method virtual visitCat : visitor cat -> unit
+  method virtual visitDog : visitor dog -> unit
+end
+
+class legsVisitor =
+object
+  inherit visitor
+  method visitCat c = c#break_a_leg()
+  method visitDog d = d#fallout()
+end
+
+class speciesVisitor =
+object
+  inherit visitor
+  method visitCat c = print_endline (c#species())
+  method visitDog d = print_endline (d#species())
+end
+\end{verbatim}
+
+Et testez:
+
+\begin{verbatim}
+let li : farm = (new cat :> quadrupedev) :: (new dog :> quadrupedev) :: (new
+cat :> quadrupedev) :: [] in
+List.iter (fun c -> c#accept (new legsVisitor)) li;
+List.iter (fun c -> c#accept (new speciesVisitor)) li
+\end{verbatim}
+
+Affiche:
+\begin{verbatim}
+3-legged cat
+5-legged dog
+3-legged cat
+\end{verbatim}
+
+\end{document}

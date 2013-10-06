@@ -62,7 +62,6 @@ let t = [|
 \begin{lstlisting}
 	let v2 = Array.copy v ;;
 	val v2 : int array = [|1; 0; 0|]
-
 	let m2 = Array.copy m ;;
 	val m2 : int array array = 
 	[|[|1; 0; 0|]; [|1; 0; 0|]; [|1; 0; 0|]|]
@@ -72,12 +71,11 @@ let t = [|
 
 	v2;; 
 	- : int array = [|1; 0; 0|]
-
 	m2 ;;
 	- : int array array = 
 	[|[|1; 1337; 0|]; [|1; 1337; 0|]; 
 	[|1; 1337; 0|]|]
-	\end{lstlisting}
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -90,5 +88,23 @@ let t = [|
 	\item Array.\{iter,map,iteri,to\_list\}
 
 	\item RTFM !!!
+\end{itemize}
+\end{frame}
+
+\subsection{Les enregistrements}
+
+\begin{frame}[fragile]
+\frametitle{Utilisation simple}
+\begin{itemize}
+	\item Déclaration de type: 
+		\begin{lstlisting}
+			type pixel = { mutable  r:int ; mutable g:string ; b:int } 
+		\end{lstlisting}
+	
+	\item Modifiaction des champs de valeur:
+		\begin{lstlisting}
+			p.r <- 42.0;
+			p.g <- "The Game"
+		\end{lstlisting}
 \end{itemize}
 \end{frame}

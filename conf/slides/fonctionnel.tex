@@ -264,3 +264,37 @@ let f = function
   \end{itemize}
 \end{frame}
       \subsection{Les types}
+\begin{frame}[fragile]
+	\frametitle{le noyaux fonctionnel}
+	\framesubtitle{le type somme et le }
+	le type somme :
+	\begin{lstlisting}
+type nom =
+        |Nom1 
+        |Nom2 of t0 
+        |Nom3 of t1 * t2 *.... * tn 
+	\end{lstlisting}
+	le type recurssif:
+	\begin{lstlisting}
+type nom =
+        |Nom1
+        |Nom2 of nom
+        |Nom3 of t1 * t2 *.... * tn
+         \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{le noyaux fonctionnel}
+  \framesubtitle{les execptions}
+  \begin{lstlisting}
+execption Nom;;
+exception Nom of int;;
+  \end{lstlisting}
+pour soulever un exception : 
+\begin{lstlisting}
+raise ;;
+- : exn -> 'a = <fun>
+\end{lstlisting}
+
+
+\end{frame}

@@ -130,17 +130,81 @@
 \end{frame}
 
     \subsection{Les fonctions}
-    \begin{frame}
+\begin{frame}[fragile]
       \frametitle{Le noyaux fonctionnel}
       \framesubtitle{les fonctions}
-      \#function x -> x+1;;
-      -: int -> int = <fun>
-    \end{frame}
+      \begin{minipage}[t]{7cm}
+	\begin{center}
+	\begin{itemize}
+    \begin{lstlisting}
+     function x -> x + 1;;
+     -: int -> int = <fun>
+    \end{lstlisting}
+    \begin{lstlisting}
+     function x -> function y -> x + y;;
+     - : int -> int -> int = <fun>
+    \end{lstlisting}
+    \begin{lstlisting}
+     function (x , y) -> x * y;;
+     - : int * int -> int = <fun>
+    \end{lstlisting}
+    \begin{lstlisting}
+     fun x y -> x + y;;
+     - : int -> int -> int = <fun>
+    \end{lstlisting}
+  \end{itemize}
+\end{center}
+  \end{minipage}
+\end{frame}
+\subsection{Declaration de fonction}
+\begin{frame}[fragile]
+  \frametitle{Le noyaux fonctionnel}
+  \framesubtitle{Declaration de fonctions}
+    \begin{lstlisting}
+	let nom p1 ... pn = expr
+	\end{lstlisting}
+	\begin{center}
+	  \begin{rotate}{90}
+     $\Leftrightarrow$
+   \end{rotate}
+ \end{center}
+	\begin{lstlisting}
+let nom = function p1 ->-> function pn -> expr
+  \end{lstlisting}
+  \vspace{1cm}
+  \begin{lstlisting}
+  let add x y = x + y;;
+  val add : int -> int -> int = <fun>
+  \end{lstlisting}
+  declaration de fonction recursive 
+  \begin{lstlisting}
+  let rec facto x = if x = 0 then 1 else x * facto(x-1);;
+  val facto : int -> int = <fun>
+  \end{lstlisting}
+\end{frame}
+
+\subsection{l'ordre superieur}
+\begin{frame}[fragile]
+  et si on faisait des fonctions de fonctions ? 
+ \begin{lstlisting}
+  let sup f a = f a;;
+  val sup : ('a -> 'b) -> 'a -> 'b = <fun>
+ \end{lstlisting}
+ ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types mais 'a et 'b doivent etre de type different
+\end{frame}
 
       \subsection{le filtrage de motif}
-      \begin{frame}
-      \end{frame}
+\begin{frame}[fragile]
+  syntax :
+  \begin{lstlisting}
+match expr with
+ |p1 -> expr1
+ .
+ .
+ |p2 -> expr2
+  \end{lstlisting}
+\end{frame}
 
       \subsection{Les types}
-      \begin{frame}
-      \end{frame}
+\begin{frame}
+\end{frame}

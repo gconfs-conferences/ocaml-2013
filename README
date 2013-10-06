@@ -76,20 +76,23 @@
           Sdltime : delay (pratique pour les animation et flip)
           Sdlevent : clavier, souris et le reste (Sdlkey/Sdlmouse)
           Sdlttf : Affichage de texte
+          Sdlloader : Charger des images
           Sdlmixer : La gestion du son 
+          Sdlgfx : C'est de la triche
      Introduction a SDL :
           SDLinit
           creation d'une fenetre
-          Les differents types de surface
      Le bas niveau de l'affichage
           gestion des surfaces
-               rect
-               type de surfaces
-               la couleur
-               blit
-          Spe : la modification pixel par pixel
-               Verouillage de surface
-               Les fonctions correspondantes
+               Les types de surface
+               Le type rect
+               Chargement d'image
+               "Merge Down !"
+               Modification de l'affichage
+               Les pixel :
+                    Colors
+                    Acces/Modification Pixel
+               Creer des surface a partir de rien
      Affichage de texte
      Gestion des evenements
      Le son (Yospecialdedicaselorysisitavu)

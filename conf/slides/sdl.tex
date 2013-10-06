@@ -139,7 +139,59 @@ val surface_dims : surface -> int * int * int
 	\end{lstlisting}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Le chargement d'image}
-	
+	\textbf{Charger/Sauver une image .bmp}
+	\begin{lstlisting}
+  val load_BMP : string -> surface
+  val save_BMP : surface -> string -> unit
+	\end{lstlisting}
+	\textbf{Charger une image .\{jpeg,png,tiff\}}
+	\begin{lstlisting}
+  val Sdlloader.load_image : 
+    string -> surface
+
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Les pixels...}
+	\begin{center}
+		\includegraphics[width=9cm]{pics/Joconde-pixel.jpg}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{La couleur}
+	\begin{lstlisting}
+type color = int * int * int
+let c = ((255,255,255):color)
+
+val map_RGB : 
+  surface -> ?alpha:int -> color -> int32
+val get_RGB : surface -> int32 -> color
+val get_RGBA : 
+  surface -> int32 -> color * int
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{La transparance \textbf{globale} des surfaces}
+	\textit{Modifie la transparance de tout les pixel de la surface}
+	\begin{lstlisting}
+val set_color_key : 
+  surface -> ?rle:bool -> int32 -> unit
+val get_color_key : surface -> int32
+val unset_color_key
+
+val unset_alpha : surface -> unit
+val set_alpha : 
+  surface -> ?rle:bool -> int -> unit
+val get_alpha : surface -> int
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{\og{}Quand est-ce qu'on manipule des pixels ?\fg}
+
 \end{frame}

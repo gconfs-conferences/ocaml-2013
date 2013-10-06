@@ -77,9 +77,10 @@
           Sdlevent : clavier, souris et le reste (Sdlkey/Sdlmouse)
           Sdlttf : Affichage de texte
           Sdlmixer : La gestion du son 
-     Initialisation :
+     Introduction a SDL :
           SDLinit
           creation d'une fenetre
+          Les differents types de surface
      Le bas niveau de l'affichage
           gestion des surfaces
                rect

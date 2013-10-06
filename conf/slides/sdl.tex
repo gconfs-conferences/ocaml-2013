@@ -61,6 +61,8 @@
   let screen = 
    Sdlvideo.set_video_mode 
    ~w ~h ~bpp [`HWSURFACE]
+
+ quit ()
 		\end{lstlisting}
 	\end{minipage}
 	\begin{minipage}{0.4\textwidth}
@@ -101,6 +103,8 @@ type surface_info = {
 			\item `OPENGL
 			\item `SWSURFACE
 			\item `SRCALPHA
+			\item `RESIZABLE
+			\item `SRCCOLORKEY
 		\end{itemize}
 	\end{minipage}
 \end{frame}
@@ -364,5 +368,42 @@ type event =
 \end{frame}
 
 \subsection{Une boucle Sdl classique} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Gestion des événements}
+	\begin{lstlisting}
+let updateEvent () = 
+  match Sdlevent.poll () with
+  | None -> ()
+  | Some (Sdlevent.KEYDOWN key) -> 
+    keyDownManager key
+  | Some (Sdlevent.MOUSEBUTTONDOWN button) -> 
+    buttonDownManager button
+  | Some Sdlevent.QUIT -> Sdl.quit ()
+  | _ -> ()
+	\end{lstlisting}
+\end{frame}
 
-	
+\begin{frame}[fragile]
+	\frametitle{Modification et déplacement des élement visuels}
+	\textit{Soit displayData une file de fonction Sdlvideo.blit\_surface dont tout les paramètres sont renseignés sauf le unit final}
+	\begin{lstlisting}
+let updateDisplay () = 
+  while not (is_empty displayData) do
+    (take displayData) ()
+  done
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Actualisation}
+	\begin{lstlisting}
+let update () =
+  let ticks = (*17ms -> 60fps *) 
+    17 + Sdltimer.get_ticks () 
+  in
+  updateEvent();
+  updateDisplay();
+  while (Sdltimer.get_ticks ()) <= ticks do 
+    () done
+	\end{lstlisting}
+\end{frame}

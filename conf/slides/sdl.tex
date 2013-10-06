@@ -45,7 +45,6 @@
 \end{frame}
 
 \subsection{Introduction à SDL} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}[fragile]
 	\frametitle{Initialisation de SDL}
 	\begin{minipage}{0.55\textwidth}
@@ -79,7 +78,6 @@
 \end{frame}
 
 \subsection{L'affichage bas niveau} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}[fragile]
 	\frametitle{Quelques mots sur les surfaces}
 	\begin{minipage}{0.55\textwidth}
@@ -288,3 +286,83 @@ val create_RGB_surface :
   amask:int32 -> surface
 	\end{lstlisting}
 \end{frame}
+
+\subsection{La détection d'événement} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Détecter et récupérer un événement}
+	\begin{lstlisting}
+val wait_event : unit -> event
+
+val poll : unit -> event option
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Les differents types d'événement}
+	\lstset{basicstyle=\small}
+	\begin{lstlisting}
+type event =
+| ACTIVE of active_event
+| KEYDOWN of keyboard_event
+| KEYUP of keyboard_event
+| MOUSEMOTION of mousemotion_event
+| MOUSEBUTTONDOWN of mousebutton_event
+| MOUSEBUTTONUP of mousebutton_event
+| JOYAXISMOTION of joyaxis_event
+| JOYBALLMOTION of joyball_event
+| JOYHATMOTION of joyhat_event
+| JOYBUTTONDOWN of joybutton_event
+| JOYBUTTONUP of joybutton_event
+| QUIT
+| SYSWM
+| VIDEORESIZE of int * int
+| VIDEOEXPOSE
+| USER of int
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Sous-événement Clavier/Souris}
+	\textbf{Clavier}
+	\lstset{basicstyle=\scriptsize}
+	\begin{lstlisting}
+  type keyboard_event = {
+    ke_which : int;
+    ke_state : switch_state;
+    keysym : Sdlkey.t;
+    keymod : Sdlkey.mod_state;
+    keycode : char;
+    unicode : int;
+  }
+	\end{lstlisting}
+	\textbf{Souris}\\
+	\begin{minipage}{0.47\textwidth}
+		\begin{lstlisting}
+  type mousemotion_event = {
+    mme_which : int;
+    mme_state : 
+      Sdlmouse.button list;
+    mme_x : int;
+    mme_y : int;
+    mme_xrel : int;
+    mme_yrel : int;
+  }
+		\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{lstlisting}
+  type mousebutton_event = {
+    mbe_which : int;
+    mbe_button : 
+      Sdlmouse.button;
+    mbe_state : switch_state;
+    mbe_x : int;
+    mbe_y : int;
+  }
+		\end{lstlisting}
+	\end{minipage}
+\end{frame}
+
+\subsection{Une boucle Sdl classique} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	

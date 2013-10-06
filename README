@@ -93,13 +93,12 @@
                "Mergedown !"
                Actuallisation de l'affichage
                Creer des surface a partir de rien
-     Affichage de texte
      Gestion des evenements
-     Le son (Yospecialdedicaselorysisitavu)
      Une boucle d'affichage classique en SDL.
           Event
           Flip/Sdltime : actualiser l'ecran
           Modification et deplacement
+     Presentation des modules Bonus : Son/texte/gfx
 
 > Conclusion : Les choses qu'on n'a pas abordées (libs, stdlib, liens)
 

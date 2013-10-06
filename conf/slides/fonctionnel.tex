@@ -185,6 +185,8 @@ let nom = function p1 ->-> function pn -> expr
 
 \subsection{l'ordre superieur}
 \begin{frame}[fragile]
+  \frametitle{le noyaux fonctionnel}
+  \framesubtitle{l'ordre superieur}
   et si on faisait des fonctions de fonctions ? 
  \begin{lstlisting}
   let sup f a = f a;;
@@ -195,16 +197,70 @@ let nom = function p1 ->-> function pn -> expr
 
       \subsection{le filtrage de motif}
 \begin{frame}[fragile]
+  \frametitle{le noyaux fonctionnel}
+  \framesubtitle{le filtrage de motif}
   syntax :
-  \begin{lstlisting}
+  \begin{minipage}[t]{5cm}
+    \begin{lstlisting}
 match expr with
  |p1 -> expr1
  .
  .
  |p2 -> expr2
-  \end{lstlisting}
+ \end{lstlisting}
+ \end{minipage}
+ \begin{minipage}[t]{8cm}
+   \begin{lstlisting}
+   let forty_two  = function
+     42 -> true
+    |_ -> false;;
+    val forty_two : int -> bool = <fun>
+   \end{lstlisting} 
+ \end{minipage}
 \end{frame}
-
+\begin{frame}[fragile]
+  \frametitle{le noyaux fonctionnel}
+  \framesubtitle{le filtrage de motif : justification}
+remember, remember ...
+\begin{lstlisting}
+let f = function x -> x + 1 
+\end{lstlisting}
+\begin{center}
+\begin{rotate}{90}
+$\Leftrightarrow$
+\end{rotate}
+\end{center}
+\begin{lstlisting}
+let f = function 
+ x -> x + 1;;
+ \end{lstlisting}
+  il s'agissait de filtrage dès le debut ! on justifie ainsi la syntax du pattern matching, 
+  on appelle ca un filtrage de parametre ici on filtre le parametre de f avec x soit n'importe quoi
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{le noyau fonctionnel}
+  \framesubtitle{le filtrage de motif : as et when}
+  \begin{itemize}
+  \begin{minipage}[t]{5cm}
+  \item
+    as :
+    \begin{lstlisting}
+	let rec fibo = function 
+ 	0|1 as n -> n 
+ 	|x -> fibo(x - 1) + fibo(x - 2);; 
+	val fibo : int -> int = <fun>
+    \end{lstlisting}
+  \end{minipage}
+  \begin{minipage}[t]{5cm}
+  \item
+    when :
+    \begin{lstlisting}
+	let is_inf = function 
+  	x when x < 42 -> true
+ 	|_ -> false;;
+	val is_inf : int -> int = <fun>
+    \end{lstlisting}
+  \end{minipage}
+  \end{itemize}
+\end{frame}
       \subsection{Les types}
-\begin{frame}
-\end{frame}

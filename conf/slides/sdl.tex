@@ -231,5 +231,21 @@ val display_format :
 
 \begin{frame}[fragile]
 	\frametitle{L'actualisation de l'affichage}
+	\begin{center}
+		\includegraphics[width=2.4cm]{pics/doubleBufferScreen.png}
+	\end{center}
+	\begin{lstlisting}
+val set_video_mode : 
+  w:int -> h:int -> ?bpp:int -> 
+ video_flag list -> surface
+val get_video_surface : 
+  unit -> surface
 
+val update_rect : 
+  ?rect:rect -> surface -> unit
+val update_rects : 
+  rect list -> surface -> unit
+
+val flip : surface -> unit
+	\end{lstlisting}
 \end{frame}

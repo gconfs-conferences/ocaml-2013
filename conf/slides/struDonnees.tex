@@ -9,11 +9,13 @@
 	val v : float array = [|3.14; 6.28; 9.42|]
 	\end{lstlisting}
 
-	\item
+	\item Array.create
 	\begin{lstlisting}
 	let v = Array.create  3  3.14;;
 	val v : float array = [|3.14; 3.14; 3.14|]
 	\end{lstlisting}
+
+	\item Array.make
 	\end{itemize}
 \end{frame}
 
@@ -78,4 +80,15 @@ let t = [|
 	\end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Autres fonctioonnalitées du module Array}
+\begin{itemize}
+	\item Array.make\_matrix
+	
+	\item Array.sub (Ex: Array.sub a start n)
+	
+	\item Array.\{iter,map,iteri,to\_list\}
 
+	\item RTFM !!!
+\end{itemize}
+\end{frame}

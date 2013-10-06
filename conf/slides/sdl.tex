@@ -192,6 +192,44 @@ val get_alpha : surface -> int
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{\og{}Quand est-ce qu'on manipule des pixels ?\fg}
+	\frametitle{\og{}Bon ! Quand est-ce qu'on manipule des pixels ?\fg}
+	\begin{lstlisting}
+val lock : surface -> unit
+val unlock : surface -> unit
+val must_lock : surface -> bool
+
+val get_pixel : 
+  surface -> x:int -> y:int -> int32
+val get_pixel_color : 
+  surface -> x:int -> y:int -> color
+
+val put_pixel : 
+  surface -> x:int -> y:int -> int32 -> unit
+val put_pixel_color : 
+  surface -> x:int -> y:int -> color -> unit
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{\og{}Merge Down !\fg}
+	\begin{center}
+		\includegraphics[width=3.6cm]{pics/surfacesMerge.png}
+	\end{center}
+	\begin{lstlisting}
+val fill_rect : 
+  ?rect:rect -> surface -> int32 -> unit
+
+val blit_surface : 
+  src:surface -> ?src_rect:rect -> 
+  dst:surface -> ?dst_rect:rect -> 
+  unit -> unit
+
+val display_format : 
+  ?alpha:bool -> surface -> surface
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{L'actualisation de l'affichage}
 
 \end{frame}

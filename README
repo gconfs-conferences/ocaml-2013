@@ -87,11 +87,11 @@
                Les types de surface
                Le type rect
                Chargement d'image
-               "Merge Down !"
-               Modification de l'affichage
                Les pixel :
                     Colors
                     Acces/Modification Pixel
+               "Mergedown !"
+               Actuallisation de l'affichage
                Creer des surface a partir de rien
      Affichage de texte
      Gestion des evenements

@@ -230,6 +230,27 @@ val display_format :
 \end{frame}
 
 \begin{frame}[fragile]
+	\frametitle{Le mélange de surface}
+	\scriptsize
+	\begin{itemize}
+		\item RGBA->RGB \textit{avec} SDL\_SRCALPHA 
+		\item RGBA->RGB \textit{sans} SDL\_SRCALPHA
+	\end{itemize}
+	\begin{itemize}
+		\item RGB->RGBA \textit{avec} SDL\_SRCALPHA
+		\item RGB->RGBA \textit{sans} SDL\_SRCALPHA
+	\end{itemize}
+	\begin{itemize}
+		\item RGBA->RGBA \textit{avec} SDL\_SRCALPHA
+		\item RGBA->RGBA \textit{sans} SDL\_SRCALPHA
+	\end{itemize}
+	\begin{itemize}
+		\item RGB->RGB \textit{avec} SDL\_SRCALPHA	
+		\item RGB->RGB \textit{sans} SDL\_SRCALPHA
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
 	\frametitle{L'actualisation de l'affichage}
 	\begin{center}
 		\includegraphics[width=2.4cm]{pics/doubleBufferScreen.png}
@@ -247,5 +268,23 @@ val update_rects :
   rect list -> surface -> unit
 
 val flip : surface -> unit
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Créer des surfaces à partir de rien}
+	\lstset{basicstyle=\footnotesize}
+	\begin{lstlisting}
+val create_RGB_surface_format : surface ->
+  [ `ASYNCBLIT | `HWSURFACE | `SRCALPHA 
+  | `SRCCOLORKEY | `SWSURFACE ] list ->
+  w:int -> h:int -> surface
+
+val create_RGB_surface : 
+  [ `ASYNCBLIT | `HWSURFACE | `SRCALPHA 
+  | `SRCCOLORKEY | `SWSURFACE ] list ->
+  w:int -> h:int -> bpp:int ->
+  rmask:int32 -> gmask:int32 -> bmask:int32 ->
+  amask:int32 -> surface
 	\end{lstlisting}
 \end{frame}

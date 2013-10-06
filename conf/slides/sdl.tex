@@ -30,13 +30,15 @@
 				\item Sdlwm
 				\item Sdlvideo
 				\item Sdltime
+				\item Sdlevent
 			\end{itemize}
 		\end{minipage}
 		\begin{minipage}{0.4\textwidth}
 			\begin{itemize}
-				\item Sdlevent
 				\item Sdlttf
+				\item Sdlloader
 				\item Sdlmixer
+				\item Sdlgfx
 			\end{itemize}
 		\end{minipage}
 	\end{center}
@@ -76,6 +78,8 @@
 	\end{minipage}
 \end{frame}
 
+\subsection{L'affichage bas niveau} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}[fragile]
 	\frametitle{Quelques mots sur les surfaces}
 	\begin{minipage}{0.55\textwidth}
@@ -98,8 +102,44 @@ type surface_info = {
 			\item `HWSURFACE
 			\item `OPENGL
 			\item `SWSURFACE
+			\item `SRCALPHA
 		\end{itemize}
 	\end{minipage}
 \end{frame}
 
-\subsection{L'affichage bas niveau} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{La surface de type \textit{Double Buffer}}
+	\begin{center}
+		\includegraphics[width=9cm]{pics/doubleBuffer.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Le type rect}
+	\begin{center}\begin{minipage}{0.4\textwidth}
+		\includegraphics[width=3cm]{pics/rect.png}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\lstset{basicstyle=\footnotesize}
+		\begin{lstlisting}
+type rect = {
+  mutable r_x : int;
+  mutable r_y : int;
+  mutable r_w : int;
+  mutable r_h : int;
+} 
+		\end{lstlisting}
+	\end{minipage}\end{center}
+	\lstset{basicstyle=\footnotesize}
+	\begin{lstlisting}
+val rect : x:int -> y:int -> w:int -> h:int -> rect
+
+val surface_dims : surface -> int * int * int
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Le chargement d'image}
+	
+\end{frame}

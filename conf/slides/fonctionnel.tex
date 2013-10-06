@@ -266,7 +266,7 @@ let f = function
       \subsection{Les types}
 \begin{frame}[fragile]
 	\frametitle{le noyaux fonctionnel}
-	\framesubtitle{le type somme et le }
+	\framesubtitle{le type somme et le type recurssif}
 	le type somme :
 	\begin{lstlisting}
 type nom =
@@ -274,7 +274,7 @@ type nom =
         |Nom2 of t0 
         |Nom3 of t1 * t2 *.... * tn 
 	\end{lstlisting}
-	le type recurssif:
+	le type recurssif :
 	\begin{lstlisting}
 type nom =
         |Nom1
@@ -285,9 +285,28 @@ type nom =
 
 \begin{frame}[fragile]
   \frametitle{le noyaux fonctionnel}
+  \framesubtitle{le type fonctionnel et le type paramétrés}
+  le type fonctionnel : 
+  \begin{lstlisting}
+type nom =
+         |Nom 1
+	 |Nom 2 of t0
+	 |Nom3 of ('a -> 'b)
+  \end{lstlisting}
+  le type paramétrés :
+  \begin{lstlisting}
+type nom = 
+         |Nom 1 
+	 |Nom 2 of t0
+	 |Nom 3 of 'a 
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{le noyaux fonctionnel}
   \framesubtitle{les execptions}
   \begin{lstlisting}
-execption Nom;;
+exception Nom;;
 exception Nom of int;;
   \end{lstlisting}
 pour soulever un exception : 
@@ -295,6 +314,14 @@ pour soulever un exception :
 raise ;;
 - : exn -> 'a = <fun>
 \end{lstlisting}
-
+\begin{lstlisting}
+try exp with 
+|p1 -> exp1
+|p2 -> exp2
+.
+.
+.
+|p3 -> exp3
+\end{lstlisting}
 
 \end{frame}

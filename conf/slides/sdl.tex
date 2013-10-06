@@ -1,5 +1,105 @@
-\section[SDL]{la bibliothèque SDL}
+\section[SDL]{La bibliothèque SDL}
+
+\subsection{Fonctionnement de SDL} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{center}
+		\huge
+		La bibliothèque SDL
+	\end{center}
+\end{frame}
 
 \begin{frame}
-
+	\frametitle{Le principe actif SDL}
+	\begin{center}
+		\includegraphics[width=9cm]{pics/sdlSurfaces.png}
+	\end{center}
 \end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Les modules SDL}
+	\begin{center}
+		\begin{minipage}{0.4\textwidth}
+			\begin{itemize}
+				\item ~~~sdl
+			\end{itemize}
+		\end{minipage}
+	\end{center}
+	\begin{center}
+		\begin{minipage}{0.4\textwidth}
+			\begin{itemize}
+				\item Sdlwm
+				\item Sdlvideo
+				\item Sdltime
+			\end{itemize}
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth}
+			\begin{itemize}
+				\item Sdlevent
+				\item Sdlttf
+				\item Sdlmixer
+			\end{itemize}
+		\end{minipage}
+	\end{center}
+\end{frame}
+
+\subsection{Introduction à SDL} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{Initialisation de SDL}
+	\begin{minipage}{0.55\textwidth}
+		\textbf{L'intialisation de base}
+		\lstset{basicstyle=\small}
+		\begin{lstlisting}
+  Sdl.init [`EVERYTHING] 
+		\end{lstlisting}
+		\textbf{L'intialisation et ouverture d'une fenetre}
+		\lstset{basicstyle=\small}
+		\begin{lstlisting}
+  Sdl.init [`EVERYTHING]
+
+  let screen = 
+   Sdlvideo.set_video_mode 
+   ~w ~h ~bpp [`HWSURFACE]
+		\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{itemize}
+			\item `AUDIO
+			\item `CDROM
+			\item `JOYSTICK
+			\item `TIMER
+			\item `VIDEO
+		\end{itemize}
+		\begin{itemize}
+			\item `EVERYTHING
+		\end{itemize}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Quelques mots sur les surfaces}
+	\begin{minipage}{0.55\textwidth}
+		\lstset{basicstyle=\small}
+		\begin{lstlisting}
+type surface_info = {
+  flags : surface_flags list;
+  w : int;
+  h : int;
+  pitch : int;
+  clip_rect : rect;
+  refcount : int;
+}
+		\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{itemize}
+			\item `DOUBLEBUF
+			\item `FULLSCREEN
+			\item `HWSURFACE
+			\item `OPENGL
+			\item `SWSURFACE
+		\end{itemize}
+	\end{minipage}
+\end{frame}
+
+\subsection{L'affichage bas niveau} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

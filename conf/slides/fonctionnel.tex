@@ -2,7 +2,7 @@
 %slide 3
 \begin{frame}
   \begin{center}
-    \frametitle{les bases}
+    \frametitle{Les bases}
   Le noyau fonctionnel, la sup, le bon temps, toussa toussa.... et deux trois trucs nouveaux !
   \end{center}
 \end{frame}
@@ -11,7 +11,7 @@
 \subsection{Les composants de bases}
 
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
+  \frametitle{Le fonctionnel}
   \framesubtitle{Les types numériques}
    \begin{minipage}[t]{5cm}
     les ints/entiers : 
@@ -43,10 +43,10 @@
    \end{minipage}
 \end{frame}
 %slide 5
-  \subsection{les chars et chaines de chars}
+  \subsection{Les chars et chaines de chars}
 \begin{frame}[fragile]
-    \frametitle{le fonctionnel}
-    \framesubtitle{caractères et chaines de caractère}
+    \frametitle{Le fonctionnel}
+    \framesubtitle{Caractères et chaines de caractères}
     Les caractères sont bien pratique si l'on veuille faire un interfaçage avec l'utilisateur ou d'autre ... truc (*caugh* ocr *caugh*)\\
     \begin{minipage}[t]{10cm}
       \begin{lstlisting}
@@ -62,10 +62,10 @@
     \end{minipage}
 \end{frame}
 %slide 6
-  \subsection{les boolèens}
+  \subsection{Les boolèens}
 \begin{frame}
-    \frametitle{le fonctionnel}
-    \framesubtitle{les boolèens}
+    \frametitle{Le fonctionnel}
+    \framesubtitle{Les boolèens}
       La logique booléenne est composée de 2 "termes" true et false, ils s'utilisent avec les operateurs suivants :
       \begin{center}
       \begin{minipage}[t]{7cm}
@@ -96,22 +96,48 @@
 	\end{minipage}
 \end{frame}
 %slide 7
-    \subsection{le controle conditionnel}
+
+\subsection{Les listes} 
+\begin{frame}[fragile]
+	\frametitle{Le fonctionnel}
+	\framesubtitle{Les listes}
+	\begin{itemize}
+
+	\item 	\begin{lstlisting}
+		[]
+		\end{lstlisting}
+
+	\item 	\begin{lstlisting}
+		a :: []
+		\end{lstlisting}
+
+	\item 	\begin{lstlisting}
+		liste1 @ liste2
+		\end{lstlisting}
+		
+	\item 	Read The Fuc**** Module List
+
+	\end{itemize}
+\end{frame}
+
+   \subsection{Le controle conditionnel}
 \begin{frame}
-      \frametitle{le fonctionnel}
-      \framesubtitle{le controle conditionnel}
+      \frametitle{Le fonctionnel}
+      \framesubtitle{Le controle conditionnel}
       \begin{center}
 	if a then b (else c);;
   \end{center}
 \end{frame}
 %slide 8
-    \subsection{les declarations}
+
+
+    \subsection{Les declarations}
 \begin{frame}[fragile]
-      \frametitle{le fonctionnel}
-      \framesubtitle{les declarations}
-      il existe deux types de declaration :
+      \frametitle{Le fonctionnel}
+      \framesubtitle{Les declarations}
+      Il existe deux types de declaration :
      \begin{minipage}[t]{5cm}
-	les globales :\\
+	Les globales :\\
 	\begin{lstlisting}
 	let a = "42";;
 	val a : string = "42"
@@ -143,10 +169,12 @@
       \end{minipage}
 \end{frame}
 %slide 9
+
+
     \subsection{Les fonctions}
 \begin{frame}[fragile]
       \frametitle{Le fonctionnel}
-      \framesubtitle{les fonctions}
+      \framesubtitle{Les fonctions}
       \begin{minipage}[t]{7cm}
 	\begin{center}
 	\begin{itemize}
@@ -172,6 +200,8 @@
 \end{frame}
 
 %slide 10
+
+
 \subsection{Declaration de fonction}
 \begin{frame}[fragile]
   \frametitle{Le fonctionnel}
@@ -192,36 +222,39 @@ let nom = function p1 ->-> function pn -> expr
   let add x y = x + y;;
   val add : int -> int -> int = <fun>
   \end{lstlisting}
-  declaration de fonction recursive 
+  Déclaration de fonction recursive 
   \begin{lstlisting}
   let rec facto x = if x = 0 then 1 else x * facto(x-1);;
   val facto : int -> int = <fun>
   \end{lstlisting}
 \end{frame}
 %slide 11
-\subsection{l'ordre superieur}
+
+
+\subsection{L'ordre superieur}
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
-  \framesubtitle{l'ordre superieur}
-  et si on faisait des fonctions de fonctions ? 
+  \frametitle{Le fonctionnel}
+  \framesubtitle{L'ordre superieur}
+  Et si on faisait des fonctions de fonctions ? 
  \begin{lstlisting}
   let sup f a = f a;;
   val sup : ('a -> 'b) -> 'a -> 'b = <fun>
  \end{lstlisting}
- ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types.
+ Ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types.
 \end{frame}
 
-      \subsection{le filtrage de motif}
+
+      \subsection{Le filtrage de motif}
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
-  \framesubtitle{le filtrage de motif}
+  \frametitle{Le fonctionnel}
+  \framesubtitle{Le filtrage de motif}
   \begin{minipage}[t]{5cm}
     \begin{lstlisting}
 match expr with
  |p1 -> expr1
  .
  .
- |p2 -> expr2
+ |pn -> exprn
  \end{lstlisting}
  \end{minipage}
  \begin{minipage}[t]{8cm}
@@ -233,9 +266,10 @@ match expr with
    \end{lstlisting} 
  \end{minipage}
 \end{frame}
+
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
-  \framesubtitle{le filtrage de motif : justification}
+  \frametitle{Le fonctionnel}
+  \framesubtitle{Le filtrage de motif : justification}
 remember, remember ...
 \begin{lstlisting}
 let f = function x -> x + 1 
@@ -252,9 +286,10 @@ let f = function
   il s'agissait de filtrage dès le debut ! on justifie ainsi la syntaxe du pattern matching, 
   on appelle ça un filtrage de paramètre ici on filtre le paramètre de f avec x, soit n'importe quoi.
 \end{frame}
+
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
-  \framesubtitle{le filtrage de motif : as et when}
+  \frametitle{Le fonctionnel}
+  \framesubtitle{Le filtrage de motif : as et when}
   \begin{itemize}
   \begin{minipage}[t]{5cm}
   \item
@@ -280,8 +315,8 @@ let f = function
 \end{frame}
       \subsection{Les types}
 \begin{frame}[fragile]
-	\frametitle{le fonctionnel}
-	\framesubtitle{le type somme et le type récuresif}
+	\frametitle{Le fonctionnel}
+	\framesubtitle{Le type somme et le type récuresif}
 	le type somme :
 	\begin{lstlisting}
 type nom =
@@ -299,8 +334,8 @@ type nom =
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
-  \framesubtitle{le type paramétrés}
+  \frametitle{Le fonctionnel}
+  \framesubtitle{Le type paramétrés}
   le type paramétrés :
   \begin{lstlisting}
 type nom =
@@ -317,8 +352,8 @@ type nom =
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{le fonctionnel}
-  \framesubtitle{les exceptions}
+  \frametitle{Le fonctionnel}
+  \framesubtitle{Les exceptions}
   \begin{lstlisting}
 exception Nom;;
 exception Nom of int;;
@@ -338,4 +373,20 @@ try exp with
 |p3 -> exp3
 \end{lstlisting}
 
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Le fonctionnel}
+	\framesubtitle{Les paramètres optionnels}
+	\begin{itemize}	
+
+	\item 	\begin{lstlisting}
+		let incr ?pas:(x = 1) r = r + x
+		\end{lstlisting}
+
+	\item 	\begin{lstlisting}
+		incr ~pas:10 32
+		\end{lstlisting}
+
+\end{itemize}
 \end{frame}

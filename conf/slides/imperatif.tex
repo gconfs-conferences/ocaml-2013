@@ -1,49 +1,35 @@
 \section{Le noyau imperatif}
 
 \begin{frame}
-quoi de neuf ? 
+quoi de neuf ? \\
+the ;; is a lie !
 \end{frame}
-\subsection{le type ref}
-\begin{frame}[fragile]
-  \frametitle{le noyaux imperatif}
-  \framesubtitle{le type}
-  \begin{lstlisting}
-    let x = ref 0 
-    val x : '_a ref = {contents = []}
-   
-    x := 1::!x
-    - : unit()
-     
-    x
-    - : int list ref = {contents = [1]}
-     
-  \end{lstlisting}
-\end{frame} 
+
 \begin{frame}[fragile]
   \frametitle{le noyaux imperatif}
   \framesubtitle{les entrées-sorties}
-    les canaux : 
+  les canaux : 
   \begin{lstlisting}
       open_in
       open_out
       close_in
       close_out
-  \end{lstlisting}
+   \end{lstlisting}
     ecriture et lecture :
-    \begin{minipage}[t]{4cm}
-  \begin{lstlisting}
-input_line
-intput
-output
-  \end{lstlisting}
-\end{minipage}
   \begin{minipage}[t]{4cm}
-    \begin{lstlisting}
-print_newline
-print_string
-read_line
-      \end{lstlisting}
-    \end{minipage}
+   \begin{lstlisting}
+    input_line
+    intput
+    output
+   \end{lstlisting}
+  \end{minipage}
+  \begin{minipage}[t]{4cm}
+   \begin{lstlisting}
+    print_newline
+    print_string
+    read_line
+   \end{lstlisting}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}[fragile]

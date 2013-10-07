@@ -1,16 +1,17 @@
 \section{Rappels sur le noyau fonctionnel}
-
+%slide 3
 \begin{frame}
   \begin{center}
-    \frametitle{la programmation fonctionnel}
+    \frametitle{la programmation fonctionnelle}
   Le noyau fonctionnel, la sup, le bon temps, toussa toussa....
   \end{center}
 \end{frame}
+%slide 4
 
 \subsection{Les nombres}
 \begin{frame}[fragile]
   \frametitle{le noyaux fonctionnel}
-  \framesubtitle{Les nombres}
+  \framesubtitle{Les types numériques}
    \begin{minipage}[t]{5cm}
     les ints : 
     \begin{lstlisting}
@@ -31,7 +32,7 @@
      \begin{lstlisting}
     4 * 10 + 2;;
       - : int = 42
-      \end{lstlisting}
+     \end{lstlisting}
    \end{minipage}
    \begin{minipage}[t]{5cm}
      \begin{lstlisting}
@@ -40,7 +41,7 @@
      \end{lstlisting}
    \end{minipage}
 \end{frame}
-
+%slide 5
   \subsection{les chars et chaines de chars}
 \begin{frame}[fragile]
     \frametitle{le noyaux fonctionnel}
@@ -59,19 +60,20 @@
       \end{lstlisting}
     \end{minipage}
 \end{frame}
-
+%slide 6
   \subsection{les boolèens}
 \begin{frame}
     \frametitle{le noyaux fonctionnel}
     \framesubtitle{les boolèens}
-      la logique booléenne est composé de 2 "termes" true et false qui s'utilise avec les operateur suivant :
+      La logique booléenne est composée de 2 "termes" true et false, ils s'utilisent avec les operateurs suivants :
       \begin{center}
       \begin{minipage}[t]{7cm}
 	  \begin{itemize}
-	    \item "not" : negation
+	    \item "not" : négation
 	    \item "\&\&" : et sequentiel
 	    \item "||" : ou sequentiel
 	    \item "\&" : synonyme pour "\&\&"
+	    \item "or" : synonyme pour "||"
 	  \end{itemize}
 	\end{minipage}
       \end{center}
@@ -92,14 +94,16 @@
 	  \end{itemize}
 	\end{minipage}
 \end{frame}
-
+%slide 7
     \subsection{le controle conditionnel}
 \begin{frame}
       \frametitle{le noyaux fonctionnel}
       \framesubtitle{le controle conditionnel}
+      \begin{center}
       if a then b else c;;
+  \end{center}
 \end{frame}
-
+%slide 8
     \subsection{les declarations}
 \begin{frame}[fragile]
       \frametitle{le noyaux fonctionnel}
@@ -137,7 +141,7 @@
 	\end{lstlisting}
       \end{minipage}
 \end{frame}
-
+%slide 9
     \subsection{Les fonctions}
 \begin{frame}[fragile]
       \frametitle{Le noyaux fonctionnel}
@@ -166,7 +170,7 @@
   \end{minipage}
 \end{frame}
 
-
+%slide 10
 \subsection{Declaration de fonction}
 \begin{frame}[fragile]
   \frametitle{Le noyaux fonctionnel}
@@ -193,7 +197,7 @@ let nom = function p1 ->-> function pn -> expr
   val facto : int -> int = <fun>
   \end{lstlisting}
 \end{frame}
-
+%slide 11
 \subsection{l'ordre superieur}
 \begin{frame}[fragile]
   \frametitle{le noyaux fonctionnel}
@@ -203,14 +207,13 @@ let nom = function p1 ->-> function pn -> expr
   let sup f a = f a;;
   val sup : ('a -> 'b) -> 'a -> 'b = <fun>
  \end{lstlisting}
- ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types mais 'a et 'b doivent etre de type different
+ ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types.
 \end{frame}
 
       \subsection{le filtrage de motif}
 \begin{frame}[fragile]
   \frametitle{le noyaux fonctionnel}
   \framesubtitle{le filtrage de motif}
-  syntax :
   \begin{minipage}[t]{5cm}
     \begin{lstlisting}
 match expr with
@@ -245,8 +248,8 @@ $\Leftrightarrow$
 let f = function 
  x -> x + 1;;
  \end{lstlisting}
-  il s'agissait de filtrage dès le debut ! on justifie ainsi la syntax du pattern matching, 
-  on appelle ca un filtrage de parametre ici on filtre le parametre de f avec x soit n'importe quoi
+  il s'agissait de filtrage dès le debut ! on justifie ainsi la syntaxe du pattern matching, 
+  on appelle ça un filtrage de paramètre ici on filtre le paramètre de f avec x, soit n'importe quoi.
 \end{frame}
 \begin{frame}[fragile]
   \frametitle{le noyau fonctionnel}
@@ -301,15 +304,15 @@ type nom =
   \begin{lstlisting}
 type nom =
          |Nom 1
-	 |Nom 2 of t0
-	 |Nom3 of ('a -> 'b)
+         |Nom 2 of t0
+         |Nom3 of ('a -> 'b)
   \end{lstlisting}
   le type paramétrés :
   \begin{lstlisting}
 type nom = 
          |Nom 1 
-	 |Nom 2 of t0
-	 |Nom 3 of 'a 
+         |Nom 2 of t0
+         |Nom 3 of 'a 
   \end{lstlisting}
 \end{frame}
 

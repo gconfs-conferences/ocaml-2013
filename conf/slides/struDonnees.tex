@@ -1,7 +1,11 @@
+
 \section{Les structures de données}
-
-
 \subsection{Les enregistrements}
+
+\begin{frame}
+              Les structures de données
+\end{frame}
+
 
 \begin{frame}[fragile]
 \frametitle{Enregistrements}
@@ -25,7 +29,7 @@
 
 \begin{frame}[fragile]
 \frametitle{Les références}
-	Une référence est considéré comme l'équivalent du type pointeur en OCaml.
+	Une référence est considéré comme l'équivalent (selon l'INRIA) des pointeurs en OCaml.
 	\begin{lstlisting}
 		type 'a ref = {mutable contents:'a}
 	\end{lstlisting}
@@ -131,7 +135,7 @@ let t = [|
 
 \begin{frame}[fragile]
 \frametitle{Les vecteurs}
-\framesubtitle{Autres fonctioonnalitées du module Array}
+\framesubtitle{Autres fonctionnalitées du module Array}
 \begin{itemize}
 	\item Array.make\_matrix
 	
@@ -144,9 +148,9 @@ let t = [|
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les piles }
+\frametitle{Les piles}
 \framesubtitle{Initialisation}
-	Pour utiliser les piles en OCaml il est necessaire d'utiliser le module Stack (à moins que ça vous amusent de les recoder):
+	Pour utiliser les piles en OCaml nous vous présenterons ici le module Stack (ensuite si ça vous amuse de les recoder...):
 	\begin{lstlisting}
 	open Stack
 	\end{lstlisting}
@@ -157,6 +161,7 @@ let t = [|
 	\end{lstlisting}
 \end{frame}
 
+\subsection{Les piles}
 \begin{frame}[fragile]
 \frametitle{Les piles}
 \framesubtitle{Utilisation}
@@ -177,7 +182,6 @@ let t = [|
 		\end{lstlisting}	
 
 	\end{itemize}
-
 
 \end{frame}
 
@@ -216,6 +220,8 @@ let t = [|
 \end{frame}
 
 
+
+\subsection{Les tables de hachage}
 \begin{frame}[fragile]
 \frametitle{Les tables de hachage}
 \framesubtitle{Initialisation}
@@ -280,14 +286,4 @@ let t = [|
 	\end{itemize}
 
 \end{frame}
-
-
-
-
-
-
-
-
-
-
 

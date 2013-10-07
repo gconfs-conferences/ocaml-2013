@@ -20,7 +20,7 @@
 	\end{center}
 \end{frame}
 \begin{frame}[fragile]
-	\frametitle{Création d'instance et appel de fonction}
+	\frametitle{Exemple d'utilisation d'objet}
 	\begin{lstlisting}
 let (c1,c2) =
   let m1 = new CoffeMachine(Bresile)
@@ -39,19 +39,37 @@ let (c1,c2) =
 \subsection{La déclaration d'un objet} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{Syntaxe}
-	\begin{lstlisting}
-class name pa1..pan =
+	\begin{minipage}{0.45\textwidth}
+		\lstset{basicstyle=\small}
+		\begin{lstlisting}
+class name parameters =
   object
     (*Attributs*)
     
     (*Methods*)
   end
-	\end{lstlisting}
+		\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{lstlisting}
+class point x y =
+  object
+    val x = x
+    val y = y
+
+    method printCoord =
+      print_int x;
+      print_string ",";
+      print_int y;
+      print_string "\n"
+    end
+		\end{lstlisting}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Déclaration d'attribut}
-	\textit{Respectez le typage}\\
+	\textit{Tenez vous à un type}\\
 	\textbf{Simple}
 	\begin{lstlisting}
   val name = expr
@@ -72,12 +90,12 @@ class name pa1..pan =
 	\frametitle{Déclaration de méthode}
 	\textbf{simple}
 	\begin{lstlisting}
-method name p1 ...pn = expr
+  method name parameters = expr
 	\end{lstlisting}
 	\textbf{privée}\\
 	\begin{minipage}{0.4\textwidth}
   	\begin{lstlisting}
-  class ... =
+  class name =
     object
     ...
     end
@@ -85,22 +103,22 @@ method name p1 ...pn = expr
 	\end{minipage}$\Rightarrow$
 	\begin{minipage}{0.4\textwidth}
 		\begin{lstlisting}
-  class ... =
+  class name =
     object (self)
     ...
     end
 		\end{lstlisting}
 	\end{minipage}
 	\begin{lstlisting}
-method private name p1 ...pn = expr
-self#privateMethod ...
+  method private name parameters = expr
+  self#privateMethod parameters
 	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Initialisation}
 	\begin{lstlisting}
-class ... (l:int list) =
+class putLineInQueue (l:int list) =
   object (self)
     
   val data = Queue.create ()
@@ -121,13 +139,14 @@ class ... (l:int list) =
 \begin{frame}[fragile]
 	\frametitle{Attributs polymorphiques}
 	\begin{lstlisting}
-class ['a] ... =
+class ['a] name parameters =
   object 
   val data = ref []
 
   method add e =
     data := e::!data
-
+  
+  ...
   end
 	\end{lstlisting}
 \end{frame}
@@ -136,16 +155,17 @@ class ['a] ... =
 \begin{frame}[fragile]
 	\frametitle{Syntaxe de l'heritage}
 	\begin{lstlisting}
-class ... =
+class childName parameters =
   object
-  inherit motherClass p1..pn
+  inherit motherClass mothersParameters
 
   end
 	\end{lstlisting}
 	\begin{lstlisting}
 class ... =
   object
-  inherit motherClass p1..p2 as motherSelf
+  inherit motherClass mothersParameters 
+    as motherSelf
 
   end
 	\end{lstlisting}

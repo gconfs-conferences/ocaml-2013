@@ -22,7 +22,9 @@
 
 \begin{document}
 \begin{center}
-{\Large {\bf La Programmation Orientée Objet en OCaml}}
+  {\Large {\bf La Programmation Orientée Objet en
+  \textsc{OCaml}\protect\footnote{Questions, remarques, et plaintes à
+\url{ranquet@lrde.epita.fr}, \protect\url{yroeht@irc.rezosup.org}}}}
 \end{center}
 
 \bigskip
@@ -81,7 +83,7 @@ Affichera:
 \subsection{Attribut}
 
 Ajoutez quatre pattes (cet \textbf{attribut} est une valeur mutable initialisée
-à 4) à votre class \verb|cat|, ainsi qu'une méthode \textbf{break\_a\_leg} qui
+à 4) à votre class \verb|cat|, ainsi qu'une méthode \verb|break_a_leg| qui
 décrémente ce nombre de pattes.
 
 La nouvelle
@@ -97,7 +99,8 @@ interface de votre classe est:
 \vspace{3mm}
 
 Utilisez une boucle (dans votre méthode \verb|meow|) pour que votre chat
-communique désormais en miaulant une fois par patte.
+communique\footnote{\protect\url{http://en.wikipedia.org/wiki/Cat\_communication}}
+désormais en miaulant une fois par patte.
 
 \newpage
 
@@ -117,9 +120,8 @@ deux ou trois fois pour de meilleurs résultats.
 
 \subsection{Héritage}
 
-Avoir des pattes, qui plus est en avoir quatre, ce n'est pas une
-caractéristique propre aux chats; c'est également le cas des chiens, et en fait
-de tous les quadrupèdes.
+Avoir des pattes, qui plus est en avoir quatre, ce n'est pas le propre des
+chats: c'est également le cas des chiens, et en fait de tous les quadrupèdes.
 
 Retirez les pattes de votre classe \verb|cat|; vous allez placer cet attribut
 dans une classe mère \verb|quadrupede| dont vous allez hériter. Son interface:
@@ -196,7 +198,7 @@ Tentons de faire une liste d'animaux:
 type farm = quadrupede list
 \end{verbatim}
 
-Si on tente d'y aller naivement, on échoue:
+Si on tente d'y aller naïvement, on échoue:
 
 \begin{verbatim}
 let li : farm = new cat :: new dog :: []
@@ -253,17 +255,24 @@ méthodes publiques pour obtenir les données nécessaires au traitement à
 effectuer (calcul, génération de rapport, etc.).
 
 En programmation orientée objet et en génie logiciel, le patron de conception
-comportemental visiteur est une manière de séparer un algorithme d'une
-structure de données.
+comportemental visiteur est \textbf{une manière de séparer un algorithme d'une
+structure de données}.
 
 \subsection{Implémentation}
 
-Modifiez vos animaux pour qu'ils soient paramétrés par votre visiteur, et
-ajouter une méthode \verb|accept| qui prend en argument un visiteur. Le
-visiteur implémentera les méthodes \verb|visitCat| et \verb|visitDog|, utilisez
-les dans vos implentations de \verb|accept|.
+Nous shouhaitons ajouter une méthode \verb|accept| qui prend en argument un
+visiteur à nos animaux. Or, le type \verb|visitor| n'est pas encore défini et,
+contrairement à des langages tel le C, on ne peut pas faire de \textit{forward
+declaration}. Il est donc nécessaire de paramétrer nos classes animales par ce
+visiteur.
 
-Solution:
+Le visiteur implémentera les méthodes \verb|visitCat| et \verb|visitDog|, qui
+prennent respectivement en argument un chat et un chien. La méthode
+\verb|accept| doit appeler ces fonctions sur les objets eux-mêmes.
+
+\vspace{3mm}
+
+Voici comment procéder:
 
 \begin{verbatim}
 class virtual ['visitor] quadrupede =
@@ -287,15 +296,9 @@ object(self)
 end
 \end{verbatim}
 
-Implémentez maintenant les visiteurs, qui dérivent de la classe \verb|visitor|,
-qui définie les méthodes \verb|visitCat| et \verb|visitDog|, qui prennent en
-argument un objet de la classe qui va bien.
-
-Le visiteur \verb|legsVisitor|, qui implémente les deux méthodes
-\verb|visitCat| et \verb|visitDog|, va appeler la méthode qui modifie le nombre
-de pattes de son argument.
-
-Le visiteur \verb|speciesVisitor| va appeler \verb|species| de son argument.
+Implémentez maintenant les visiteurs, qui dérivent de la classe \verb|visitor|
+(qui définie les méthodes \verb|visitCat| et \verb|visitDog|) et qui prennent
+en argument un objet de la classe qui va bien.
 
 \begin{verbatim}
 class virtual visitor =
@@ -303,7 +306,16 @@ object
   method virtual visitCat : visitor cat -> unit
   method virtual visitDog : visitor dog -> unit
 end
+\end{verbatim}
 
+Le visiteur \verb|legsVisitor| (qui, comme tout visiteur, implémente les deux
+méthodes \verb|visitCat| et \verb|visitDog|) va appeler la méthode qui modifie
+le nombre de pattes de son argument.
+
+Le visiteur \verb|speciesVisitor| va appeler \verb|species| de son argument.
+
+
+\begin{verbatim}
 class legsVisitor =
 object
   inherit visitor
@@ -319,7 +331,7 @@ object
 end
 \end{verbatim}
 
-Et testez:
+On peut maintenant tester:
 
 \begin{verbatim}
 let li : farm = (new cat :> quadrupedev) :: (new dog :> quadrupedev) :: (new

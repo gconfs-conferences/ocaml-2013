@@ -232,27 +232,6 @@ val display_format :
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Le mélange de surface}
-	\scriptsize
-	\begin{itemize}
-		\item RGBA->RGB \textit{avec} SDL\_SRCALPHA 
-		\item RGBA->RGB \textit{sans} SDL\_SRCALPHA
-	\end{itemize}
-	\begin{itemize}
-		\item RGB->RGBA \textit{avec} SDL\_SRCALPHA
-		\item RGB->RGBA \textit{sans} SDL\_SRCALPHA
-	\end{itemize}
-	\begin{itemize}
-		\item RGBA->RGBA \textit{avec} SDL\_SRCALPHA
-		\item RGBA->RGBA \textit{sans} SDL\_SRCALPHA
-	\end{itemize}
-	\begin{itemize}
-		\item RGB->RGB \textit{avec} SDL\_SRCALPHA	
-		\item RGB->RGB \textit{sans} SDL\_SRCALPHA
-	\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
 	\frametitle{L'actualisation de l'affichage}
 	\begin{center}
 		\includegraphics[width=2.4cm]{pics/doubleBufferScreen.png}
@@ -385,7 +364,13 @@ let updateEvent () =
 
 \begin{frame}[fragile]
 	\frametitle{Modification et déplacement des élement visuels}
+	\lstset{basicstyle=\scriptsize}
+	\begin{lstlisting}
+val blit_surface : src:surface -> ?src_rect:rect -> 
+  dst:surface -> ?dst_rect:rect -> unit -> unit
+	\end{lstlisting}
 	\textit{Soit displayData une file de fonction Sdlvideo.blit\_surface dont tout les paramètres sont renseignés sauf le unit final}
+	\lstset{basicstyle=\normalsize}
 	\begin{lstlisting}
 let updateDisplay () = 
   while not (is_empty displayData) do

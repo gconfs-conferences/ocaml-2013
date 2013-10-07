@@ -62,7 +62,7 @@ class point x y =
       print_string ",";
       print_int y;
       print_string "\n"
-    end
+  end
 		\end{lstlisting}
 	\end{minipage}
 \end{frame}
@@ -162,7 +162,7 @@ class childName parameters =
   end
 	\end{lstlisting}
 	\begin{lstlisting}
-class ... =
+class childName parameters =
   object
   inherit motherClass mothersParameters 
     as motherSelf
@@ -178,7 +178,7 @@ class ... =
 
 \begin{frame}
 	\frametitle{Accès aux méthodes de la classe mère 2/2}
-	\textit{Le type de la nouvelle version de la méthode doit correspondre à celle de la méthode mère.}
+	\textit{Le type d'une réécritrue d'une méthode doit correspondre à celui de la méthode mère.}
 	\lstinputlisting[firstline=16, lastline=28]{code/heritage.ml}
 \end{frame}
 \subsection{Le polymorphisme d'inclusion} %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -229,8 +229,6 @@ class type i1 =
   end
 			\end{lstlisting}
 		\end{minipage}
-	\end{center}
-	\begin{center}
 		\begin{minipage}{0.4\textwidth}
 			\lstset{basicstyle=\scriptsize}
 			\begin{lstlisting}

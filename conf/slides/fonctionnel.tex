@@ -2,25 +2,26 @@
 %slide 3
 \begin{frame}
   \begin{center}
-    \frametitle{la programmation fonctionnelle}
-  Le noyau fonctionnel, la sup, le bon temps, toussa toussa....
+    \frametitle{les bases}
+  Le noyau fonctionnel, la sup, le bon temps, toussa toussa.... et deux trois trucs nouveaux !
   \end{center}
 \end{frame}
 %slide 4
 
-\subsection{Les nombres}
+\subsection{Les composants de bases}
+
 \begin{frame}[fragile]
-  \frametitle{le noyaux fonctionnel}
+  \frametitle{le fonctionnel}
   \framesubtitle{Les types numériques}
    \begin{minipage}[t]{5cm}
-    les ints : 
+    les ints/entiers : 
     \begin{lstlisting}
     42;;
     - : int  = 42
     \end{lstlisting}
    \end{minipage}
    \begin{minipage}[t]{5cm}
-    les floats :
+    les floats/flottants:w :
     \begin{lstlisting}
     4.2;;
     - : float = 4.2
@@ -44,9 +45,9 @@
 %slide 5
   \subsection{les chars et chaines de chars}
 \begin{frame}[fragile]
-    \frametitle{le noyaux fonctionnel}
+    \frametitle{le fonctionnel}
     \framesubtitle{caractères et chaines de caractère}
-    Les caractères sont bien pratique si l'on veux faire un interfacage avec l'utilisateur ou d'autre ... truc (*caugh* ocr *caugh*)\\
+    Les caractères sont bien pratique si l'on veuille faire un interfaçage avec l'utilisateur ou d'autre ... truc (*caugh* ocr *caugh*)\\
     \begin{minipage}[t]{10cm}
       \begin{lstlisting}
       "coucou je suis une chaine";;
@@ -63,7 +64,7 @@
 %slide 6
   \subsection{les boolèens}
 \begin{frame}
-    \frametitle{le noyaux fonctionnel}
+    \frametitle{le fonctionnel}
     \framesubtitle{les boolèens}
       La logique booléenne est composée de 2 "termes" true et false, ils s'utilisent avec les operateurs suivants :
       \begin{center}
@@ -97,23 +98,23 @@
 %slide 7
     \subsection{le controle conditionnel}
 \begin{frame}
-      \frametitle{le noyaux fonctionnel}
+      \frametitle{le fonctionnel}
       \framesubtitle{le controle conditionnel}
       \begin{center}
-      if a then b else c;;
+	if a then b (else c);;
   \end{center}
 \end{frame}
 %slide 8
     \subsection{les declarations}
 \begin{frame}[fragile]
-      \frametitle{le noyaux fonctionnel}
+      \frametitle{le fonctionnel}
       \framesubtitle{les declarations}
       il existe deux types de declaration :
      \begin{minipage}[t]{5cm}
 	les globales :\\
 	\begin{lstlisting}
 	let a = "42";;
-	val a : string = 42
+	val a : string = "42"
 	\end{lstlisting}
 	avec repetition :
 	\begin{lstlisting}
@@ -144,7 +145,7 @@
 %slide 9
     \subsection{Les fonctions}
 \begin{frame}[fragile]
-      \frametitle{Le noyaux fonctionnel}
+      \frametitle{Le fonctionnel}
       \framesubtitle{les fonctions}
       \begin{minipage}[t]{7cm}
 	\begin{center}
@@ -173,7 +174,7 @@
 %slide 10
 \subsection{Declaration de fonction}
 \begin{frame}[fragile]
-  \frametitle{Le noyaux fonctionnel}
+  \frametitle{Le fonctionnel}
   \framesubtitle{Declaration de fonctions}
     \begin{lstlisting}
 	let nom p1 ... pn = expr
@@ -200,7 +201,7 @@ let nom = function p1 ->-> function pn -> expr
 %slide 11
 \subsection{l'ordre superieur}
 \begin{frame}[fragile]
-  \frametitle{le noyaux fonctionnel}
+  \frametitle{le fonctionnel}
   \framesubtitle{l'ordre superieur}
   et si on faisait des fonctions de fonctions ? 
  \begin{lstlisting}
@@ -212,7 +213,7 @@ let nom = function p1 ->-> function pn -> expr
 
       \subsection{le filtrage de motif}
 \begin{frame}[fragile]
-  \frametitle{le noyaux fonctionnel}
+  \frametitle{le fonctionnel}
   \framesubtitle{le filtrage de motif}
   \begin{minipage}[t]{5cm}
     \begin{lstlisting}
@@ -233,7 +234,7 @@ match expr with
  \end{minipage}
 \end{frame}
 \begin{frame}[fragile]
-  \frametitle{le noyaux fonctionnel}
+  \frametitle{le fonctionnel}
   \framesubtitle{le filtrage de motif : justification}
 remember, remember ...
 \begin{lstlisting}
@@ -252,7 +253,7 @@ let f = function
   on appelle ça un filtrage de paramètre ici on filtre le paramètre de f avec x, soit n'importe quoi.
 \end{frame}
 \begin{frame}[fragile]
-  \frametitle{le noyau fonctionnel}
+  \frametitle{le fonctionnel}
   \framesubtitle{le filtrage de motif : as et when}
   \begin{itemize}
   \begin{minipage}[t]{5cm}
@@ -279,8 +280,8 @@ let f = function
 \end{frame}
       \subsection{Les types}
 \begin{frame}[fragile]
-	\frametitle{le noyaux fonctionnel}
-	\framesubtitle{le type somme et le type recurssif}
+	\frametitle{le fonctionnel}
+	\framesubtitle{le type somme et le type récuresif}
 	le type somme :
 	\begin{lstlisting}
 type nom =
@@ -288,7 +289,7 @@ type nom =
         |Nom2 of t0 
         |Nom3 of t1 * t2 *.... * tn 
 	\end{lstlisting}
-	le type recurssif :
+	le type récuresif :
 	\begin{lstlisting}
 type nom =
         |Nom1
@@ -298,16 +299,15 @@ type nom =
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{le noyaux fonctionnel}
-  \framesubtitle{le type fonctionnel et le type paramétrés}
-  le type fonctionnel : 
+  \frametitle{le fonctionnel}
+  \framesubtitle{le type paramétrés}
+  le type paramétrés :
   \begin{lstlisting}
 type nom =
          |Nom 1
          |Nom 2 of t0
          |Nom3 of ('a -> 'b)
   \end{lstlisting}
-  le type paramétrés :
   \begin{lstlisting}
 type nom = 
          |Nom 1 
@@ -317,13 +317,13 @@ type nom =
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{le noyaux fonctionnel}
-  \framesubtitle{les execptions}
+  \frametitle{le fonctionnel}
+  \framesubtitle{les exceptions}
   \begin{lstlisting}
 exception Nom;;
 exception Nom of int;;
   \end{lstlisting}
-pour soulever un exception : 
+pour lever un exception : 
 \begin{lstlisting}
 raise ;;
 - : exn -> 'a = <fun>

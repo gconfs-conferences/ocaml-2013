@@ -3,13 +3,16 @@
 \subsection{Les enregistrements}
 
 \begin{frame}
-              Les structures de données
+	\begin{center}
+		\huge  Les structures de données
+		\includegraphics[scale=0.6]{pics/struct.jpg}
+	\end{center}
 \end{frame}
 
 
 \begin{frame}[fragile]
-\frametitle{Enregistrements}
-\begin{itemize}
+	\frametitle{Enregistrements}
+	\begin{itemize}
 	\item Déclaration de type: 
 		\begin{lstlisting}
 		type pixel = 
@@ -28,7 +31,7 @@
 
 
 \begin{frame}[fragile]
-\frametitle{Les références}
+	\frametitle{Les références}
 	Une référence est considéré comme l'équivalent (selon l'INRIA) des pointeurs en OCaml.
 	\begin{lstlisting}
 		type 'a ref = {mutable contents:'a}
@@ -51,8 +54,14 @@
 \end{frame}
 
 \subsection{Les vecteurs}
+
+\begin{frame}
+	\frametitle{Les vecteurs}
+	\includegraphics[scale=0.5]{pics/vect.png}
+\end{frame}
+
 \begin{frame}[fragile]
-\frametitle{Les vecteurs}
+	\frametitle{Les vecteurs}
 	\framesubtitle{Création}
 	\begin{itemize}
 	\item
@@ -73,8 +82,8 @@
 
 
 \begin{frame}[fragile]
-\frametitle{Les vecteurs}
-\framesubtitle{Utilisation simple}
+	\frametitle{Les vecteurs}
+	\framesubtitle{Utilisation simple}
 	\begin{enumerate}
 	\item
 	\begin{lstlisting}
@@ -97,10 +106,10 @@
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{The Game}
-\framesubtitle{Vecteur(ception)}
-\begin{lstlisting}
-let t = [| 
+	\frametitle{The Game}
+	\framesubtitle{Vecteur(ception)}
+	\begin{lstlisting}
+	let t = [| 
            [|1|];
            [|1; 1|];
            [|1; 2; 1|];
@@ -112,9 +121,9 @@ let t = [|
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les vecteurs}
-\framesubtitle{Copie et valeurs partagées}
-\begin{lstlisting}
+	\frametitle{Les vecteurs}
+	\framesubtitle{Copie et valeurs partagées}
+	\begin{lstlisting}
 	let v2 = Array.copy v ;;
 	val v2 : int array = [|1; 0; 0|]
 	let m2 = Array.copy m ;;
@@ -130,13 +139,13 @@ let t = [|
 	- : int array array = 
 	[|[|1; 1337; 0|]; [|1; 1337; 0|]; 
 	[|1; 1337; 0|]|]
-\end{lstlisting}
+	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les vecteurs}
-\framesubtitle{Autres fonctionnalitées du module Array}
-\begin{itemize}
+	\frametitle{Les vecteurs}
+	\framesubtitle{Autres fonctionnalitées du module Array}
+	\begin{itemize}
 	\item Array.make\_matrix
 	
 	\item Array.sub (Ex: Array.sub a start n)
@@ -144,12 +153,18 @@ let t = [|
 	\item Array.\{iter,map,iteri,to\_list\}
 
 	\item RTFM !!!
-\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Les piles}
+	\includegraphics[scale=0.4]{pics/stack.jpg}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les piles}
-\framesubtitle{Initialisation}
+	\frametitle{Les piles}
+	\framesubtitle{Initialisation}
 	Pour utiliser les piles en OCaml nous vous présenterons ici le module Stack (ensuite si ça vous amuse de les recoder...):
 	\begin{lstlisting}
 	open Stack
@@ -219,7 +234,10 @@ let t = [|
 
 \end{frame}
 
-
+\begin{frame}
+	\frametitle{Les tables de hachage}
+	\includegraphics[scale=0.6]{pics/hash.jpg}
+\end{frame}
 
 \subsection{Les tables de hachage}
 \begin{frame}[fragile]
@@ -259,7 +277,7 @@ let t = [|
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les hachage}
+\frametitle{Les tables de hachage}
 \framesubtitle{Les fonctions essentielles}
 	\begin{itemize}
 	

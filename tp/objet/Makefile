@@ -1,2 +1,3 @@
 all:
-	@echo "Do it without a Makefile, you noob."
+	rm -rf tmp/*
+	mkdir -p tmp && pdflatex -output-directory tmp sujet-poo.tex

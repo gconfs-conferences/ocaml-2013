@@ -128,9 +128,6 @@ class point :
       val pos : int * int
       method printCoord : unit -> unit
     end
-
-class ['a] storage = 
-  object val mutable data : 'a list method addData : 'a -> unit end
 	\end{lstlisting}
 \end{frame}
 
@@ -146,11 +143,43 @@ class ['a] storage =
 	\end{lstlisting}
 \end{frame}
 
+\subsection{La compilation avec ocamlbuild} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Les differentes sorties d'OCaml}
+	\huge
+	\begin{itemize}
+		\item ocaml : Interprète à la volé
+		\item ocamlc : Production de byte-code
+		\item ocamlopt : Compilation native
+	\end{itemize}
+	\normalsize
+\end{frame}
+
+\begin{frame}
+	\frametitle{Un Makefile \textit{usine à gaz}}
+	\begin{center}
+		\includegraphics[width=10cm]{pics/mkfile.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{ocamlbuild}
+	\begin{lstlisting}
+ocamlbuild -use-ocamlfind\
+-pkgs [library] [mainFile].[byte/native]
+
+ocamlbuild -use-ocamlfind -pkgs\
+lua,expat,sdl,sdl.sdlimage,sdl.sdlttf,str\
+main.native
+	\end{lstlisting}
+\end{frame}
 
 \subsection{Faire de la documentation} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\frametitle{La documentation}
-
+	\begin{center}
+		\includegraphics[width=10cm]{pics/doc.png}
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -163,23 +192,3 @@ class ['a] storage =
 
 \end{frame}
 
-\subsection{La compilation avec ocamlbuild} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-	\frametitle{Les differentes sorties d'OCaml}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Un Makefile rustique}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{ocamlbuild}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Inclure des bibliotheques}
-
-\end{frame}

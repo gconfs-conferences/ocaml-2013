@@ -1,137 +1,52 @@
-\section{Rappels sur le noyau fonctionnel}
-%slide 3
+\section{Rappels des bases d'OCaml}
 \begin{frame}
   \begin{center}
-    \frametitle{Les bases}
-  Le noyau fonctionnel, la sup, le bon temps, toussa toussa.... et deux trois trucs nouveaux !
+	\huge
+	La base, la sup, etc... et deux trois autres choses !
   \end{center}
 \end{frame}
-%slide 4
 
-\subsection{Les composants de bases}
+\subsection{Les données de base} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Les types élémentaires}
+	\begin{itemize}
+		\item Les entiers : 42\\
+			~~4 * 10 + 2
+		\item Les flotants : 4.2\\
+			~~41.5 +. 0.5
+		\item Les caractères : '*'\\
+		\item Les chaines de caratères : "abcd"\\
+			~~"The " \^~"meaning of " \^~"life"
+			\item Les n-uplet : ( 1, 2, 3, 4 )
+	\end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Les types numériques}
-   \begin{minipage}[t]{5cm}
-    les ints/entiers : 
-    \begin{lstlisting}
-    42;;
-    - : int  = 42
-    \end{lstlisting}
-   \end{minipage}
-   \begin{minipage}[t]{5cm}
-    les floats/flottants:w :
-    \begin{lstlisting}
-    4.2;;
-    - : float = 4.2
-    \end{lstlisting}
-   \end{minipage}
-   \vspace{0.5cm}
-    et leurs utilisations :\\
-   \begin{minipage}[t]{5cm}
-     \begin{lstlisting}
-    4 * 10 + 2;;
-      - : int = 42
-     \end{lstlisting}
-   \end{minipage}
-   \begin{minipage}[t]{5cm}
-     \begin{lstlisting}
-    41.5 +. 0.5;;
-     - : float = 42
-     \end{lstlisting}
-   \end{minipage}
-\end{frame}
-%slide 5
-  \subsection{Les chars et chaines de chars}
-\begin{frame}[fragile]
-    \frametitle{Le fonctionnel}
-    \framesubtitle{Caractères et chaines de caractères}
-    Les caractères sont bien pratique si l'on veuille faire un interfaçage avec l'utilisateur ou d'autre ... truc (*caugh* ocr *caugh*)\\
-    \begin{minipage}[t]{10cm}
-      \begin{lstlisting}
-      "coucou je suis une chaine";;
-      - : string = "coucou je suis une chaine"
-      \end{lstlisting}
-    \end{minipage}
-    \begin{minipage}[t]{5cm}
-      \begin{lstlisting}
-      '4';;
-      - : char = '4'
-      \end{lstlisting}
-    \end{minipage}
-\end{frame}
-%slide 6
-  \subsection{Les boolèens}
-\begin{frame}
-    \frametitle{Le fonctionnel}
-    \framesubtitle{Les boolèens}
-      La logique booléenne est composée de 2 "termes" true et false, ils s'utilisent avec les operateurs suivants :
-      \begin{center}
-      \begin{minipage}[t]{7cm}
-	  \begin{itemize}
-	    \item "not" : négation
-	    \item "\&\&" : et sequentiel
-	    \item "||" : ou sequentiel
-	    \item "\&" : synonyme pour "\&\&"
-	    \item "or" : synonyme pour "||"
-	  \end{itemize}
-	\end{minipage}
-      \end{center}
-	\begin{minipage}[t]{5cm}
-	  \begin{itemize}
-	    \item "=" : egalité structurelle
-	    \item "==" : egalité physique
-	    \item "<>" : negation de "="
-	    \item "!=" : negation de "=="
-	  \end{itemize}
-	\end{minipage}
-	\begin{minipage}[t]{5cm}
-	  \begin{itemize}
-	    \item "<" : inferieur 
-	    \item ">" : superieur
-	    \item "<=" : inferieur égale
-	    \item ">=" : superieur égale
-	  \end{itemize}
-	\end{minipage}
-\end{frame}
-%slide 7
-
-\subsection{Les listes} 
-\begin{frame}[fragile]
-	\frametitle{Le fonctionnel}
-	\framesubtitle{Les listes}
+	\frametitle{Les listes}
 	\begin{itemize}
 
-	\item 	\begin{lstlisting}
+	\item Liste vide
+		\begin{lstlisting}
 		[]
 		\end{lstlisting}
 
-	\item 	\begin{lstlisting}
+	\item Opérateur de construction
+		\begin{lstlisting}
 		a :: []
 		\end{lstlisting}
 
-	\item 	\begin{lstlisting}
+	\item Concatenation (à éviter)
+		\begin{lstlisting}
 		liste1 @ liste2
 		\end{lstlisting}
 		
-	\item 	Read The Fuc**** Module List
+	\item \textit{length, ith element, rev}...\\
+	  Voir la doc du module List.
 
 	\end{itemize}
 \end{frame}
 
-   \subsection{Le controle conditionnel}
-\begin{frame}
-      \frametitle{Le fonctionnel}
-      \framesubtitle{Le controle conditionnel}
-      \begin{center}
-	if a then b (else c);;
-  \end{center}
-\end{frame}
-%slide 8
-
-
-    \subsection{Les declarations}
+\subsection{Les fonctions} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
       \frametitle{Le fonctionnel}
       \framesubtitle{Les declarations}
@@ -168,10 +83,7 @@
 	\end{lstlisting}
       \end{minipage}
 \end{frame}
-%slide 9
 
-
-    \subsection{Les fonctions}
 \begin{frame}[fragile]
       \frametitle{Le fonctionnel}
       \framesubtitle{Les fonctions}
@@ -199,10 +111,6 @@
   \end{minipage}
 \end{frame}
 
-%slide 10
-
-
-\subsection{Declaration de fonction}
 \begin{frame}[fragile]
   \frametitle{Le fonctionnel}
   \framesubtitle{Declaration de fonctions}
@@ -228,10 +136,7 @@ let nom = function p1 ->-> function pn -> expr
   val facto : int -> int = <fun>
   \end{lstlisting}
 \end{frame}
-%slide 11
 
-
-\subsection{L'ordre superieur}
 \begin{frame}[fragile]
   \frametitle{Le fonctionnel}
   \framesubtitle{L'ordre superieur}
@@ -243,8 +148,77 @@ let nom = function p1 ->-> function pn -> expr
  Ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types.
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Le fonctionnel}
+	\framesubtitle{Les paramètres optionnels}
+	\begin{itemize}	
 
-      \subsection{Le filtrage de motif}
+	\item 	\begin{lstlisting}
+		let incr ?pas:(x = 1) r = r + x
+		\end{lstlisting}
+
+	\item 	\begin{lstlisting}
+		incr ~pas:10 32
+		\end{lstlisting}
+
+\end{itemize}
+\end{frame}
+
+\subsection{Faire des choix} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Le contrôle conditionnel}
+	\begin{center}
+		\begin{minipage}{6cm}
+			\lstset{basicstyle=\Large}
+			\begin{lstlisting}
+      if a
+        then b 
+        else c
+
+bool -> 'a -> 'a -> 'a
+			\end{lstlisting}
+		\end{minipage}\\
+		\begin{minipage}{4cm}
+			\lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+if a=42
+  then 
+    print_string "42!" 
+  (else ())
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Les tests boolèen}
+	\begin{center}
+		\begin{center}
+			\begin{minipage}{4cm}
+				\begin{itemize}
+					\item "not" : négation
+					\item "\&\&" : et logique
+					\item "||" : ou logique
+				\end{itemize}
+			\end{minipage}
+			\begin{minipage}{5cm}
+				\begin{itemize}
+					\item "=" : egalité structurelle
+					\item "<>" : negation de "="
+				\end{itemize}
+			\end{minipage}
+		\end{center}\vspace{0.2cm}
+		\begin{minipage}{4.5cm}
+			\begin{itemize}
+				\item "<" : inferieur 
+				\item ">" : superieur
+				\item "<=" : inferieur égale
+				\item ">=" : superieur égale
+			\end{itemize}
+		\end{minipage}
+	\end{center}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Le fonctionnel}
   \framesubtitle{Le filtrage de motif}
@@ -313,7 +287,8 @@ let f = function
   \end{minipage}
   \end{itemize}
 \end{frame}
-      \subsection{Les types}
+
+\subsection{Les types} 
 \begin{frame}[fragile]
 	\frametitle{Le fonctionnel}
 	\framesubtitle{Le type somme et le type récuresif}
@@ -372,21 +347,4 @@ try exp with
 .
 |p3 -> exp3
 \end{lstlisting}
-
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Le fonctionnel}
-	\framesubtitle{Les paramètres optionnels}
-	\begin{itemize}	
-
-	\item 	\begin{lstlisting}
-		let incr ?pas:(x = 1) r = r + x
-		\end{lstlisting}
-
-	\item 	\begin{lstlisting}
-		incr ~pas:10 32
-		\end{lstlisting}
-
-\end{itemize}
 \end{frame}

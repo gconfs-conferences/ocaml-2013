@@ -46,10 +46,9 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{Les fonctions} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Déclaration et fonctions} %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-      \frametitle{Le fonctionnel}
-      \framesubtitle{Les declarations}
+      \frametitle{Les declarations}
       Il existe deux types de declaration :
      \begin{minipage}[t]{5cm}
 	Les globales :\\
@@ -85,61 +84,55 @@
 \end{frame}
 
 \begin{frame}[fragile]
-      \frametitle{Le fonctionnel}
-      \framesubtitle{Les fonctions}
-      \begin{minipage}[t]{7cm}
+	\frametitle{Les fonctions}
 	\begin{center}
-	\begin{itemize}
-    \begin{lstlisting}
+		\begin{minipage}{10cm}
+				\begin{lstlisting}
      function x -> x + 1;;
      -: int -> int = <fun>
-    \end{lstlisting}
-    \begin{lstlisting}
+				\end{lstlisting}
+				\begin{lstlisting}
      function x -> function y -> x + y;;
      - : int -> int -> int = <fun>
-    \end{lstlisting}
-    \begin{lstlisting}
+				\end{lstlisting}
+				\begin{lstlisting}
      function (x , y) -> x * y;;
      - : int * int -> int = <fun>
-    \end{lstlisting}
-   \begin{lstlisting}
+				\end{lstlisting}
+				\begin{lstlisting}
      fun x y -> x + y;;
      - : int -> int -> int = <fun>
-    \end{lstlisting}
-  \end{itemize}
+				\end{lstlisting}
+		\end{minipage}
   \end{center}
-  \end{minipage}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Declaration de fonctions}
+  \frametitle{Declaration de fonctions}
     \begin{lstlisting}
-	let nom p1 ... pn = expr
+	let nom p1 pn = expr
     \end{lstlisting}
-	\begin{center}
-	  \begin{rotate}{90}
-     $\Leftrightarrow$
-   \end{rotate}
-\end{center}
 \begin{lstlisting}
-let nom = function p1 ->-> function pn -> expr
+let nom = 
+  function p1 -> function pn -> expr
   \end{lstlisting}
-  \vspace{1cm}
+  \vspace{0.4cm}
   \begin{lstlisting}
-  let add x y = x + y;;
-  val add : int -> int -> int = <fun>
+let add x y = 
+  x + y;;
+val add : 
+  int -> int -> int = <fun>
   \end{lstlisting}
   Déclaration de fonction recursive 
   \begin{lstlisting}
-  let rec facto x = if x = 0 then 1 else x * facto(x-1);;
+  let rec facto x = 
+    if x = 0 then 1 else x * facto(x-1);;
   val facto : int -> int = <fun>
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{L'ordre superieur}
+  \frametitle{L'ordre superieur}
   Et si on faisait des fonctions de fonctions ? 
  \begin{lstlisting}
   let sup f a = f a;;
@@ -149,8 +142,7 @@ let nom = function p1 ->-> function pn -> expr
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Le fonctionnel}
-	\framesubtitle{Les paramètres optionnels}
+	\frametitle{Les paramètres optionnels}
 	\begin{itemize}	
 
 	\item 	\begin{lstlisting}
@@ -220,131 +212,163 @@ if a=42
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Le filtrage de motif}
-  \begin{minipage}[t]{5cm}
-    \begin{lstlisting}
+	\frametitle{Le filtrage de motif}
+	\begin{center}
+	\begin{minipage}{4cm}
+		\begin{lstlisting}
 match expr with
- |p1 -> expr1
- .
- .
- |pn -> exprn
- \end{lstlisting}
- \end{minipage}
- \begin{minipage}[t]{8cm}
-   \begin{lstlisting}
-   let forty_two  = function
-     42 -> true
-    |_ -> false;;
-    val forty_two : int -> bool = <fun>
-   \end{lstlisting} 
- \end{minipage}
+   m1 -> expr1
+ | m2 -> expr2
+ | pn -> exprn
+		\end{lstlisting}
+	\end{minipage}
+	\begin{minipage}{5cm}
+		\begin{lstlisting}
+match i with
+   0 -> expr1
+ | 5 | 12 -> expr2
+ | n -> expr4
+		\end{lstlisting}
+	\end{minipage}
+	
+	\begin{minipage}{3cm}
+		\begin{lstlisting}
+function
+    42 -> true
+  | _ -> false
+		\end{lstlisting} 
+	\end{minipage}
+	\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Le filtrage de motif : justification}
-remember, remember ...
-\begin{lstlisting}
-let f = function x -> x + 1 
-\end{lstlisting}
-\begin{center}
-\begin{rotate}{90}
-$\Leftrightarrow$
-\end{rotate}
-\end{center}
-\begin{lstlisting}
-let f = function 
- x -> x + 1;;
- \end{lstlisting}
-  il s'agissait de filtrage dès le debut ! on justifie ainsi la syntaxe du pattern matching, 
-  on appelle ça un filtrage de paramètre ici on filtre le paramètre de f avec x, soit n'importe quoi.
+	\frametitle{Le filtrage de motif : récursion et listes}
+		\begin{lstlisting}
+let rec printStrList l = match l with
+    [] -> print_string "\n"
+  | e::[] -> print_string e ^ "\n"
+  | e::q -> 
+    print_string e ^ ", ";
+    printStrList q
+		\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Le filtrage de motif : as et when}
+  \frametitle{Le filtrage de motif : as et when}
   \begin{itemize}
   \begin{minipage}[t]{5cm}
   \item
     as :
     \begin{lstlisting}
 	let rec fibo = function 
- 	0|1 as n -> n 
- 	|x -> fibo(x - 1) + fibo(x - 2);; 
-	val fibo : int -> int = <fun>
+ 	  0 | 1 as n -> n 
+ 	| x -> fibo(x - 1) + fibo(x - 2);; 
     \end{lstlisting}
   \end{minipage}
   \begin{minipage}[t]{5cm}
   \item
     when :
     \begin{lstlisting}
-	let is_inf = function 
-  	x when x < 42 -> true
- 	|_ -> false;;
-	val is_inf : int -> int = <fun>
+  let is_inf = function 
+      x when x < 42 -> true
+ 	  | _ -> false;;
     \end{lstlisting}
   \end{minipage}
   \end{itemize}
 \end{frame}
 
-\subsection{Les types} 
+\subsection{Les types} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-	\frametitle{Le fonctionnel}
-	\framesubtitle{Le type somme et le type récuresif}
-	le type somme :
+	\frametitle{Créer un type}
+	\textbf{types simples}
 	\begin{lstlisting}
-type nom =
-        |Nom1 
-        |Nom2 of t0 
-        |Nom3 of t1 * t2 *.... * tn 
+  type name = typedef
+
+  type point = int * int
+  type stringLabeledIntList = 
+    string * (int list)
+  type funIntList = (int list) -> int
 	\end{lstlisting}
-	le type récuresif :
+	\textbf{types paramétrés}
+	\lstset{basicstyle=\scriptsize}
 	\begin{lstlisting}
-type nom =
-        |Nom1
-        |Nom2 of nom
-        |Nom3 of t1 * t2 *.... * tn
-         \end{lstlisting}
+  type ('nameTypeParameter1,'nameTypeParameterN) name = 
+    typedef
+    
+  type ('label,'valType) labeledList =
+    'label * ('valType list) 
+	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Le type paramétrés}
-  le type paramétrés :
-  \begin{lstlisting}
-type nom =
-         |Nom 1
-         |Nom 2 of t0
-         |Nom3 of ('a -> 'b)
-  \end{lstlisting}
-  \begin{lstlisting}
-type nom = 
-         |Nom 1 
-         |Nom 2 of t0
-         |Nom 3 of 'a 
-  \end{lstlisting}
+	\frametitle{Le type somme}
+	\begin{lstlisting}
+  type name =
+    | Constructor1 
+    | Constructor2 of t0 
+    | Constructor3 of t1 * t2 * tn 
+	\end{lstlisting}
+	
+	\begin{center}
+		\begin{minipage}{4.3cm}
+			\lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+type ('element) myList =
+  | Void
+  | Element of 
+    'element * 
+    ('element myList)
+			\end{lstlisting}
+		\end{minipage}\\
+		\begin{minipage}{7.3cm}
+			\lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+let rec printStrMyList l = match l with
+    Void -> print_string "\n"
+  | Element (e,Void) -> 
+    print_string e ^ "\n"
+  | Element (e,q) -> 
+    print_string e ^ ", ";
+    printStrList q
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le fonctionnel}
-  \framesubtitle{Les exceptions}
-  \begin{lstlisting}
-exception Nom;;
-exception Nom of int;;
-  \end{lstlisting}
-pour lever un exception : 
-\begin{lstlisting}
-raise ;;
-- : exn -> 'a = <fun>
-\end{lstlisting}
-\begin{lstlisting}
-try exp with 
-|p1 -> exp1
-|p2 -> exp2
-.
-.
-.
-|p3 -> exp3
-\end{lstlisting}
+	\frametitle{Les exceptions}
+	\begin{lstlisting}
+ exception Help
+ exception HelpNbErr of int
+	\end{lstlisting}
+	\textbf{Pour lever une exception :}
+	\begin{lstlisting}
+  raise Help
+  raise (HelpNbErr 451)
+  
+  invalid_arg "element parameter"
+  failwith "uninitialized Graphics"
+	\end{lstlisting}
+	\textbf{Pour traiter une exception :}
+	\begin{center}
+		\begin{minipage}{4.2cm}
+			\lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+try expr with 
+| Exc1 -> expr1
+| Exc2 (v1,v2) -> expr2
+| Excn -> exprn
+			\end{lstlisting}
+		\end{minipage}
+		\begin{minipage}{5cm}
+			\lstset{basicstyle=\scriptsize}
+			\begin{lstlisting}
+try expr with 
+| MyExc -> print_string "lol"
+| Invalid_argument n -> 
+  print_string ("InvArg:"^n)
+| Failure -> exit (-1)
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
 \end{frame}

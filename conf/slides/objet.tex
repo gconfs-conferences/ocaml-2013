@@ -1,8 +1,8 @@
-\section{La programmation orientée Objet}
+\section{La programmation orientée objet}
 \begin{frame}
 	\begin{center}
 	\huge
-	La programmation Orientée Objet
+	La programmation orientée objet
 	\end{center}
 \end{frame}
 
@@ -237,4 +237,26 @@ class type i1 =
 			\end{lstlisting}
 		\end{minipage}
 	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exemple d'utilisation du sous-polymorphisme d'inclusion}
+	Réutilisons les class point et colored\_point.
+	\begin{lstlisting}
+  let f (o:point) = e#setCoord 4 2
+  let test = 
+    ((new colored_point (4,2) 255):>point)
+
+  test#print
+  f test
+  test#print
+  test#setData 4 5 1
+	\end{lstlisting}
+	\textbf{Sortie :}
+	\begin{lstlisting}
+  (2,4) 255
+  (4,2) 255
+  Error: This expression has type point
+         It has no method setData
+	\end{lstlisting}
 \end{frame}

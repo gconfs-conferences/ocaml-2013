@@ -243,7 +243,7 @@ class type i1 =
 	\frametitle{Exemple d'utilisation du sous-polymorphisme d'inclusion}
 	Réutilisons les class point et colored\_point.
 	\begin{lstlisting}
-  let f (o:point) = e#setCoord 4 2
+  let f (o:point) = o#setCoord 4 2
   let test = 
     ((new colored_point (4,2) 255):>point)
 

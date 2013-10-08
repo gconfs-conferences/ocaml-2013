@@ -182,13 +182,79 @@ main.native
 	\end{center}
 \end{frame}
 
-\begin{frame}
-	\frametitle{ocamldoc}
-
+\begin{frame}[fragile]
+	\frametitle{ocamldoc via ocamlbuild}
+	\begin{center}
+		\begin{minipage}{0.32\textwidth}
+			previousEx.odocl
+			\begin{lstlisting}
+  Main
+  Processing
+  Rotation
+  Cutting
+  Recongition
+			\end{lstlisting}
+		\end{minipage}
+		\begin{minipage}{0.6\textwidth}
+			\begin{lstlisting}
+camlbuild \
+previousEx.docdir/index.html
+			\end{lstlisting}
+		\end{minipage}
+	\end{center}
 \end{frame}
 
-\begin{frame}
-	\frametitle{La position des commentaires}
+\begin{frame}[fragile]
+	\frametitle{Les commentaires de ocamldoc 1/2}
+	\lstset{basicstyle=\scriptsize}	
+	\begin{lstlisting}
+(** The first special comment of the file is the 
+    comment associated with the whole module.*)
 
+(******************************************************)
+(** Comments like the one above, with more than two 
+    asterisks, are ignored. *)
+
+(** The comment for function f. *)
+val f : int -> int -> int
+(** The continuation of the comment for function f. *)
+
+
+(** Comment for type weather  *)
+type weather =
+| Rain of int (** The comment for construtor Rain *)
+| Sun (** The comment for constructor Sun *)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Les commentaires de ocamldoc 2/2}
+	\lstset{basicstyle=\scriptsize}	
+	\begin{lstlisting}
+(** The comment for class my_class *)
+class my_class :
+  object
+    (** A comment to describe inheritance from cl *)
+    inherit cl
+
+    (** The comment for attribute tutu *)
+    val mutable tutu : string
+
+    (** The comment for attribute toto. *)
+    val toto : int
+
+    (** This comment is not attached to titi since
+        there is a blank line before titi, but is kept
+        as a comment in the class. *)
+
+    val titi : string
+
+    (** Comment for method toto *)
+    method toto : string
+
+    (** Comment for method m *)
+    method m : float -> int
+  end
+	\end{lstlisting}
 \end{frame}
 

@@ -16,12 +16,15 @@
 	\item Déclaration de type: 
 		\begin{lstlisting}
 		type pixel = 
-		{ mutable  r:float ; mutable g:string 
-		; b:int } 
+		{ 
+		   mutable r:float; 
+		   mutable g:string; 
+		   b:int;
+		} 
+		
+		let p = { r=2.3; 
 		\end{lstlisting}
-		Un champ mutable signifie qu'il peut être modifié.
-	
-	\item Modifiaction des champs de valeur:
+	\item Modification des champs de valeur:
 		\begin{lstlisting}
 			p.r <- 42.0;
 			p.g <- "The Game"
@@ -32,20 +35,23 @@
 
 \begin{frame}[fragile]
 	\frametitle{Les références}
-	Une référence est considérée comme l'équivalent (selon l'INRIA) des pointeurs en OCaml.
+	Une référence est considérée comme l'équivalent (selon l'INRIA) des pointeurs en OCaml.\\
 	Déclaration:
 	\begin{lstlisting}
-		let a = ref 0
+		  let a = ref 0
 
-		let l = ref [];;
-		val l : '_a list ref = {contents=[]}
+		  let l = ref [];;
+	\end{lstlisting}
+	Variable de type faible :
+	\begin{lstlisting}
+		  val l : '_a list ref = {contents=[]}
 	\end{lstlisting}
 	Utilisation:
 	\begin{lstlisting}
-		!a ;;
-		- : int = 0
-		a := !a + 1 ;;
-		- : unit = ()
+		  !a ;;
+		  - : int = 0
+		  a := !a + 1 ;;
+		  - : unit = ()
 	\end{lstlisting}
 
 \end{frame}
@@ -67,13 +73,12 @@
 	val v : float array = [|3.14; 6.28; 9.42|]
 	\end{lstlisting}
 
-	\item Array.create
+	\item Array.make
 	\begin{lstlisting}
-	let v = Array.create  3  3.14;;
+	let v = Array.make  3  3.14;;
 	val v : float array = [|3.14; 3.14; 3.14|]
 	\end{lstlisting}
 
-	\item Array.make
 	\end{itemize}
 \end{frame}
 
@@ -81,7 +86,13 @@
 \begin{frame}[fragile]
 	\frametitle{Les vecteurs}
 	\framesubtitle{Utilisation simple}
-	\begin{enumerate}
+	\begin{itemize}
+	\item
+	\begin{lstlisting}
+	v ;;
+	- : float array = [|100; 3.14; 3.14|]
+	\end{lstlisting}
+
 	\item
 	\begin{lstlisting}
 	v.(1) ;;
@@ -93,13 +104,7 @@
 	v.(0) <- 100.0 ;;
 	- : unit = ()
 	\end{lstlisting}
-
-	\item
-	\begin{lstlisting}
-	v ;;
-	- : float array = [|100; 3.14; 3.14|]
-	\end{lstlisting}
-	\end{enumerate}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -114,6 +119,8 @@
            [|1; 4; 6; 4; 1|];
            [|1; 5; 10; 10; 5; 1|]
          |] 
+	
+	t.(2).(0)
 	\end{lstlisting}
 \end{frame}
 
@@ -174,8 +181,6 @@
 
 	\item Array.to\_list
 
-	\item RTFM...
-
 	\end{itemize}
 \end{frame}
 
@@ -206,16 +211,16 @@
 	
 	\item
 		\begin{lstlisting}
-		Stack.push "42" s; Stack.push s "1337";;
+		Stack.push 42 s; Stack.push 1337 s;;
 		- : unit = ()	
 		\end{lstlisting}	
 	
 	\item
 		\begin{lstlisting}
 		Stack.pop s;;
-		- : string = "43"
+		- : int = 1337
 		Stack.top s;;
-		- : string = "42"
+		- : int = 42
 		\end{lstlisting}	
 
 	\end{itemize}

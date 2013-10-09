@@ -122,10 +122,10 @@ class point x y =
 \begin{frame}[fragile]
 	\frametitle{Initialisation}
 	\begin{lstlisting}
-class putLineInQueue (l:int list) =
+class putListInQueue (l:int list) =
   object (self)
     
-  val data = Queue.create ()
+  val data = Stack.create ()
 
   initializer
     let rec storage = function
@@ -169,7 +169,7 @@ class childName parameters =
 class childName parameters =
   object
   inherit motherClass mothersParameters 
-    as motherSelf
+    as motherSuper
 
   end
 	\end{lstlisting}
@@ -198,7 +198,7 @@ class childName parameters =
 	\framesubtitle{L'interface}
 	\textit{On peut utiliser une classe ou une interface pour faire du polymorphisme de sous-type.}
 	\begin{block}{Opérateur}
-		~~Instance\_Sous-Type :> Sur-type
+		~~Instance\_Sous-Type \large{:>} Sur-type
 	\end{block}
 	\begin{block}{Interface}
 		\begin{lstlisting}

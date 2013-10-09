@@ -17,7 +17,7 @@
 		\item Les caractères : 'c'\\
 		\item Les chaines de caractères : "abcd"\\
 			~~"The " \^~"meaning of " \^~"life"
-			\item Les n-uplets : ( 1, 2, 3, 4 )
+			\item Les n-uplets : ( 1, 4.2, "abc", 4 )
 	\end{itemize}
 \end{frame}
 
@@ -178,13 +178,16 @@ val add :
 
 	 	\begin{block}{Déclaration}
 		\begin{lstlisting}
-		  let incr ?pas:(x = 1) r = r + x
+		  let incr ?step:(x = 1) r = r + x
+		  
+		  val incr : ?step:int -> int -> int
 		\end{lstlisting}
 		\end{block}
 
 	 	\begin{block}{Utilisation}
 		\begin{lstlisting}
-		  incr ~pas:10 32
+		  incr 32
+		  incr ~step:10 32
 		\end{lstlisting}
 		\end{block}
 
@@ -246,7 +249,7 @@ val add :
   match expr with
      m1 -> expr1
    | m2 -> expr2
-   | pn -> exprn
+   | mn -> exprn
 		\end{lstlisting}
 	\end{block}
 	\begin{block}{Exemples}
@@ -327,8 +330,8 @@ val add :
    	    name = 
          typeToDefine
     
-  type ('label,'valType) labeledList =
-    'label * ('valType list) 
+  type ('valType) labeledList =
+    string * ('valType list) 
 	\end{lstlisting}
 \end{frame}
 

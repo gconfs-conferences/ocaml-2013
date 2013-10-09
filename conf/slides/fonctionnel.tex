@@ -67,10 +67,10 @@
 \begin{frame}[fragile]
       \frametitle{Les déclarations}
       Il existe deux types de déclaration :
-     \begin{columns}[t]
-	\begin{column}{5cm}
-	\begin{block}{Les globales :}
-	\begin{lstlisting}
+	\begin{columns}[t]
+		\begin{column}{5cm}
+		\begin{block}{Les globales :}
+		\begin{lstlisting}
 	let a = "42";;
 	val a : string = "42"
 	\end{lstlisting}
@@ -82,12 +82,12 @@
 	val a : int = 2
 	val b : int = 3
 	val c : int = 4
-	\end{lstlisting}
-      \end{block}
-	\end{column}
-      \begin{column}{5cm}
-	\begin{block}{Les locales:}
-	\begin{lstlisting}
+		\end{lstlisting}
+		\end{block}
+		\end{column}
+      		\begin{column}{5cm}
+		\begin{block}{Les locales:}
+		\begin{lstlisting}
 	let a = 2 in a + 1;;
 	- : int = 3
 	\end{lstlisting}
@@ -98,9 +98,9 @@
 	and c = 4 in
 	a + b + c;;
 	- : int = 9
-	\end{lstlisting}
-	\end{block}
-      \end{column}
+		\end{lstlisting}
+		\end{block}
+      		\end{column}
 	\end{columns}
 \end{frame}
 
@@ -130,22 +130,22 @@
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les fonctions}
-  \framesubtitle{Déclaration}
-    \begin{lstlisting}
+	\frametitle{Les fonctions}
+  	\framesubtitle{Déclaration}
+    	\begin{lstlisting}
 	let name p1 pn = expr
-    \end{lstlisting}
-\begin{lstlisting}
+    	\end{lstlisting}
+	\begin{lstlisting}
 let name = 
   function p1 -> function pn -> expr
-  \end{lstlisting}
-  \vspace{0.4cm}
-  \begin{lstlisting}
+  	\end{lstlisting}
+  	\vspace{0.4cm}
+  	\begin{lstlisting}
 let add x y = 
   x + y;;
 val add : 
   int -> int -> int = <fun>
-  \end{lstlisting}
+  	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -161,15 +161,15 @@ val add :
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Les fonctions}
-  \framesubtitle{L'ordre superieur}
-  Et si nous faisions des fonctions de fonctions ? 
- \begin{lstlisting}
+	\frametitle{Les fonctions}
+  	\framesubtitle{L'ordre superieur}
+  	Et si nous faisions des fonctions de fonctions ? 
+ 	\begin{lstlisting}
   let sup f a = f a;;
   val sup : ('a -> 'b) -> 'a -> 'b = <fun>
- \end{lstlisting}
- Nous retrouvons ici le type polymorphe representé par\\
- les 'a et 'b qui rassemblent tout les types.
+ 	\end{lstlisting}
+	Nous retrouvons ici le type polymorphe representé par\\
+	les 'a et 'b qui rassemblent tout les types.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -283,22 +283,22 @@ let rec printStrList l = match l with
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le filtrage de motif}
+  	\frametitle{Le filtrage de motif}
 	\framesubtitle{as et when}
-  \begin{block}{as:}
-    \begin{lstlisting}
+  	\begin{block}{as:}
+    	\begin{lstlisting}
 	let rec fibo = function 
  	  0 | 1 as n -> n 
  	| x -> fibo(x - 1) + fibo(x - 2);; 
-    \end{lstlisting}
-  \end{block}
-  \begin{block}{when:}
-    \begin{lstlisting}
+    	\end{lstlisting}
+  	\end{block}
+  	\begin{block}{when:}
+    	\begin{lstlisting}
   let is_inf = function 
       x when x < 42 -> true
  	  | _ -> false;;
-    \end{lstlisting}
-  \end{block}
+    	\end{lstlisting}
+  	\end{block}
 \end{frame}
 
 \subsection{Les types} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

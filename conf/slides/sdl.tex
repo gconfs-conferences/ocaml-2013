@@ -1,6 +1,6 @@
 \section[SDL]{La bibliothèque SDL}
 
-\subsection{Fonctionnement de SDL} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{SDL} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\begin{center}
 		\huge
@@ -17,74 +17,81 @@
 
 \begin{frame}[fragile]
 	\frametitle{Les modules SDL}
-	\begin{center}
-		\begin{minipage}{0.4\textwidth}
+	\begin{columns}
+		\begin{column}{3cm}
 			\begin{itemize}
-				\item ~~~sdl
-			\end{itemize}
-		\end{minipage}
-	\end{center}
-	\begin{center}
-		\begin{minipage}{0.4\textwidth}
-			\begin{itemize}
+				\item Sdl
 				\item Sdlwm
 				\item Sdlvideo
 				\item Sdltime
 				\item Sdlevent
 			\end{itemize}
-		\end{minipage}
-		\begin{minipage}{0.4\textwidth}
+		\end{column}
+		\begin{column}{3cm}
 			\begin{itemize}
 				\item Sdlttf
 				\item Sdlloader
 				\item Sdlmixer
 				\item Sdlgfx
 			\end{itemize}
-		\end{minipage}
-	\end{center}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \subsection{Introduction à SDL} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{Initialisation de SDL}
-	\begin{minipage}{0.55\textwidth}
-		\textbf{L'intialisation de base}
-		\lstset{basicstyle=\small}
-		\begin{lstlisting}
+	\begin{columns}
+		\begin{column}{5cm}
+			\begin{block}{L'initialisation de base}
+				\lstset{basicstyle=\small}
+				\begin{lstlisting}
   Sdl.init [`EVERYTHING] 
-		\end{lstlisting}
-		\textbf{L'intialisation et ouverture d'une fenetre}
-		\lstset{basicstyle=\small}
-		\begin{lstlisting}
+				\end{lstlisting}
+			\end{block}
+			\begin{block}{L'initialisation et ouverture d'une fenêtre}
+				\lstset{basicstyle=\small}
+				\begin{lstlisting}
   Sdl.init [`EVERYTHING]
 
   let screen = 
    Sdlvideo.set_video_mode 
    ~w ~h ~bpp [`HWSURFACE]
-
- quit ()
-		\end{lstlisting}
-	\end{minipage}
-	\begin{minipage}{0.4\textwidth}
-		\begin{itemize}
-			\item `AUDIO
-			\item `CDROM
-			\item `JOYSTICK
-			\item `TIMER
-			\item `VIDEO
-		\end{itemize}
-		\begin{itemize}
-			\item `EVERYTHING
-		\end{itemize}
-	\end{minipage}
+				\end{lstlisting}
+			\end{block}
+			\begin{block}{Quitter Sdl}
+				\lstset{basicstyle=\small}
+				\begin{lstlisting}
+  Sdl.quit ()
+				\end{lstlisting}
+			\end{block}
+		\end{column}
+		\begin{column}{3.3cm}
+			\begin{block}{types d'initialisation}
+				\begin{itemize}
+					\item `AUDIO
+					\item `CDROM
+					\item `JOYSTICK
+					\item `TIMER
+					\item `VIDEO
+				\end{itemize}
+				\begin{itemize}
+					\item `EVERYTHING
+				\end{itemize}
+			\end{block}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \subsection{L'affichage bas niveau} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{Quelques mots sur les surfaces}
-	\begin{minipage}{0.55\textwidth}
-		\lstset{basicstyle=\small}
-		\begin{lstlisting}
+	\framesubtitle{Type de la surface}
+	\begin{columns}
+		\begin{column}{5.2cm}
+			\begin{block}{Caractéristiques}
+				\lstset{basicstyle=\small}
+				\begin{lstlisting}
 type surface_info = {
   flags : surface_flags list;
   w : int;
@@ -93,123 +100,150 @@ type surface_info = {
   clip_rect : rect;
   refcount : int;
 }
-		\end{lstlisting}
-	\end{minipage}
-	\begin{minipage}{0.4\textwidth}
-		\begin{itemize}
-			\item `FULLSCREEN
-			\item `HWSURFACE
-			\item `OPENGL
-			\item `SWSURFACE
-			\item `SRCALPHA
-			\item `RESIZABLE
-			\item `SRCCOLORKEY
-			\item `DOUBLEBUF
-		\end{itemize}
-	\end{minipage}
+				\end{lstlisting}
+			\end{block}
+		\end{column}
+		\begin{column}{3.6cm}
+			\begin{block}{Types}
+				\begin{itemize}
+					\item `FULLSCREEN
+					\item `HWSURFACE
+					\item `OPENGL
+					\item `SWSURFACE
+					\item `SRCALPHA
+					\item `RESIZABLE
+					\item `SRCCOLORKEY
+					\item `DOUBLEBUF
+				\end{itemize}
+			\end{block}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{La surface de type \textit{Double Buffer}}
+	\frametitle{Quelques mots sur les surfaces}
+	\framesubtitle{La surface de type \textit{Double Buffer}}
 	\begin{center}
 		\includegraphics[width=9cm]{pics/doubleBuffer.png}
 	\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Le type rect}
+	\frametitle{Quelques mots sur les surfaces}
+	\framesubtitle{Le type rect}
 	\begin{center}\begin{minipage}{0.4\textwidth}
 		\includegraphics[width=3cm]{pics/rect.png}
 	\end{minipage}
 	\begin{minipage}{0.4\textwidth}
+		\begin{block}{Position et dimentions}
+			\lstset{basicstyle=\footnotesize}
+			\begin{lstlisting}
+  type rect = {
+    mutable r_x : int;
+    mutable r_y : int;
+    mutable r_w : int;
+    mutable r_h : int;
+  } 
+			\end{lstlisting}
+		\end{block}
+	\end{minipage}\end{center}
+	\begin{block}{Fonctions liées}
 		\lstset{basicstyle=\footnotesize}
 		\begin{lstlisting}
-type rect = {
-  mutable r_x : int;
-  mutable r_y : int;
-  mutable r_w : int;
-  mutable r_h : int;
-} 
-		\end{lstlisting}
-	\end{minipage}\end{center}
-	\lstset{basicstyle=\footnotesize}
-	\begin{lstlisting}
-val rect : x:int -> y:int -> w:int -> h:int -> rect
+  val rect : x:int -> y:int -> w:int -> h:int -> rect
 
-val surface_dims : surface -> int * int * int
-	\end{lstlisting}
+  val surface_dims : surface -> int * int * int
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Le chargement d'image}
-	\textbf{Charger/Sauver une image .bmp}
-	\begin{lstlisting}
+	\begin{block}{Charger/Sauver une image .bmp}
+		\begin{lstlisting}
   val load_BMP : string -> surface
-  val save_BMP : surface -> string -> unit
-	\end{lstlisting}
-	\textbf{Charger une image .\{jpeg,png,tiff\}}
-	\begin{lstlisting}
-  val Sdlloader.load_image : 
-    string -> surface
 
-	\end{lstlisting}
+  val save_BMP : surface -> string -> unit
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Charger une image .jpeg .png .tiff}
+		\begin{lstlisting}
+  val Sdlloader.load_image : string -> surface
+
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Les pixels...}
+	\frametitle{Les pixels}
 	\begin{center}
 		\includegraphics[width=9cm]{pics/Joconde-pixel.jpg}
 	\end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{La couleur}
-	\begin{lstlisting}
-type color = int * int * int
-let c = ((255,255,255):color)
-
-val map_RGB : 
-  surface -> ?alpha:int -> color -> int32
-val get_RGB : surface -> int32 -> color
-val get_RGBA : 
-  surface -> int32 -> color * int
-	\end{lstlisting}
+	\frametitle{Les pixels}
+	\framesubtitle{La couleur}
+	\begin{block}{Types}
+		\textit{La couleurs peut être sous la forme d'un color ou d'un int32.}
+		\begin{lstlisting}
+  type color = int * int * int
+  let c = ((255,255,255):color)
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Fonctions de convertions}
+		\begin{lstlisting}
+  val map_RGB : surface -> ?alpha:int -> 
+    color -> int32
+  val get_RGB : surface -> int32 -> color
+  val get_RGBA : surface -> int32 -> 
+    color * int
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{La transparance \textbf{globale} des surfaces}
-	\textit{Modifie la transparance de tout les pixel de la surface}
-	\begin{lstlisting}
-val set_color_key : 
-  surface -> ?rle:bool -> int32 -> unit
-val get_color_key : surface -> int32
-val unset_color_key
-
-val unset_alpha : surface -> unit
-val set_alpha : 
-  surface -> ?rle:bool -> int -> unit
-val get_alpha : surface -> int
-	\end{lstlisting}
+	\frametitle{Les pixels}
+	\framesubtitle{La transparance des surfaces}
+	\begin{block}{Couleur transparante}
+		\begin{lstlisting}
+  val get_color_key : surface -> int32
+  val set_color_key : surface -> ?rle:bool -> 
+    int32 -> unit
+  val unset_color_key : surface -> unit
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Transparance globale}
+		\begin{lstlisting}
+  val get_alpha : surface -> int
+  val set_alpha : surface -> ?rle:bool -> 
+    int -> unit
+  val unset_alpha : surface -> unit
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{\og{}Bon ! Quand est-ce qu'on manipule des pixels ?\fg}
-	\begin{lstlisting}
-val lock : surface -> unit
-val unlock : surface -> unit
-val must_lock : surface -> bool
+	\frametitle{Les pixels}
+	\framesubtitle{\og{}Bon ! Quand est-ce qu'on manipule des pixels ?\fg}
+	\begin{block}{Vérouillage de la surface}
+		\begin{lstlisting}
+  val lock : surface -> unit
+  val unlock : surface -> unit
+  val must_lock : surface -> bool
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Modification de la surface}
+		\begin{lstlisting}
+  val get_pixel : surface -> x:int -> 
+    y:int -> int32
 
-val get_pixel : 
-  surface -> x:int -> y:int -> int32
-val get_pixel_color : 
-  surface -> x:int -> y:int -> color
-
-val put_pixel : 
-  surface -> x:int -> y:int -> int32 -> unit
-val put_pixel_color : 
-  surface -> x:int -> y:int -> color -> unit
-	\end{lstlisting}
+  val put_pixel : surface -> x:int -> 
+    y:int -> int32 -> unit
+		\end{lstlisting}
+		\textit{Existe aussi en version prenant le format color au lieu du int32. Pour cela ajouter le suffixe \_color à la fonction.}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -217,39 +251,58 @@ val put_pixel_color :
 	\begin{center}
 		\includegraphics[width=3.6cm]{pics/surfacesMerge.png}
 	\end{center}
-	\begin{lstlisting}
-val fill_rect : 
-  ?rect:rect -> surface -> int32 -> unit
-
-val blit_surface : 
-  src:surface -> ?src_rect:rect -> 
-  dst:surface -> ?dst_rect:rect -> 
-  unit -> unit
-
-val display_format : 
-  ?alpha:bool -> surface -> surface
-	\end{lstlisting}
+	\begin{block}{Écraser/faire un fond de couleur}
+		\begin{lstlisting}
+  val fill_rect : ?rect:rect -> surface -> 
+    int32 -> unit
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Coller une surface sur une autre}
+		\begin{lstlisting}
+  val blit_surface : src:surface -> 
+    ?src_rect:rect ->  dst:surface -> 
+    ?dst_rect:rect -> unit -> unit
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{L'actualisation de l'affichage}
+	\framesubtitle{Surface Utilisateur}
 	\begin{center}
 		\includegraphics[width=2.4cm]{pics/doubleBufferScreen.png}
 	\end{center}
-	\begin{lstlisting}
-val set_video_mode : 
-  w:int -> h:int -> ?bpp:int -> 
- video_flag list -> surface
-val get_video_surface : 
-  unit -> surface
+	\begin{block}{La surface \og{}Fenêtre utilisateur\fg}
+		\begin{lstlisting}
+  val set_video_mode : w:int -> 
+    h:int -> ?bpp:int -> 
+    video_flag list -> surface
+  val get_video_surface : unit -> 
+    surface
+		\end{lstlisting}
+	\end{block}
+	
+\end{frame}
 
-val update_rect : 
-  ?rect:rect -> surface -> unit
-val update_rects : 
-  rect list -> surface -> unit
-
-val flip : surface -> unit
-	\end{lstlisting}
+\begin{frame}[fragile]
+	\frametitle{L'actualisation de l'affichage}
+	\framesubtitle{Rafraîchissement de la surface utilisateur}
+	\begin{center}
+		\includegraphics[width=2.4cm]{pics/doubleBufferScreen.png}
+	\end{center}
+	\begin{block}{Fonction de rafraîchissement}
+		\begin{lstlisting}
+  val update_rect : ?rect:rect -> 
+    surface -> unit
+  val update_rects : rect list -> 
+    surface -> unit
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Rafraîchissement pour un \textit{Double Buffer}}
+		\begin{lstlisting}
+  val flip : surface -> unit
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -273,11 +326,16 @@ val create_RGB_surface :
 \subsection{La détection d'événement} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{Détecter et récupérer un événement}
-	\begin{lstlisting}
-val wait_event : unit -> event
-
-val poll : unit -> event option
-	\end{lstlisting}
+	\begin{block}{Attendre l'utilisateur}
+		\begin{lstlisting}
+  val wait_event : unit -> event
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Traite la file des derniers événements}
+		\begin{lstlisting}
+  val poll : unit -> event option
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -306,9 +364,9 @@ type event =
 
 \begin{frame}[fragile]
 	\frametitle{Sous-événement Clavier/Souris}
-	\textbf{Clavier}
 	\lstset{basicstyle=\scriptsize}
-	\begin{lstlisting}
+	\begin{block}{Clavier}
+		\begin{lstlisting}
   type keyboard_event = {
     ke_which : int;
     ke_state : switch_state;
@@ -317,10 +375,11 @@ type event =
     keycode : char;
     unicode : int;
   }
-	\end{lstlisting}
-	\textbf{Souris}\\
-	\begin{minipage}{0.47\textwidth}
-		\begin{lstlisting}
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Souris}
+		\begin{minipage}{0.47\textwidth}
+			\begin{lstlisting}
   type mousemotion_event = {
     mme_which : int;
     mme_state : 
@@ -330,10 +389,10 @@ type event =
     mme_xrel : int;
     mme_yrel : int;
   }
-		\end{lstlisting}
-	\end{minipage}
-	\begin{minipage}{0.4\textwidth}
-		\begin{lstlisting}
+			\end{lstlisting}
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth}
+			\begin{lstlisting}
   type mousebutton_event = {
     mbe_which : int;
     mbe_button : 
@@ -342,8 +401,9 @@ type event =
     mbe_x : int;
     mbe_y : int;
   }
-		\end{lstlisting}
-	\end{minipage}
+			\end{lstlisting}
+		\end{minipage}
+	\end{block}
 \end{frame}
 
 \subsection{Une boucle Sdl classique} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

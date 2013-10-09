@@ -408,6 +408,30 @@ type event =
 
 \subsection{Une boucle Sdl classique} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
+	\frametitle{Actualisation d'une application Sdl simple}
+	\large
+	\begin{itemize}
+		\item Boucle principale
+		\item Gestion des événements
+		\item Actualisation de l'écran
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Boucle Principale}
+	\begin{lstlisting}
+let update () =
+  let ticks = (*17ms -> 60fps *) 
+    17 + Sdltimer.get_ticks () 
+  in
+  updateEvent();
+  updateDisplay();
+  while (Sdltimer.get_ticks ()) <= ticks do 
+    () done
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
 	\frametitle{Gestion des événements}
 	\begin{lstlisting}
 let updateEvent () = 
@@ -429,26 +453,12 @@ let updateEvent () =
 val blit_surface : src:surface -> ?src_rect:rect -> 
   dst:surface -> ?dst_rect:rect -> unit -> unit
 	\end{lstlisting}
-	\textit{Soit displayData une file de fonction Sdlvideo.blit\_surface dont tout les paramètres sont renseignés sauf le unit final}
+	\textit{Soit displayData une file de fonctions Sdlvideo.blit\_surface dont tout les paramètres sont renseignés sauf le unit final}
 	\lstset{basicstyle=\normalsize}
 	\begin{lstlisting}
 let updateDisplay () = 
   while not (is_empty displayData) do
     (take displayData) ()
   done
-	\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Actualisation}
-	\begin{lstlisting}
-let update () =
-  let ticks = (*17ms -> 60fps *) 
-    17 + Sdltimer.get_ticks () 
-  in
-  updateEvent();
-  updateDisplay();
-  while (Sdltimer.get_ticks ()) <= ticks do 
-    () done
 	\end{lstlisting}
 \end{frame}

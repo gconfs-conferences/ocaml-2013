@@ -69,7 +69,7 @@
       Il existe deux types de déclaration :
 	\begin{columns}[t]
 		\begin{column}{5cm}
-		\begin{block}{Les globales :}
+		\begin{block}{Les globales}
 		\begin{lstlisting}
 	let a = "42";;
 	val a : string = "42"
@@ -86,7 +86,7 @@
 		\end{block}
 		\end{column}
       		\begin{column}{5cm}
-		\begin{block}{Les locales:}
+		\begin{block}{Les locales}
 		\begin{lstlisting}
 	let a = 2 in a + 1;;
 	- : int = 3
@@ -178,13 +178,13 @@ val add :
 
 	 	\begin{block}{Déclaration}
 		\begin{lstlisting}
-		let incr ?pas:(x = 1) r = r + x
+		  let incr ?pas:(x = 1) r = r + x
 		\end{lstlisting}
 		\end{block}
 
 	 	\begin{block}{Utilisation}
 		\begin{lstlisting}
-		incr ~pas:10 32
+		  incr ~pas:10 32
 		\end{lstlisting}
 		\end{block}
 
@@ -283,14 +283,14 @@ val add :
 \begin{frame}[fragile]
   	\frametitle{Le filtrage de motif}
 	\framesubtitle{as et when}
-  	\begin{block}{as:}
+  	\begin{block}{As}
     	\begin{lstlisting}
 	  let rec fibo = function 
  	    0 | 1 as n -> n 
  	  | x -> fibo(x - 1) + fibo(x - 2);; 
     	\end{lstlisting}
   	\end{block}
-  	\begin{block}{when:}
+  	\begin{block}{When}
     	\begin{lstlisting}
   let is_inf = function 
         x when x < 42 -> true
@@ -369,34 +369,36 @@ let rec printStrMyList l = match l with
  exception Help
  exception HelpNbErr of int
 	\end{lstlisting}
-	\textbf{Pour lever une exception :}
-	\begin{lstlisting}
+	\begin{block}{Pour lever une exception :}
+		\begin{lstlisting}
   raise Help
   raise (HelpNbErr 451)
   
   invalid_arg "element parameter"
   failwith "uninitialized Graphics"
-	\end{lstlisting}
-	\textbf{Pour traiter une exception :}
-	\begin{center}
-		\begin{minipage}{4.2cm}
-			\lstset{basicstyle=\scriptsize}
-			\begin{lstlisting}
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Pour traiter une exception}
+		\begin{center}
+			\begin{minipage}{4.2cm}
+				\lstset{basicstyle=\scriptsize}
+				\begin{lstlisting}
 try expr with 
 | Exc1 -> expr1
 | Exc2 (v1,v2) -> expr2
 | Excn -> exprn
-			\end{lstlisting}
-		\end{minipage}
-		\begin{minipage}{5cm}
-			\lstset{basicstyle=\scriptsize}
-			\begin{lstlisting}
+				\end{lstlisting}
+			\end{minipage}
+			\begin{minipage}{5cm}
+				\lstset{basicstyle=\scriptsize}
+				\begin{lstlisting}
 try expr with 
 | MyExc -> print_string "lol"
 | Invalid_argument n -> 
     print_string ("InvArg:"^n)
 | Failure -> exit (-1)
-			\end{lstlisting}
-		\end{minipage}
-	\end{center}
+				\end{lstlisting}
+			\end{minipage}
+		\end{center}
+	\end{block}
 \end{frame}

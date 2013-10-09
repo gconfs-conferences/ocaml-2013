@@ -25,13 +25,12 @@
 let (c1,c2) =
   let m1 = new CoffeMachine(Bresile)
   and m2 = new CoffeMachine(Islande)
-  in let _ = 
-    m1#addWater(1000);
-    m2#addWater(42000)
-  in let _ =
-    m1#headUp();
-    m2#headUp()
-  in (m1#getCoffe(1),m2#getCoffe(3))
+  in
+  m1#addWater(1000);
+  m2#addWater(42000);
+  m1#headUp();
+  m2#headUp();
+  (m1#getCoffe(1),m2#getCoffe(3))
 ;;
 	\end{lstlisting}
 \end{frame}
@@ -44,7 +43,7 @@ let (c1,c2) =
 		\begin{lstlisting}
 class name parameters =
   object
-    (*Attributs*)
+    (*Attribute*)
     
     (*Methods*)
   end
@@ -69,46 +68,51 @@ class point x y =
 
 \begin{frame}[fragile]
 	\frametitle{Déclaration d'attribut}
-	\textit{Tenez vous à un type}\\
-	\textbf{Simple}
-	\begin{lstlisting}
+	\textit{Utilisez un type explicite pour les méthodes (pas de polymorphisme, pour l'instant...).}\\
+	\begin{block}{Simple}
+		\begin{lstlisting}
   val name = expr
-	\end{lstlisting}
-	\textbf{Modifiable}
-	\begin{lstlisting}
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Modifiable}
+		\begin{lstlisting}
   val mutable name = expr
   name <- expr
-	\end{lstlisting}
-	\textbf{Lorsque rien ne marche : Le type Option}
-	\begin{lstlisting}
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Lorsque rien ne marche : Le type Option}
+		\begin{lstlisting}
   val mutable name = None
   name <- Some expr
-	\end{lstlisting}
+		\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Déclaration de méthode}
-	\textbf{simple}
-	\begin{lstlisting}
+	\begin{block}{Public}
+		\begin{lstlisting}
   method name parameters = expr
-	\end{lstlisting}
-	\textbf{privée}\\
-	\begin{minipage}{0.4\textwidth}
-  	\begin{lstlisting}
+		\end{lstlisting}
+	\end{block}
+	\begin{block}{Privée}
+		\begin{minipage}{0.4\textwidth}
+  			\begin{lstlisting}
   class name =
     object
     ...
     end
-		\end{lstlisting}
-	\end{minipage}$\Rightarrow$
-	\begin{minipage}{0.4\textwidth}
-		\begin{lstlisting}
+			\end{lstlisting}
+		\end{minipage}$\Rightarrow$
+		\begin{minipage}{0.4\textwidth}
+			\begin{lstlisting}
   class name =
     object (self)
     ...
     end
-		\end{lstlisting}
-	\end{minipage}
+			\end{lstlisting}
+		\end{minipage}
+	\end{block}
 	\begin{lstlisting}
   method private name parameters = expr
   self#privateMethod parameters
@@ -143,7 +147,7 @@ class ['a] name parameters =
   object 
   val data = ref []
 
-  method add e =
+  method add (e:'a) =
     data := e::!data
   
   ...
@@ -181,9 +185,9 @@ class childName parameters =
 	\textit{Le type d'une réécritrue d'une méthode doit correspondre à celui de la méthode mère.}
 	\lstinputlisting[firstline=16, lastline=28]{code/heritage.ml}
 \end{frame}
-\subsection{Le polymorphisme d'inclusion} %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Le polymorphisme de sous-type} %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\frametitle{Le polymorphisme de sous-inclusion}
+	\frametitle{Le polymorphisme de sous-type}
 	\begin{center}
 		\includegraphics[width=9cm]{pics/inclusionObjet.png}
 	\end{center}
@@ -191,72 +195,43 @@ class childName parameters =
 
 \begin{frame}[fragile]
 	\frametitle{Interface et opérateur de sous-type}
-	\textit{Le type des méthodes doit correspondres à celui de la méthode de l'interface.}\\
-	\begin{center}
-		\begin{minipage}{0.4\textwidth}
-			\lstset{basicstyle=\scriptsize}
-  		\begin{lstlisting}
-  class c1 =
+	\framesubtitle{L'interface}
+	\textit{On peut utiliser une classe ou une interface pour faire du polymorphisme de sous-type.}
+	\begin{block}{Opérateur}
+		~~Classe :> Interface
+	\end{block}
+	\begin{block}{Interface}
+		\begin{lstlisting}
+  class type interfaceName =
     object
-    method m1 = ...
-    method ma = ...
-    method m2 = ...
-    method mb = ...
+      method mInterface1 : type1
+      method mInferface2 : type2
     end
-			\end{lstlisting}
-		\end{minipage}
-		\begin{minipage}{0.4\textwidth}
-		  \lstset{basicstyle=\scriptsize}
-			\begin{lstlisting}
-  class c2 =
-    object (self)
-    method mc = ...
-    method m2 = ...
-    method md = ...
-    method m1 = ...
-    end
-			\end{lstlisting}
-		\end{minipage}
-	\end{center}
-	\begin{center}
-		\begin{minipage}{0.4\textwidth}
-			\lstset{basicstyle=\footnotesize}
-			\begin{lstlisting}
-class type i1 =
-  object
-    method m1 : string
-    method m2 : int list
-  end
-			\end{lstlisting}
-		\end{minipage}
-		\begin{minipage}{0.4\textwidth}
-			\lstset{basicstyle=\scriptsize}
-			\begin{lstlisting}
-    let a = (new c1):>i1
-    and b = (new c2):>i1
-			\end{lstlisting}
-		\end{minipage}
-	\end{center}
+		\end{lstlisting}
+	\end{block}
+	\textit{Le types des méthodes doivent correspondre à ceux des méthodes de l'interface/classe.}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Exemple d'utilisation du sous-polymorphisme d'inclusion}
+	\frametitle{Interface et opérateur de sous-type}
+	\framesubtitle{Exemple d'utilisation}
 	Réutilisons les class point et colored\_point.
 	\begin{lstlisting}
-  let f (o:point) = o#setCoord 4 2
-  let test = 
-    ((new colored_point (4,2) 255):>point)
+let f (o:point) = o#setCoord 4 2
+let test = 
+  ((new colored_point (4,2) 255):>point)
 
-  test#print
-  f test
-  test#print
-  test#setData 4 5 1
+test#print;
+f test;
+test#print;
+test#setData 4 5 1
 	\end{lstlisting}
-	\textbf{Sortie :}
-	\begin{lstlisting}
+	\begin{block}{Sortie}
+		\begin{lstlisting}
   (2,4) 255
   (4,2) 255
   Error: This expression has type point
          It has no method setData
-	\end{lstlisting}
+		\end{lstlisting}
+	\end{block}
 \end{frame}

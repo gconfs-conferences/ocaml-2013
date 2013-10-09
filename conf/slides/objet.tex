@@ -23,14 +23,14 @@
 	\frametitle{Exemple d'utilisation d'objet}
 	\begin{lstlisting}
 let (c1,c2) =
-  let m1 = new CoffeMachine(Bresile)
-  and m2 = new CoffeMachine(Islande)
+  let m1 = new CoffeeMachine(Bresile)
+  and m2 = new CoffeeMachine(Islande)
   in
   m1#addWater(1000);
   m2#addWater(42000);
   m1#headUp();
   m2#headUp();
-  (m1#getCoffe(1),m2#getCoffe(3))
+  (m1#getCoffee(1),m2#getCoffee(3))
 ;;
 	\end{lstlisting}
 \end{frame}
@@ -43,7 +43,7 @@ let (c1,c2) =
 		\begin{lstlisting}
 class name parameters =
   object
-    (*Attribute*)
+    (*Attributes*)
     
     (*Methods*)
   end
@@ -155,9 +155,9 @@ class ['a] name parameters =
 	\end{lstlisting}
 \end{frame}
 
-\subsection{L'heritage} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{L'héritage} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-	\frametitle{Syntaxe de l'heritage}
+	\frametitle{Syntaxe de l'héritage}
 	\begin{lstlisting}
 class childName parameters =
   object

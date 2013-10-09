@@ -29,20 +29,35 @@
 \begin{frame}[fragile]
 	\frametitle{Le sequençage}
 		\begin{block}{Séparer des expressions}
-		\begin{lstlisting}
-  expr1;...;expr2
-		\end{lstlisting}
+			\begin{lstlisting}
+  expr1; ...; expr2
+			\end{lstlisting}
 		\end{block}
 		\begin{block}{Faire des "blocs" de code}
-		\begin{lstlisting}
-    begin
+			\begin{columns}
+				\begin{column}{3cm}
+					\begin{lstlisting}
+  begin
     expr1; 
     .
     .
     .
     exprn
-    end
-		\end{lstlisting}
+  end
+					\end{lstlisting}
+				\end{column}
+				\begin{column}{7cm}
+					\begin{lstlisting}
+  ( 
+    expr1; 
+    .
+    .
+    .
+    exprn
+  )
+					\end{lstlisting}
+				\end{column}
+			\end{columns}
 		\end{block}
 \end{frame}
 
@@ -50,20 +65,20 @@
     \frametitle{Les boucles}
     \begin{block}{La boucle for}
 	\begin{lstlisting}
-	for nom = expr1 to expr2 do 
-	expr3
-	done
+	  for nom = expr1 to expr2 do 
+	    expr3
+	  done
 
-	for nom = expr1 downto expr2 do
-	expr3
-	done
+	  for nom = expr1 downto expr2 do
+	    expr3
+	  done
 	\end{lstlisting}
       \end{block}
 	\begin{block}{La boucle while}
 	\begin{lstlisting}
-	while expr1 < expr2 do
-	expr3
-	done
+	  while expr1 < expr2 do
+	    expr3
+	  done
       \end{lstlisting}
   \end{block}
 \end{frame}

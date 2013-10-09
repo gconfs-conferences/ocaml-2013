@@ -51,13 +51,13 @@
 	
 	\item List.length : retourne la longueur d'une liste.	
 	
-	\item List.append : equivalent de @ mais optimisé.
+	\item List.append : Autre nom de l'opérateur @.
 	
 	\item List.rev : inverse la liste passée en paramètre.
 	
-	\item List.iter et iter2 : Renvoi l'application d'une fonction f à chacun des éléments de la liste.
+	\item List.iter et iter2 : Application une fonction f à chacun des éléments de la liste.
 
-	\item List.map et map2 : Renvoi une liste à produit par l'application d'une fonction f à chacun des éléments de la liste.
+	\item List.map et map2 : Renvoie une liste des résultats par l'application d'une fonction f à chacun des éléments de la liste.
 
 	\end{itemize}
 \end{frame}
@@ -162,7 +162,7 @@ val add :
 
 \begin{frame}[fragile]
 	\frametitle{Les fonctions}
-  	\framesubtitle{L'ordre superieur}
+  	\framesubtitle{L'ordre supérieur}
   	Et si nous faisions des fonctions de fonctions ? 
  	\begin{lstlisting}
   let sup f a = f a;;
@@ -199,15 +199,18 @@ val add :
 	    if a
 	     then b 
 	     else c
-	  bool -> 'a -> 'a -> 'a
+
+	  val f : bool -> 'a -> 'a -> 'a
 	\end{lstlisting}
 	\end{block}
-	\begin{block}{Exemple}
+	\begin{block}{Else optionnel pour le type de retour unit}
 	\begin{lstlisting}
-	  if a=42
-  	  then 
-    	  print_string "42!" 
-  	  (else ())
+	  let f a =
+	    if a=42
+	      then print_string "42!" 
+	      (* else () *)
+
+	  val f : bool -> unit -> unit -> unit
 	\end{lstlisting}
 	\end{block}
 \end{frame}
@@ -268,7 +271,7 @@ val add :
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Le filtrage dei motif}
+	\frametitle{Le filtrage de motif}
 	\framesubtitle{Récursion et listes}
 		\begin{lstlisting}
   let rec printStrList l = match l with

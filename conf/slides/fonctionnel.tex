@@ -198,9 +198,9 @@ val add :
 	\begin{block}{La structure}
 	\begin{lstlisting}
 	let f a b c = 
-	if a
-	then b 
-	else c
+	  if a
+	   then b 
+	   else c
 	bool -> 'a -> 'a -> 'a
 	\end{lstlisting}
 	\end{block}
@@ -214,136 +214,138 @@ val add :
 	\end{block}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Les tests boolèen}
-	\begin{center}
-		\begin{center}
-			\begin{minipage}{4cm}
-				\begin{itemize}
-					\item "not" : négation
-					\item "\&\&" : et logique
-					\item "||" : ou logique
-				\end{itemize}
-			\end{minipage}
-			\begin{minipage}{5cm}
-				\begin{itemize}
-					\item "=" : egalité structurelle
-					\item "<>" : negation de "="
-				\end{itemize}
-			\end{minipage}
-		\end{center}\vspace{0.2cm}
-		\begin{minipage}{4.5cm}
+\begin{frame}[fragile]
+    \frametitle{Les tests booléens}
+	\begin{columns}
+		\begin{column}{5cm}
+			\begin{itemize}
+				\item "not" : négation
+				\item "\&\&" : et logique
+				\item "||" : ou logique
+				\item "=" : egalité structurelle
+				\item "<>" : negation de "="
+			\end{itemize}
+		\end{column}
+		\begin{column}{5cm}
 			\begin{itemize}
 				\item "<" : inferieur 
 				\item ">" : superieur
 				\item "<=" : inferieur égale
 				\item ">=" : superieur égale
 			\end{itemize}
-		\end{minipage}
-	\end{center}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Le filtrage de motif}
-	\begin{center}
-	\begin{minipage}{4cm}
+	\framesubtitle{Généralités}
+	\begin{block}{Expression générale}
 		\begin{lstlisting}
 match expr with
    m1 -> expr1
  | m2 -> expr2
  | pn -> exprn
 		\end{lstlisting}
-	\end{minipage}
-	\begin{minipage}{5cm}
+	\end{block}
+	\begin{block}{Exemples}
+		\begin{columns}
+		\begin{column}{5cm}
 		\begin{lstlisting}
 match i with
    0 -> expr1
  | 5 | 12 -> expr2
- | n -> expr4
+ | n -> exprn
 		\end{lstlisting}
-	\end{minipage}
-	
-	\begin{minipage}{3cm}
+		\end{column}
+		\begin{column}{5cm}
 		\begin{lstlisting}
 function
     42 -> true
   | _ -> false
 		\end{lstlisting} 
-	\end{minipage}
-	\end{center}
+		\end{column}
+	\end{columns}
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Le filtrage de motif : récursion et listes}
+	\frametitle{Le filtrage dei motif}
+	\framesubtitle{Récursion et listes}
 		\begin{lstlisting}
 let rec printStrList l = match l with
     [] -> print_string "\n"
-  | e::[] -> print_string e ^ "\n"
+  | e::[] -> print_string (e ^ "\n")
   | e::q -> 
-    print_string e ^ ", ";
+    print_string(e ^ ", ");
     printStrList q
 		\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Le filtrage de motif : as et when}
-  \begin{itemize}
-  \begin{minipage}[t]{5cm}
-  \item
-    as :
+  \frametitle{Le filtrage de motif}
+	\framesubtitle{as et when}
+  \begin{block}{as:}
     \begin{lstlisting}
 	let rec fibo = function 
  	  0 | 1 as n -> n 
  	| x -> fibo(x - 1) + fibo(x - 2);; 
     \end{lstlisting}
-  \end{minipage}
-  \begin{minipage}[t]{5cm}
-  \item
-    when :
+  \end{block}
+  \begin{block}{when:}
     \begin{lstlisting}
   let is_inf = function 
       x when x < 42 -> true
  	  | _ -> false;;
     \end{lstlisting}
-  \end{minipage}
-  \end{itemize}
+  \end{block}
 \end{frame}
 
 \subsection{Les types} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{Créer un type}
-	\textbf{types simples}
+	\framesubtitle{Types simples}
 	\begin{lstlisting}
-  type name = typedef
+  type name = typeToDefine
 
   type point = int * int
+
   type stringLabeledIntList = 
     string * (int list)
+
   type funIntList = (int list) -> int
 	\end{lstlisting}
-	\textbf{types paramétrés}
-	\lstset{basicstyle=\scriptsize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Créer un type}
+	\framesubtitle{Types paramétrés}
 	\begin{lstlisting}
-  type ('nameTypeParameter1,'nameTypeParameterN) name = 
-    typedef
+  type ('nameTypeParameter1,
+ 	     'nameTypeParameterN) 
+   	    name = 
+         typeToDefine
     
   type ('label,'valType) labeledList =
     'label * ('valType list) 
 	\end{lstlisting}
 \end{frame}
 
+
 \begin{frame}[fragile]
-	\frametitle{Le type somme}
+	\frametitle{Créer un type}
+	\framesubtitle{Le type somme}
 	\begin{lstlisting}
   type name =
     | Constructor1 
     | Constructor2 of t0 
     | Constructor3 of t1 * t2 * tn 
 	\end{lstlisting}
-	
-	\begin{center}
-		\begin{minipage}{4.3cm}
-			\lstset{basicstyle=\scriptsize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Créer un type}
+	\framesubtitle{Le type somme: Application}
 			\begin{lstlisting}
 type ('element) myList =
   | Void
@@ -351,9 +353,7 @@ type ('element) myList =
     'element * 
     ('element myList)
 			\end{lstlisting}
-		\end{minipage}\\
-		\begin{minipage}{7.3cm}
-			\lstset{basicstyle=\scriptsize}
+
 			\begin{lstlisting}
 let rec printStrMyList l = match l with
     Void -> print_string "\n"
@@ -363,8 +363,6 @@ let rec printStrMyList l = match l with
     print_string e ^ ", ";
     printStrList q
 			\end{lstlisting}
-		\end{minipage}
-	\end{center}
 \end{frame}
 
 \begin{frame}[fragile]

@@ -16,7 +16,7 @@
 	\item Déclaration de type: 
 		\begin{lstlisting}
 		type pixel = 
-		{ mutable  r:int ; mutable g:string 
+		{ mutable  r:float ; mutable g:string 
 		; b:int } 
 		\end{lstlisting}
 		Un champ mutable signifie qu'il peut être modifié.
@@ -33,9 +33,6 @@
 \begin{frame}[fragile]
 	\frametitle{Les références}
 	Une référence est considéré comme l'équivalent (selon l'INRIA) des pointeurs en OCaml.
-	\begin{lstlisting}
-		type 'a ref = {mutable contents:'a}
-	\end{lstlisting}
 	Déclaration:
 	\begin{lstlisting}
 		let a = ref 0
@@ -106,7 +103,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{The Game}
+	\frametitle{Les vecteurs}
 	\framesubtitle{Vecteur(ception)}
 	\begin{lstlisting}
 	let t = [| 
@@ -123,24 +120,45 @@
 \begin{frame}[fragile]
 	\frametitle{Les vecteurs}
 	\framesubtitle{Copie et valeurs partagées}
+	\begin{block}{Soit une copie simple}
 	\begin{lstlisting}
-	let v2 = Array.copy v ;;
-	val v2 : int array = [|1; 0; 0|]
-	let m2 = Array.copy m ;;
-	val m2 : int array array = 
-	[|[|1; 0; 0|]; [|1; 0; 0|]; [|1; 0; 0|]|]
+	let v = Array.make 3 1;;
+	val v : int array = [|1; 1; 1|]
+	let m = Array.copy v ;;
+	val m : int array = [|1; 1; 1|]
 
 	v.(1)<- 1337;;
 	- : unit = ()
 
-	v2;; 
-	- : int array = [|1; 0; 0|]
+	m;;
+	-: int array = [|1; 1; 1|]
+	\end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Les vecteurs}
+	\framesubtitle{Copie et valeurs partagées}
+	\begin{block}{Et une copie avec valeurs partagées}
+	\begin{lstlisting}
+	let v = Array.make 3 1;;
+	val v : int array = [|1; 1; 1|]
+	let m = Array.make 3 v;;
+	val m : int array array = 
+	[|[|1; 1; 1|]; [|1; 1; 1|]; [|1; 1; 1|]|]
+	let m2 = Array.copy m;;
+	val m2 : int array array = 
+	[|[|1; 1; 1|]; [|1; 1; 1|]; [|1; 1; 1|]|]
+	v.(1)<- 1337;;
+	- : unit = ()
 	m2 ;;
 	- : int array array = 
 	[|[|1; 1337; 0|]; [|1; 1337; 0|]; 
 	[|1; 1337; 0|]|]
 	\end{lstlisting}
+	\end{block}
 \end{frame}
+
 
 \begin{frame}[fragile]
 	\frametitle{Les vecteurs}
@@ -148,11 +166,16 @@
 	\begin{itemize}
 	\item Array.make\_matrix
 	
-	\item Array.sub (Ex: Array.sub a start n)
-	
-	\item Array.\{iter,map,iteri,to\_list\}
+	\item Array.iter
 
-	\item RTFM !!!
+	\item Array.map 
+
+	\item Array.iteri
+
+	\item Array.to\_list
+
+	\item RTFM...
+
 	\end{itemize}
 \end{frame}
 
@@ -228,77 +251,6 @@
 	\item
 		\begin{lstlisting}
 		Stack.iter
-		\end{lstlisting}
-
-	\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-	\frametitle{Les tables de hachage}
-	\includegraphics[scale=0.6]{pics/hash.jpg}
-\end{frame}
-
-\subsection{Les tables de hachage}
-\begin{frame}[fragile]
-\frametitle{Les tables de hachage}
-\framesubtitle{Initialisation}
-	Ici seront présentée les tables de hachage du module Hashtbl (qui fais du hachage dynamique
-	\begin{lstlisting}
-	open Hashtbl
-	\end{lstlisting}
-	Pour créer une pile on utilise:
-	\begin{lstlisting}
-	Hashtbl.create
-	val create : ?random:bool -> int -> ('a, 'b) t
-	\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Les tables de hachage}
-\framesubtitle{Utilisation}
-	\begin{itemize}
-	
-	\item
-		\begin{lstlisting}
-		Hashtbl.add   VS   Hashtbl.replace
-		\end{lstlisting}	
-	
-	\item
-		\begin{lstlisting}
-		Hashtbl.remove h x
-		Hashtbl.find h x
-		Hashtbl.find_all h x
-		\end{lstlisting}	
-
-	\end{itemize}
-
-
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Les tables de hachage}
-\framesubtitle{Les fonctions essentielles}
-	\begin{itemize}
-	
-	\item
-		\begin{lstlisting}
-		Hashtbl.clear
-		\end{lstlisting}
-
-	\item
-		\begin{lstlisting}
-		Hashtbl.copy
-		\end{lstlisting}	
-
-	\item
-		\begin{lstlisting}
-		Hashtbl.mem
-		\end{lstlisting}	
-
-	\item
-		\begin{lstlisting}
-		Hashtbl.length
 		\end{lstlisting}
 
 	\end{itemize}

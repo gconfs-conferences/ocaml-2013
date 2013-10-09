@@ -2,7 +2,7 @@
 \begin{frame}
   \begin{center}
 	\huge
-	La base, la sup, etc... et deux trois autres choses !
+	La base, la sup, etc... et deux trois autres nouveautés !
   \end{center}
 \end{frame}
 
@@ -12,51 +12,69 @@
 	\begin{itemize}
 		\item Les entiers : 42\\
 			~~4 * 10 + 2
-		\item Les flotants : 4.2\\
+		\item Les flottants : 4.2\\
 			~~41.5 +. 0.5
-		\item Les caractères : '*'\\
-		\item Les chaines de caratères : "abcd"\\
+		\item Les caractères : 'c'\\
+		\item Les chaines de caractères : "abcd"\\
 			~~"The " \^~"meaning of " \^~"life"
-			\item Les n-uplet : ( 1, 2, 3, 4 )
+			\item Les n-uplets : ( 1, 2, 3, 4 )
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Les listes}
+	\framesubtitle{Mais qu'est-ce que c'est ?}
 	\begin{itemize}
 
-	\item Liste vide
+	\item Liste vide:
 		\begin{lstlisting}
 		[]
 		\end{lstlisting}
 
-	\item Opérateur de construction
+	\item Opérateur de construction:
 		\begin{lstlisting}
 		a :: []
 		\end{lstlisting}
 
-	\item Concatenation (à éviter)
+	\item Concaténation (à éviter):
 		\begin{lstlisting}
 		liste1 @ liste2
 		\end{lstlisting}
-		
-	\item \textit{length, ith element, rev}...\\
-	  Voir la doc du module List.
 
 	\end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+	\frametitle{Les listes}
+	\framesubtitle{Quelques fonctionnalités du module List}
+	\begin{itemize}
+	
+	\item List.length : retourne la longueur d'une liste.	
+	
+	\item List.append : equivalent de @ mais optimisé.
+	
+	\item List.rev : inverse la liste passée en paramètre.
+	
+	\item List.iter et iter2 : Renvoi l'application d'une fonction f à chacun des éléments de la liste.
+
+	\item List.map et map2 : Renvoi une liste à produit par l'application d'une fonction f à chacun des éléments de la liste.
+
+	\end{itemize}
+\end{frame}
+
+
 \subsection{Déclaration et fonctions} %%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-      \frametitle{Les declarations}
-      Il existe deux types de declaration :
-     \begin{minipage}[t]{5cm}
-	Les globales :\\
+      \frametitle{Les déclarations}
+      Il existe deux types de déclaration :
+     \begin{columns}[t]
+	\begin{column}{5cm}
+	\begin{block}{Les globales :}
 	\begin{lstlisting}
 	let a = "42";;
 	val a : string = "42"
 	\end{lstlisting}
-	avec repetition :
+	avec répétition :
 	\begin{lstlisting}
 	let a = 2
 	and b = 3
@@ -65,14 +83,15 @@
 	val b : int = 3
 	val c : int = 4
 	\end{lstlisting}
-      \end{minipage}
-      \begin{minipage}[t]{5cm}
-	les locales :\\
+      \end{block}
+	\end{column}
+      \begin{column}{5cm}
+	\begin{block}{Les locales:}
 	\begin{lstlisting}
 	let a = 2 in a + 1;;
 	- : int = 3
 	\end{lstlisting}
-	avec repetition :
+	avec répétition :
 	\begin{lstlisting}
 	let a = 2
 	and b = 3
@@ -80,11 +99,14 @@
 	a + b + c;;
 	- : int = 9
 	\end{lstlisting}
-      \end{minipage}
+	\end{block}
+      \end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Les fonctions}
+	\framesubtitle{Représentation}
 	\begin{center}
 		\begin{minipage}{10cm}
 				\begin{lstlisting}
@@ -108,12 +130,13 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Declaration de fonctions}
+\frametitle{Les fonctions}
+  \framesubtitle{Déclaration}
     \begin{lstlisting}
-	let nom p1 pn = expr
+	let name p1 pn = expr
     \end{lstlisting}
 \begin{lstlisting}
-let nom = 
+let name = 
   function p1 -> function pn -> expr
   \end{lstlisting}
   \vspace{0.4cm}
@@ -123,35 +146,48 @@ let add x y =
 val add : 
   int -> int -> int = <fun>
   \end{lstlisting}
-  Déclaration de fonction recursive 
-  \begin{lstlisting}
-  let rec facto x = 
-    if x = 0 then 1 else x * facto(x-1);;
-  val facto : int -> int = <fun>
-  \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{L'ordre superieur}
-  Et si on faisait des fonctions de fonctions ? 
+	\frametitle{Les fonctions}
+	\framesubtitle{Déclaration récursive}
+	\begin{block}{Déclaration de fonction recursive} 
+	  \begin{lstlisting}
+	  let rec facto x = 
+	  	if x = 0 then 1 else x * facto(x-1);;
+	  val facto : int -> int = <fun>
+	  \end{lstlisting}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Les fonctions}
+  \framesubtitle{L'ordre superieur}
+  Et si nous faisions des fonctions de fonctions ? 
  \begin{lstlisting}
   let sup f a = f a;;
   val sup : ('a -> 'b) -> 'a -> 'b = <fun>
  \end{lstlisting}
- Ce qui nous permet de voir le polymorphysme representé par les 'a et 'b qui definissent tout les types.
+ Nous retrouvons ici le type polymorphe representé par\\
+ les 'a et 'b qui rassemblent tout les types.
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Les paramètres optionnels}
+	\frametitle{Les fonctions}
+	\framesubtitle{Les paramètres optionnels}
 	\begin{itemize}	
 
-	\item 	\begin{lstlisting}
+	\item 	\begin{block}{Déclaration}
+		\begin{lstlisting}
 		let incr ?pas:(x = 1) r = r + x
 		\end{lstlisting}
+		\end{block}
 
-	\item 	\begin{lstlisting}
+	\item 	\begin{block}{Utilisation}
+		\begin{lstlisting}
 		incr ~pas:10 32
 		\end{lstlisting}
+		\end{block}
 
 \end{itemize}
 \end{frame}
@@ -159,27 +195,23 @@ val add :
 \subsection{Faire des choix} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 	\frametitle{Le contrôle conditionnel}
-	\begin{center}
-		\begin{minipage}{6cm}
-			\lstset{basicstyle=\Large}
-			\begin{lstlisting}
-      if a
-        then b 
-        else c
-
-bool -> 'a -> 'a -> 'a
-			\end{lstlisting}
-		\end{minipage}\\
-		\begin{minipage}{4cm}
-			\lstset{basicstyle=\scriptsize}
-			\begin{lstlisting}
-if a=42
-  then 
-    print_string "42!" 
-  (else ())
-			\end{lstlisting}
-		\end{minipage}
-	\end{center}
+	\begin{block}{La structure}
+	\begin{lstlisting}
+	let f a b c = 
+	if a
+	then b 
+	else c
+	bool -> 'a -> 'a -> 'a
+	\end{lstlisting}
+	\end{block}
+	\begin{block}{Exemple}
+	\begin{lstlisting}
+	if a=42
+  	then 
+    	print_string "42!" 
+  	(else ())
+	\end{lstlisting}
+	\end{block}
 \end{frame}
 
 \begin{frame}

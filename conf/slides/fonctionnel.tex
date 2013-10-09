@@ -174,22 +174,20 @@ val add :
 
 \begin{frame}[fragile]
 	\frametitle{Les fonctions}
-	\framesubtitle{Les paramètres optionnels}
-	\begin{itemize}	
+	\framesubtitle{Les paramètres optionnels}	
 
-	\item 	\begin{block}{Déclaration}
+	 	\begin{block}{Déclaration}
 		\begin{lstlisting}
 		let incr ?pas:(x = 1) r = r + x
 		\end{lstlisting}
 		\end{block}
 
-	\item 	\begin{block}{Utilisation}
+	 	\begin{block}{Utilisation}
 		\begin{lstlisting}
 		incr ~pas:10 32
 		\end{lstlisting}
 		\end{block}
 
-\end{itemize}
 \end{frame}
 
 \subsection{Faire des choix} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -197,19 +195,19 @@ val add :
 	\frametitle{Le contrôle conditionnel}
 	\begin{block}{La structure}
 	\begin{lstlisting}
-	let f a b c = 
-	  if a
-	   then b 
-	   else c
-	bool -> 'a -> 'a -> 'a
+	  let f a b c = 
+	    if a
+	     then b 
+	     else c
+	  bool -> 'a -> 'a -> 'a
 	\end{lstlisting}
 	\end{block}
 	\begin{block}{Exemple}
 	\begin{lstlisting}
-	if a=42
-  	then 
-    	print_string "42!" 
-  	(else ())
+	  if a=42
+  	  then 
+    	  print_string "42!" 
+  	  (else ())
 	\end{lstlisting}
 	\end{block}
 \end{frame}
@@ -242,27 +240,27 @@ val add :
 	\framesubtitle{Généralités}
 	\begin{block}{Expression générale}
 		\begin{lstlisting}
-match expr with
-   m1 -> expr1
- | m2 -> expr2
- | pn -> exprn
+  match expr with
+     m1 -> expr1
+   | m2 -> expr2
+   | pn -> exprn
 		\end{lstlisting}
 	\end{block}
 	\begin{block}{Exemples}
 		\begin{columns}
 		\begin{column}{5cm}
 		\begin{lstlisting}
-match i with
-   0 -> expr1
- | 5 | 12 -> expr2
- | n -> exprn
+  match i with
+     0 -> expr1
+   | 5 | 12 -> expr2
+   | n -> exprn
 		\end{lstlisting}
 		\end{column}
 		\begin{column}{5cm}
 		\begin{lstlisting}
-function
-    42 -> true
-  | _ -> false
+  function
+      42 -> true
+    | _ -> false
 		\end{lstlisting} 
 		\end{column}
 	\end{columns}
@@ -273,12 +271,12 @@ function
 	\frametitle{Le filtrage dei motif}
 	\framesubtitle{Récursion et listes}
 		\begin{lstlisting}
-let rec printStrList l = match l with
-    [] -> print_string "\n"
-  | e::[] -> print_string (e ^ "\n")
-  | e::q -> 
-    print_string(e ^ ", ");
-    printStrList q
+  let rec printStrList l = match l with
+      [] -> print_string "\n"
+    | e::[] -> print_string (e ^ "\n")
+    | e::q -> 
+      print_string(e ^ ", ");
+      printStrList q
 		\end{lstlisting}
 \end{frame}
 
@@ -287,16 +285,16 @@ let rec printStrList l = match l with
 	\framesubtitle{as et when}
   	\begin{block}{as:}
     	\begin{lstlisting}
-	let rec fibo = function 
- 	  0 | 1 as n -> n 
- 	| x -> fibo(x - 1) + fibo(x - 2);; 
+	  let rec fibo = function 
+ 	    0 | 1 as n -> n 
+ 	  | x -> fibo(x - 1) + fibo(x - 2);; 
     	\end{lstlisting}
   	\end{block}
   	\begin{block}{when:}
     	\begin{lstlisting}
   let is_inf = function 
-      x when x < 42 -> true
- 	  | _ -> false;;
+        x when x < 42 -> true
+    	| _ -> false;;
     	\end{lstlisting}
   	\end{block}
 \end{frame}
@@ -350,18 +348,18 @@ let rec printStrList l = match l with
 type ('element) myList =
   | Void
   | Element of 
-    'element * 
-    ('element myList)
+      'element * 
+      ('element myList)
 			\end{lstlisting}
 
 			\begin{lstlisting}
 let rec printStrMyList l = match l with
     Void -> print_string "\n"
   | Element (e,Void) -> 
-    print_string e ^ "\n"
+      print_string e ^ "\n"
   | Element (e,q) -> 
-    print_string e ^ ", ";
-    printStrList q
+      print_string e ^ ", ";
+      printStrList q
 			\end{lstlisting}
 \end{frame}
 
@@ -396,7 +394,7 @@ try expr with
 try expr with 
 | MyExc -> print_string "lol"
 | Invalid_argument n -> 
-  print_string ("InvArg:"^n)
+    print_string ("InvArg:"^n)
 | Failure -> exit (-1)
 			\end{lstlisting}
 		\end{minipage}

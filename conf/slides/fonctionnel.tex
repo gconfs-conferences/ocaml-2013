@@ -380,6 +380,33 @@ val add : int -> int -> int = <fun>
 	\end{columns}
 \end{frame}
 
+
+\begin{frame}[fragile]
+	\frametitle{Créer un type}
+	\framesubtitle{Types enregistrements}
+	\begin{itemize}
+	\item Déclaration de type:
+		\begin{lstlisting}
+		  type pixel =
+		  {
+		     mutable r:float;
+		     mutable g:string;
+		     b:int;
+		  }
+
+		let p = { r=2.4; g="The Game"; b=255 }
+		\end{lstlisting}
+	\item Accès aux champs et modification de leur valeur :
+		\begin{lstlisting}
+			  p.b;;
+			  -: int = 255
+			  p.g <- "You Lose"
+		\end{lstlisting}
+	\end{itemize}
+\end{frame}
+
+
+
 \begin{frame}[fragile]
 	\frametitle{Les exceptions}
 	\begin{lstlisting}

@@ -148,9 +148,15 @@ class ['a] storage =
 \end{frame}
 
 \begin{frame}
-	\frametitle{Un Makefile \textit{usine à gaz}}
+	\frametitle{Le travail d'un Makefile}
 	\begin{center}
-		\includegraphics[width=10cm]{pics/mkfile.png}
+		\begin{itemize}
+			\item Lister les fichiers sources
+			\item Trouver/Indiquer les chemins d'accès des bibliothèques
+			\item Indiquer les outils de compilation
+			\item Générer les fichiers correspondant à chaque étape de la compilation
+			\item Gérer les dépendances entre les modules
+		\end{itemize}
 	\end{center}
 \end{frame}
 
@@ -158,13 +164,13 @@ class ['a] storage =
 	\frametitle{ocamlbuild}
 	\begin{block}{Commande générique}
 		\begin{lstlisting}
-  # ocamlbuild -use-ocamlfind\
+  42sh$ ocamlbuild -use-ocamlfind\
     -pkgs [library] [mainFile].[byte/native]
 		\end{lstlisting}
 	\end{block}
 	\begin{block}{Exemple}
 		\begin{lstlisting}
-  # ocamlbuild -use-ocamlfind -pkgs\
+  42sh$ ocamlbuild -use-ocamlfind -pkgs\
     lua,expat,sdl,sdl.sdlimage,sdl.sdlttf,str\
     main.native
 		\end{lstlisting}

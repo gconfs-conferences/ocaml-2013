@@ -205,27 +205,6 @@ type surface_info = {
 
 \begin{frame}[fragile]
 	\frametitle{Les pixels}
-	\framesubtitle{La transparence des surfaces}
-	\begin{block}{Couleur transparente}
-		\begin{lstlisting}
-  val get_color_key : surface -> int32
-  val set_color_key : surface -> ?rle:bool -> 
-    int32 -> unit
-  val unset_color_key : surface -> unit
-		\end{lstlisting}
-	\end{block}
-	\begin{block}{Transparence globale}
-		\begin{lstlisting}
-  val get_alpha : surface -> int
-  val set_alpha : surface -> ?rle:bool -> 
-    int -> unit
-  val unset_alpha : surface -> unit
-		\end{lstlisting}
-	\end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Les pixels}
 	\framesubtitle{\og{}Bon ! Quand est-ce qu'on manipule des pixels ?\fg}
 	\begin{block}{Verrouillage de la surface}
 		\begin{lstlisting}

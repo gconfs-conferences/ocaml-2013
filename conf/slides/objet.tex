@@ -44,7 +44,7 @@ let (c1,c2) =
 class name parameters =
   object
     (*Attributes*)
-    
+
     (*Methods*)
   end
 		\end{lstlisting}
@@ -124,13 +124,13 @@ class point x y =
 	\begin{lstlisting}
 class putListInStack (l:int list) =
   object (self)
-    
+
   val data = Stack.create ()
 
   initializer
     let rec storage = function
       | [] -> ()
-      | e::q -> 
+      | e::q ->
         push e data;
         storage q
     in storage l
@@ -144,12 +144,12 @@ class putListInStack (l:int list) =
 	\frametitle{Attributs polymorphiques}
 	\begin{lstlisting}
 class ['a] name parameters =
-  object 
+  object
   val data = ref []
 
   method add (e:'a) =
     data := e::!data
-  
+
   ...
   end
 	\end{lstlisting}
@@ -168,7 +168,7 @@ class childName parameters =
 	\begin{lstlisting}
 class childName parameters =
   object
-  inherit motherClass mothersParameters 
+  inherit motherClass mothersParameters
     as motherSuper
 
   end
@@ -218,7 +218,7 @@ class childName parameters =
 	Réutilisons les class point et colored\_point.
 	\begin{lstlisting}
 let f (o:point) = o#setCoord 4 2
-let test = 
+let test =
   ((new colored_point (4,2) 255):>point)
 
 test#print;

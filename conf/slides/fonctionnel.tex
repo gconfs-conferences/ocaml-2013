@@ -139,7 +139,7 @@
 	let name p1 pn = expr
     	\end{lstlisting}
 	\begin{lstlisting}
-let name = 
+let name =
   function p1 -> function pn -> expr
   	\end{lstlisting}
   	\vspace{0.4cm}
@@ -152,9 +152,9 @@ val add : int -> int -> int = <fun>
 \begin{frame}[fragile]
 	\frametitle{Les fonctions}
 	\framesubtitle{Déclaration récursive}
-	\begin{block}{Déclaration de fonction recursive} 
+	\begin{block}{Déclaration de fonction recursive}
 	  \begin{lstlisting}
-	  let rec facto x = 
+	  let rec facto x =
 	  	if x = 0 then 1 else x * facto(x-1);;
 	  val facto : int -> int = <fun>
 	  \end{lstlisting}
@@ -164,12 +164,12 @@ val add : int -> int -> int = <fun>
 \begin{frame}[fragile]
 	\frametitle{Les fonctions}
   	\framesubtitle{L'ordre supérieur}
-  	Et si nous faisions des fonctions de fonctions ? 
+  	Et si nous faisions des fonctions de fonctions ?
  	\begin{lstlisting}
   let comp f a b = f a b;;
-  val comp : ('a -> 'b -> 'c) -> 
+  val comp : ('a -> 'b -> 'c) ->
   'a -> 'b -> 'c = <fun>
-  
+
   comp (+) 3 2;;
   - : int = 5
  	\end{lstlisting}
@@ -184,7 +184,7 @@ val add : int -> int -> int = <fun>
 	 	\begin{block}{Déclaration}
 		\begin{lstlisting}
 		  let incr ?step:(x = 1) r = r + x
-		  
+		
 		  val incr : ?step:int -> int -> int
 		\end{lstlisting}
 		\end{block}
@@ -205,9 +205,9 @@ val add : int -> int -> int = <fun>
 	\frametitle{Le contrôle conditionnel}
 	\begin{block}{La structure}
 	\begin{lstlisting}
-	  let f a b c = 
+	  let f a b c =
 	    if a
-	     then b 
+	     then b
 	     else c
 
 	  val f : bool -> 'a -> 'a -> 'a
@@ -217,7 +217,7 @@ val add : int -> int -> int = <fun>
 	\begin{lstlisting}
 	  let f a =
 	    if a=42
-	      then print_string "42!" 
+	      then print_string "42!"
 	      (* else () *)
 
 	  val f : bool -> unit -> unit -> unit
@@ -274,7 +274,7 @@ val add : int -> int -> int = <fun>
   function
       42 -> true
     | _ -> false
-		\end{lstlisting} 
+		\end{lstlisting}
 		\end{column}
 	\end{columns}
 	\end{block}
@@ -287,7 +287,7 @@ val add : int -> int -> int = <fun>
   let rec printStrList l = match l with
       [] -> print_string "\n"
     | e::[] -> print_string (e ^ "\n")
-    | e::q -> 
+    | e::q ->
       print_string(e ^ ", ");
       printStrList q
 		\end{lstlisting}
@@ -298,14 +298,14 @@ val add : int -> int -> int = <fun>
 	\framesubtitle{'as' et 'when'}
   	\begin{block}{As}
     	\begin{lstlisting}
-	  let rec fibo = function 
- 	    0 | 1 as n -> n 
- 	  | x -> fibo(x - 1) + fibo(x - 2);; 
+	  let rec fibo = function
+ 	    0 | 1 as n -> n
+ 	  | x -> fibo(x - 1) + fibo(x - 2);;
     	\end{lstlisting}
   	\end{block}
   	\begin{block}{When}
     	\begin{lstlisting}
-  let is_inf = function 
+  let is_inf = function
         x when x < 42 -> true
     	| _ -> false;;
     	\end{lstlisting}
@@ -325,8 +325,8 @@ val add : int -> int -> int = <fun>
   val a : int * int = (3,7)
   let (b:point) = (3,7);;
   val b : point = (3,7)
-  
-  type stringLabeledIntList = 
+
+  type stringLabeledIntList =
     string * (int list)
 
   type funIntList = (int list) -> int
@@ -338,12 +338,12 @@ val add : int -> int -> int = <fun>
 	\framesubtitle{Types paramétrés}
 	\begin{lstlisting}
   type ('nameTypeParameter1,
- 	     'nameTypeParameterN) 
-   	    name = 
+ 	     'nameTypeParameterN)
+   	    name =
          typeToDefine
-    
+
   type ('valType) labeledList =
-    string * ('valType list) 
+    string * ('valType list)
 	\end{lstlisting}
 \end{frame}
 
@@ -372,8 +372,8 @@ val add : int -> int -> int = <fun>
     | Heart
     | Diamond
     | Club
-  
-  type card = 
+
+  type card =
     cardColor * cardFigure
 			\end{lstlisting}
 		\end{column}
@@ -390,7 +390,7 @@ val add : int -> int -> int = <fun>
 		\begin{lstlisting}
   raise Help
   raise (HelpNbErr 451)
-  
+
   invalid_arg "element parameter"
   failwith "uninitialized Graphics"
 		\end{lstlisting}
@@ -400,7 +400,7 @@ val add : int -> int -> int = <fun>
 			\begin{minipage}{4.2cm}
 				\lstset{basicstyle=\scriptsize}
 				\begin{lstlisting}
-try expr with 
+try expr with
 | Exc1 -> expr1
 | Exc2 (v1,v2) -> expr2
 | Excn -> exprn
@@ -409,9 +409,9 @@ try expr with
 			\begin{minipage}{5cm}
 				\lstset{basicstyle=\scriptsize}
 				\begin{lstlisting}
-try expr with 
+try expr with
 | MyExc -> print_string "lol"
-| Invalid_argument n -> 
+| Invalid_argument n ->
     print_string ("InvArg:"^n)
 | Failure -> exit (-1)
 				\end{lstlisting}

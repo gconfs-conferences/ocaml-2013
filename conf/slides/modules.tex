@@ -22,13 +22,13 @@
 		\begin{lstlisting}
   open List
 
-  length 
+  length
     (1::3::3::7::[])
 		\end{lstlisting}
 	\end{block}
 	\begin{block}{Sans \textit{open}}
 		\begin{lstlisting}
-  List.length 
+  List.length
     (1::3::3::7::[])
 		\end{lstlisting}
 	\end{block}
@@ -113,7 +113,7 @@ class counter :
 
 (* Class with initialization parameter *)
 class point :
-  int * int -> 
+  int * int ->
     object
       val pos : int * int
       method printCoord : unit -> unit
@@ -127,10 +127,10 @@ class point :
 	\lstset{basicstyle=\small}
 	\begin{lstlisting}
 (* Class with type parameter *)
-class ['a] storage = 
-  object 
+class ['a] storage =
+  object
     val mutable data : 'a list
-    method addData : 'a -> unit 
+    method addData : 'a -> unit
   end
 	\end{lstlisting}
 \end{frame}
@@ -140,7 +140,7 @@ class ['a] storage =
 	\frametitle{Les differents modes d'exécution}
 	\huge
 	\begin{itemize}
-		\item ocaml : Interprétation directe 
+		\item ocaml : Interprétation directe
 		\item ocamlc : Compilation byte-code
 		\item ocamlopt : Compilation native
 	\end{itemize}
@@ -207,11 +207,11 @@ class ['a] storage =
 	\frametitle{Les commentaires de ocamldoc 1/2}
 	\lstset{basicstyle=\scriptsize}	
 	\begin{lstlisting}
-(** The first special comment of the file is the 
+(** The first special comment of the file is the
     comment associated with the whole module.*)
 
 (******************************************************)
-(** Comments like the one above, with more than two 
+(** Comments like the one above, with more than two
     asterisks, are ignored. *)
 
 (** The comment for function f. *)

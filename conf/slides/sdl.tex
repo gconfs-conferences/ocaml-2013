@@ -46,7 +46,7 @@
 			\begin{block}{L'initialisation de base}
 				\lstset{basicstyle=\small}
 				\begin{lstlisting}
-  Sdl.init [`EVERYTHING] 
+  Sdl.init [`EVERYTHING]
 				\end{lstlisting}
 			\end{block}
 			\begin{block}{L'initialisation et ouverture d'une fenêtre}
@@ -54,8 +54,8 @@
 				\begin{lstlisting}
   Sdl.init [`EVERYTHING]
 
-  let screen = 
-   Sdlvideo.set_video_mode 
+  let screen =
+   Sdlvideo.set_video_mode
    ~w ~h ~bpp [`HWSURFACE]
 				\end{lstlisting}
 			\end{block}
@@ -144,7 +144,7 @@ type surface_info = {
     mutable r_y : int;
     mutable r_w : int;
     mutable r_h : int;
-  } 
+  }
 			\end{lstlisting}
 		\end{block}
 	\end{minipage}\end{center}
@@ -194,10 +194,10 @@ type surface_info = {
 	\end{block}
 	\begin{block}{Fonctions de convertion}
 		\begin{lstlisting}
-  val map_RGB : surface -> ?alpha:int -> 
+  val map_RGB : surface -> ?alpha:int ->
     color -> int32
   val get_RGB : surface -> int32 -> color
-  val get_RGBA : surface -> int32 -> 
+  val get_RGBA : surface -> int32 ->
     color * int
 		\end{lstlisting}
 	\end{block}
@@ -215,10 +215,10 @@ type surface_info = {
 	\end{block}
 	\begin{block}{Modification de la surface}
 		\begin{lstlisting}
-  val get_pixel : surface -> x:int -> 
+  val get_pixel : surface -> x:int ->
     y:int -> int32
 
-  val put_pixel : surface -> x:int -> 
+  val put_pixel : surface -> x:int ->
     y:int -> int32 -> unit
 		\end{lstlisting}
 		\textit{Existe aussi en version prenant le format color au lieu du int32. Pour cela ajouter le suffixe \_color à la fonction.}
@@ -232,14 +232,14 @@ type surface_info = {
 	\end{center}
 	\begin{block}{Écraser/faire un fond de couleur}
 		\begin{lstlisting}
-  val fill_rect : ?rect:rect -> surface -> 
+  val fill_rect : ?rect:rect -> surface ->
     int32 -> unit
 		\end{lstlisting}
 	\end{block}
 	\begin{block}{Coller une surface sur une autre}
 		\begin{lstlisting}
-  val blit_surface : src:surface -> 
-    ?src_rect:rect ->  dst:surface -> 
+  val blit_surface : src:surface ->
+    ?src_rect:rect ->  dst:surface ->
     ?dst_rect:rect -> unit -> unit
 		\end{lstlisting}
 	\end{block}
@@ -253,10 +253,10 @@ type surface_info = {
 	\end{center}
 	\begin{block}{La surface \og{}Fenêtre utilisateur\fg}
 		\begin{lstlisting}
-  val set_video_mode : w:int -> 
-    h:int -> ?bpp:int -> 
+  val set_video_mode : w:int ->
+    h:int -> ?bpp:int ->
     video_flag list -> surface
-  val get_video_surface : unit -> 
+  val get_video_surface : unit ->
     surface
 		\end{lstlisting}
 	\end{block}
@@ -271,9 +271,9 @@ type surface_info = {
 	\end{center}
 	\begin{block}{Fonction de rafraîchissement}
 		\begin{lstlisting}
-  val update_rect : ?rect:rect -> 
+  val update_rect : ?rect:rect ->
     surface -> unit
-  val update_rects : rect list -> 
+  val update_rects : rect list ->
     surface -> unit
 		\end{lstlisting}
 	\end{block}
@@ -289,12 +289,12 @@ type surface_info = {
 	\lstset{basicstyle=\footnotesize}
 	\begin{lstlisting}
 val create_RGB_surface_format : surface ->
-  [ `ASYNCBLIT | `HWSURFACE | `SRCALPHA 
+  [ `ASYNCBLIT | `HWSURFACE | `SRCALPHA
   | `SRCCOLORKEY | `SWSURFACE ] list ->
   w:int -> h:int -> surface
 
-val create_RGB_surface : 
-  [ `ASYNCBLIT | `HWSURFACE | `SRCALPHA 
+val create_RGB_surface :
+  [ `ASYNCBLIT | `HWSURFACE | `SRCALPHA
   | `SRCCOLORKEY | `SWSURFACE ] list ->
   w:int -> h:int -> bpp:int ->
   rmask:int32 -> gmask:int32 -> bmask:int32 ->
@@ -361,7 +361,7 @@ type event =
 			\begin{lstlisting}
   type mousemotion_event = {
     mme_which : int;
-    mme_state : 
+    mme_state :
       Sdlmouse.button list;
     mme_x : int;
     mme_y : int;
@@ -374,7 +374,7 @@ type event =
 			\begin{lstlisting}
   type mousebutton_event = {
     mbe_which : int;
-    mbe_button : 
+    mbe_button :
       Sdlmouse.button;
     mbe_state : switch_state;
     mbe_x : int;
@@ -400,12 +400,12 @@ type event =
 	\frametitle{Boucle Principale}
 	\begin{lstlisting}
 let update () =
-  let ticks = (*17ms -> 60fps *) 
-    17 + Sdltimer.get_ticks () 
+  let ticks = (*17ms -> 60fps *)
+    17 + Sdltimer.get_ticks ()
   in
   updateEvent();
   updateDisplay();
-  while (Sdltimer.get_ticks ()) <= ticks do 
+  while (Sdltimer.get_ticks ()) <= ticks do
     () done
 	\end{lstlisting}
 \end{frame}
@@ -413,12 +413,12 @@ let update () =
 \begin{frame}[fragile]
 	\frametitle{Gestion des événements}
 	\begin{lstlisting}
-let updateEvent () = 
+let updateEvent () =
   match Sdlevent.poll () with
   | None -> ()
-  | Some (Sdlevent.KEYDOWN key) -> 
+  | Some (Sdlevent.KEYDOWN key) ->
     keyDownManager key
-  | Some (Sdlevent.MOUSEBUTTONDOWN button) -> 
+  | Some (Sdlevent.MOUSEBUTTONDOWN button) ->
     buttonDownManager button
   | Some Sdlevent.QUIT -> Sdl.quit ()
   | _ -> ()
@@ -429,13 +429,13 @@ let updateEvent () =
 	\frametitle{Modification et déplacement des élements visuels}
 	\lstset{basicstyle=\scriptsize}
 	\begin{lstlisting}
-val blit_surface : src:surface -> ?src_rect:rect -> 
+val blit_surface : src:surface -> ?src_rect:rect ->
   dst:surface -> ?dst_rect:rect -> unit -> unit
 	\end{lstlisting}
 	\textit{Soit displayData une file de fonctions Sdlvideo.blit\_surface dont tout les paramètres sont renseignés sauf le unit final}
 	\lstset{basicstyle=\normalsize}
 	\begin{lstlisting}
-let updateDisplay () = 
+let updateDisplay () =
   while not (is_empty displayData) do
     (take displayData) ()
   done

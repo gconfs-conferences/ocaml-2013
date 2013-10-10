@@ -67,7 +67,7 @@
 			\end{block}
 		\end{column}
 		\begin{column}{3.3cm}
-			\begin{block}{types d'initialisation}
+			\begin{block}{Types d'initialisation}
 				\begin{itemize}
 					\item `AUDIO
 					\item `CDROM
@@ -136,7 +136,7 @@ type surface_info = {
 		\includegraphics[width=3cm]{pics/rect.png}
 	\end{minipage}
 	\begin{minipage}{0.4\textwidth}
-		\begin{block}{Position et dimention}
+		\begin{block}{Position et dimension}
 			\lstset{basicstyle=\footnotesize}
 			\begin{lstlisting}
   type rect = {
@@ -160,7 +160,7 @@ type surface_info = {
 
 \begin{frame}[fragile]
 	\frametitle{Le chargement d'image}
-	\begin{block}{Charger/Sauver une image .bmp}
+	\begin{block}{Charger/Sauvegarder une image .bmp}
 		\begin{lstlisting}
   val load_BMP : string -> surface
 
@@ -192,7 +192,7 @@ type surface_info = {
   let c = ((255,255,255):color)
 		\end{lstlisting}
 	\end{block}
-	\begin{block}{Fonctions de convertion}
+	\begin{block}{Fonctions de conversion}
 		\begin{lstlisting}
   val map_RGB : surface -> ?alpha:int ->
     color -> int32
@@ -221,7 +221,7 @@ type surface_info = {
   val put_pixel : surface -> x:int ->
     y:int -> int32 -> unit
 		\end{lstlisting}
-		\textit{Existe aussi en version prenant le format color au lieu du int32. Pour cela ajouter le suffixe \_color à la fonction.}
+		\textit{Existe aussi en version prenant le type color au lieu de int32. Pour cela ajouter le suffixe \_color à la fonction.}
 	\end{block}
 \end{frame}
 
@@ -230,7 +230,7 @@ type surface_info = {
 	\begin{center}
 		\includegraphics[width=3.6cm]{pics/surfacesMerge.png}
 	\end{center}
-	\begin{block}{Écraser/faire un fond de couleur}
+	\begin{block}{Écraser/Créer un fond de couleur}
 		\begin{lstlisting}
   val fill_rect : ?rect:rect -> surface ->
     int32 -> unit
@@ -310,7 +310,7 @@ val create_RGB_surface :
   val wait_event : unit -> event
 		\end{lstlisting}
 	\end{block}
-	\begin{block}{Traite la file des derniers événements}
+	\begin{block}{Traiter la file des derniers événements}
 		\begin{lstlisting}
   val poll : unit -> event option
 		\end{lstlisting}
@@ -318,7 +318,7 @@ val create_RGB_surface :
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Les differents types d'événement}
+	\frametitle{Les différents types d'événements}
 	\lstset{basicstyle=\small}
 	\begin{lstlisting}
 type event =
@@ -432,7 +432,7 @@ let updateEvent () =
 val blit_surface : src:surface -> ?src_rect:rect ->
   dst:surface -> ?dst_rect:rect -> unit -> unit
 	\end{lstlisting}
-	\textit{Soit displayData une file de fonctions Sdlvideo.blit\_surface dont tout les paramètres sont renseignés sauf le unit final}
+	\textit{Soit displayData une file de fonctions Sdlvideo.blit\_surface dont tous les paramètres sont renseignés sauf le unit final}
 	\lstset{basicstyle=\normalsize}
 	\begin{lstlisting}
 let updateDisplay () =

@@ -136,7 +136,7 @@ type surface_info = {
 		\includegraphics[width=3cm]{pics/rect.png}
 	\end{minipage}
 	\begin{minipage}{0.4\textwidth}
-		\begin{block}{Position et dimentions}
+		\begin{block}{Position et dimention}
 			\lstset{basicstyle=\footnotesize}
 			\begin{lstlisting}
   type rect = {
@@ -186,13 +186,13 @@ type surface_info = {
 	\frametitle{Les pixels}
 	\framesubtitle{La couleur}
 	\begin{block}{Types}
-		\textit{La couleurs peut être sous la forme d'un color ou d'un int32.}
+		\textit{La couleur peut être sous la forme d'un color ou d'un int32.}
 		\begin{lstlisting}
   type color = int * int * int
   let c = ((255,255,255):color)
 		\end{lstlisting}
 	\end{block}
-	\begin{block}{Fonctions de convertions}
+	\begin{block}{Fonctions de convertion}
 		\begin{lstlisting}
   val map_RGB : surface -> ?alpha:int -> 
     color -> int32
@@ -447,7 +447,7 @@ let updateEvent () =
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Modification et déplacement des élement visuels}
+	\frametitle{Modification et déplacement des élements visuels}
 	\lstset{basicstyle=\scriptsize}
 	\begin{lstlisting}
 val blit_surface : src:surface -> ?src_rect:rect -> 

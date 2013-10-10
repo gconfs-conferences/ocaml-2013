@@ -90,7 +90,7 @@ class point x y =
 
 \begin{frame}[fragile]
 	\frametitle{Déclaration de méthode}
-	\begin{block}{Public}
+	\begin{block}{Publique}
 		\begin{lstlisting}
   method name parameters = expr
 		\end{lstlisting}
@@ -157,19 +157,19 @@ class ['a] name parameters =
 
 \subsection{L'héritage} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-	\frametitle{Syntaxe de l'héritage}
+	\frametitle{Héritage}
 	\begin{lstlisting}
 class childName parameters =
   object
-  inherit motherClass mothersParameters
+  inherit parentClass parentsParameters
 
   end
 	\end{lstlisting}
 	\begin{lstlisting}
 class childName parameters =
   object
-  inherit motherClass mothersParameters
-    as motherSuper
+  inherit parentClass parentsParameters
+    as baseClass
 
   end
 	\end{lstlisting}
@@ -182,7 +182,7 @@ class childName parameters =
 
 \begin{frame}
 	\frametitle{Accès aux méthodes de la classe mère 2/2}
-	\textit{Le type d'une réécritrue d'une méthode doit correspondre à celui de la méthode mère.}
+	\textit{Pas de surcharge de fonction en OCaml}
 	\lstinputlisting[firstline=16, lastline=28]{code/heritage.ml}
 \end{frame}
 \subsection{Le polymorphisme de sous-type} %%%%%%%%%%%%%%%%%%%%%%%%%%%

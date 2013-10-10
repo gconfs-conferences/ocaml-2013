@@ -18,6 +18,7 @@
 		\item Les chaines de caractères : "abcd"\\
 			~~"The " \^~"meaning of " \^~"life"
 			\item Les n-uplets : ( 1, 4.2, "abc", 4 )
+		\item Le unit : ()
 	\end{itemize}
 \end{frame}
 
@@ -34,6 +35,8 @@
 	\item Opérateur de construction:
 		\begin{lstlisting}
 		a :: []
+		1 :: 2 :: 3 :: 4 :: 5 :: []
+		"abc" :: "de" :: "f" :: "ghij" :: []
 		\end{lstlisting}
 
 	\item Concaténation (à éviter):
@@ -55,9 +58,9 @@
 	
 	\item List.rev : inverse la liste passée en paramètre.
 	
-	\item List.iter et iter2 : Application une fonction f à chacun des éléments de la liste.
+	\item List.iter : Application une fonction f à chacun des éléments de la liste.
 
-	\item List.map et map2 : Renvoie une liste des résultats par l'application d'une fonction f à chacun des éléments de la liste.
+	\item List.map : Renvoie une liste des résultats par l'application d'une fonction f à chacun des éléments de la liste.
 
 	\end{itemize}
 \end{frame}
@@ -141,10 +144,8 @@ let name =
   	\end{lstlisting}
   	\vspace{0.4cm}
   	\begin{lstlisting}
-let add x y = 
-  x + y;;
-val add : 
-  int -> int -> int = <fun>
+let add x y = x + y;;
+val add : int -> int -> int = <fun>
   	\end{lstlisting}
 \end{frame}
 
@@ -165,8 +166,12 @@ val add :
   	\framesubtitle{L'ordre supérieur}
   	Et si nous faisions des fonctions de fonctions ? 
  	\begin{lstlisting}
-  let sup f a = f a;;
-  val sup : ('a -> 'b) -> 'a -> 'b = <fun>
+  let comp f a b = f a b;;
+  val comp : ('a -> 'b -> 'c) -> 
+  'a -> 'b -> 'c = <fun>
+  
+  comp (+) 3 2;;
+  - : int = 5
  	\end{lstlisting}
 	Nous retrouvons ici le type polymorphe representé par\\
 	les 'a et 'b qui rassemble tous les types.
@@ -186,8 +191,10 @@ val add :
 
 	 	\begin{block}{Utilisation}
 		\begin{lstlisting}
-		  incr 32
+		  incr 32;;
+		  - : int = 33
 		  incr ~step:10 32
+		  - : int = 42
 		\end{lstlisting}
 		\end{block}
 
@@ -314,6 +321,11 @@ val add :
 
   type point = int * int
 
+  let a = (3,7);;
+  val a : int * int = (3,7)
+  let (b:point) = (3,7);;
+  val b : point = (3,7)
+  
   type stringLabeledIntList = 
     string * (int list)
 
@@ -339,34 +351,33 @@ val add :
 \begin{frame}[fragile]
 	\frametitle{Créer un type}
 	\framesubtitle{Le type somme}
-	\begin{lstlisting}
-  type name =
-    | Constructor1 
-    | Constructor2 of t0 
-    | Constructor3 of t1 * t2 * tn 
-	\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-	\frametitle{Créer un type}
-	\framesubtitle{Le type somme: Application}
+	\begin{columns}
+		\begin{column}{5cm}
 			\begin{lstlisting}
-type ('element) myList =
-  | Void
-  | Element of 
-      'element * 
-      ('element myList)
-			\end{lstlisting}
+  type head =
+    | King
+    | Queen
+    | Jack
 
-			\begin{lstlisting}
-let rec printStrMyList l = match l with
-    Void -> print_string "\n"
-  | Element (e,Void) -> 
-      print_string e ^ "\n"
-  | Element (e,q) -> 
-      print_string e ^ ", ";
-      printStrList q
+  type cardFigure =
+    | Ace
+    | NumberCard of int
+    | HeadCard of head
 			\end{lstlisting}
+		\end{column}
+		\begin{column}{7cm}
+			\begin{lstlisting}
+  type cardColor =
+    | Spade
+    | Heart
+    | Diamond
+    | Club
+  
+  type card = 
+    cardColor * cardFigure
+			\end{lstlisting}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame}[fragile]

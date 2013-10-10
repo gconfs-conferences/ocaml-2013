@@ -15,7 +15,7 @@
 		\item Les flottants : 4.2\\
 			~~41.5 +. 0.5
 		\item Les caractères : 'c'\\
-		\item Les chaines de caractères : "abcd"\\
+		\item Les chaînes de caractères : "abcd"\\
 			~~"The " \^~"meaning of " \^~"life"
 			\item Les n-uplets : ( 1, 4.2, "abc", 4 )
 		\item Le unit : ()
@@ -52,15 +52,15 @@
 	\framesubtitle{Quelques fonctionnalités du module List}
 	\begin{itemize}
 	
-	\item List.length : retourne la longueur d'une liste.	
+	\item List.length : retourne la longueur d'une liste
 	
-	\item List.append : Autre nom de l'opérateur @.
+	\item List.append : autre nom de l'opérateur @
 	
-	\item List.rev : inverse la liste passée en paramètre.
+	\item List.rev : inverse la liste passée en paramètre
 	
-	\item List.iter : Application une fonction f à chacun des éléments de la liste.
+	\item List.iter : application d'une fonction f à chacun des éléments de la liste
 
-	\item List.map : Renvoie une liste des résultats par l'application d'une fonction f à chacun des éléments de la liste.
+	\item List.map : renvoie une liste des résultats de l'application d'une fonction f à chacun des éléments de la liste
 
 	\end{itemize}
 \end{frame}
@@ -173,8 +173,8 @@ val add : int -> int -> int = <fun>
   comp (+) 3 2;;
   - : int = 5
  	\end{lstlisting}
-	Nous retrouvons ici le type polymorphe representé par\\
-	les 'a et 'b qui rassemble tous les types.
+	Nous retrouvons ici le type polymorphe, rassemblant tous les types et\\
+        representé par les 'a et 'b.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -231,18 +231,18 @@ val add : int -> int -> int = <fun>
 		\begin{column}{5cm}
 			\begin{itemize}
 				\item "not" : négation
-				\item "\&\&" : et logique
-				\item "||" : ou logique
+				\item "\&\&" : ET logique
+				\item "||" : OU logique
 				\item "=" : egalité structurelle
-				\item "<>" : negation de "="
+				\item "<>" : négation de "="
 			\end{itemize}
 		\end{column}
 		\begin{column}{5cm}
 			\begin{itemize}
-				\item "<" : inferieur 
-				\item ">" : superieur
-				\item "<=" : inferieur égale
-				\item ">=" : superieur égale
+				\item "<" : inférieur strict
+				\item ">" : supérieur strict
+				\item "<=" : inférieur ou égal
+				\item ">=" : supérieur ou égal
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -251,7 +251,7 @@ val add : int -> int -> int = <fun>
 \begin{frame}[fragile]
 	\frametitle{Le filtrage de motif}
 	\framesubtitle{Généralités}
-	\begin{block}{Expression générale}
+	\begin{block}{La structure}
 		\begin{lstlisting}
   match expr with
      m1 -> expr1
@@ -295,7 +295,7 @@ val add : int -> int -> int = <fun>
 
 \begin{frame}[fragile]
   	\frametitle{Le filtrage de motif}
-	\framesubtitle{as et when}
+	\framesubtitle{'as' et 'when'}
   	\begin{block}{As}
     	\begin{lstlisting}
 	  let rec fibo = function 
@@ -350,7 +350,7 @@ val add : int -> int -> int = <fun>
 
 \begin{frame}[fragile]
 	\frametitle{Créer un type}
-	\framesubtitle{Le type somme}
+	\framesubtitle{Types somme}
 	\begin{columns}
 		\begin{column}{5cm}
 			\begin{lstlisting}

@@ -1,54 +1,28 @@
-
-\section{Quelques structures de données}
-\subsection{Les enregistrements}
-
 \begin{frame}
 	\begin{center}
-		\huge 
+		\huge
 		Les structures de données
 	\end{center}
 \end{frame}
 
 
-\begin{frame}[fragile]
-	\frametitle{Enregistrements}
-	\begin{itemize}
-	\item Déclaration de type: 
-		\begin{lstlisting}
-		  type pixel = 
-		  { 
-		     mutable r:float; 
-		     mutable g:string; 
-		     b:int;
-		  } 
-		
-		let p = { r=2.4; g="The Game"; b=255 }
-		\end{lstlisting}
-	\item Accès et modification des champs de valeur:
-		\begin{lstlisting}
-			  p.b;;
-			  -: int = 255
-			  p.g <- "You Lose"
-		\end{lstlisting}
-	\end{itemize}
-\end{frame}
-
-
+\section{Quelques structures de données}
 \begin{frame}[fragile]
 	\frametitle{Les références}
 	Une référence est considérée comme l'équivalent (selon l'INRIA) des pointeurs en OCaml.\\
-	Déclaration:
-	\begin{lstlisting}
+	\begin{itemize}
+	\item Déclaration
+		\begin{lstlisting}
 		  let a = ref 0
-
-	\end{lstlisting}
-	Utilisation:
-	\begin{lstlisting}
+		\end{lstlisting}
+	\item Utilisation
+		\begin{lstlisting}
 		  !a ;;
 		  - : int = 0
 		  a := !a + 1 ;;
 		  - : unit = ()
-	\end{lstlisting}
+		\end{lstlisting}
+	\end{itemize}
 
 \end{frame}
 
@@ -106,7 +80,6 @@
 \begin{frame}[fragile]
 	\frametitle{Les vecteurs}
 	\framesubtitle{Copie et valeurs partagées}
-	\begin{block}{Soit une copie simple}
 	\begin{lstlisting}
 	let v = Array.make 3 1;;
 	val v : int array = [|1; 1; 1|]
@@ -119,7 +92,6 @@
 	m;;
 	-: int array = [|1; 1; 1|]
 	\end{lstlisting}
-	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -130,7 +102,7 @@
 	
 	\item Array.iter
 
-	\item Array.map 
+	\item Array.map
 
 	\item Array.iteri
 

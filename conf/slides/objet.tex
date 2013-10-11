@@ -44,7 +44,7 @@ let (c1,c2) =
 class name parameters =
   object
     (*Attributes*)
-    
+
     (*Methods*)
   end
 		\end{lstlisting}
@@ -124,13 +124,13 @@ class point x y =
 	\begin{lstlisting}
 class putListInStack (l:int list) =
   object (self)
-    
+
   val data = Stack.create ()
 
   initializer
     let rec storage = function
       | [] -> ()
-      | e::q -> 
+      | e::q ->
         push e data;
         storage q
     in storage l
@@ -144,12 +144,12 @@ class putListInStack (l:int list) =
 	\frametitle{Attributs polymorphiques}
 	\begin{lstlisting}
 class ['a] name parameters =
-  object 
+  object
   val data = ref []
 
   method add (e:'a) =
     data := e::!data
-  
+
   ...
   end
 	\end{lstlisting}
@@ -157,19 +157,19 @@ class ['a] name parameters =
 
 \subsection{L'héritage} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-	\frametitle{Syntaxe de l'héritage}
+	\frametitle{Héritage}
 	\begin{lstlisting}
 class childName parameters =
   object
-  inherit motherClass mothersParameters
+  inherit parentClass parentsParameters
 
   end
 	\end{lstlisting}
 	\begin{lstlisting}
 class childName parameters =
   object
-  inherit motherClass mothersParameters 
-    as motherSuper
+  inherit parentClass parentsParameters
+    as superParentClass
 
   end
 	\end{lstlisting}
@@ -183,6 +183,7 @@ class childName parameters =
 \begin{frame}
 	\frametitle{Accès aux méthodes de la classe mère 2/2}
 	\textit{Le type d'une réécriture d'une méthode doit correspondre à celui de la méthode mère.}
+	\textit{Pas de surcharge de fonction en OCaml}
 	\lstinputlisting[firstline=16, lastline=28]{code/heritage.ml}
 \end{frame}
 \subsection{Le polymorphisme de sous-type} %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -218,7 +219,7 @@ class childName parameters =
 	Réutilisons les class point et colored\_point.
 	\begin{lstlisting}
 let f (o:point) = o#setCoord 4 2
-let test = 
+let test =
   ((new colored_point (4,2) 255):>point)
 
 test#print;

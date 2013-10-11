@@ -29,7 +29,7 @@
 
 Ce soir (voir nuit pour les plus téméraires) nous allons nous intéresser au développement d'une application graphique grâce à \bsc{OCaml} et \bsc{Sdl}, et c'est pour cela que vous êtes restés me direz-vous !\par
 Quoi de mieux pour aborder le sujet susnommé que la programmation d'un jeu video. Dans cet optique nous nous concentrons sur Pong (et oui).\par 
-Nous nous concentrerons dans un premier temps sur la balle, son affichage et son déplacement pour arriver au deplacement des raquettes par les joueurs et finir l'affichage du score.
+Nous nous attarderons dans un premier temps sur la balle, son affichage et son déplacement pour arriver au deplacement des raquettes par les joueurs et finir l'affichage du score.
 
 Durant ce tp 2 armes seulement vous seront nécéssaires:
 \begin{itemize}
@@ -45,7 +45,7 @@ La premiere chose a faire en votre projet est d'initialiser SDL via cette ligne 
   Sdl.init [`EVERYTHING]
 \end{lstlisting}
 
-Étant donné que notre projet touche à tout les aspects d'une application graphique (hors mis sans doute la lecture d'un disque) nous nous permettons de charger tout les moteurs de SDL via 'EVERYTHING.\par
+Étant donné que notre projet touche à tout les aspects d'une application graphique (hormis sans doute la lecture d'un disque) nous nous permettons de charger tout les moteurs de SDL via 'EVERYTHING.\par
 Nous aborderons la création de la fenêtre en temps voulu.
 
 \section{Où elle est la baballe ?}
@@ -56,7 +56,7 @@ L'élément central d'un jeu de Pong est encore sa balle. Nous concenterons nos 
 
 La première chose à faire maintenant que nous avons a notre disposition notre image de balle est de la charger dans SDL.\par
 mais comment charger une image pour l'utiliser dans mon code me direz-vous ?
-Et bien c'est très simple, SDL intègre une fonction natif pour charger des images au format bitmap. Attendez ne partez pas ! Avec SDL il est également posible de charger du jpeg, du png voir même du tiff, cela grâce à un sous-module de SDL : Sdlloader.\\\smallskip
+Et bien c'est très simple, SDL intègre une fonction native pour charger des images au format bitmap. Attendez ne partez pas ! Avec SDL il est également possible de charger du jpeg, du png voir même du tiff, cela grâce à un sous-module de SDL : Sdlloader.\\\smallskip
 Ainsi les fonctions qui vous aiderons pour charger une image sont :
 
 \begin{lstlisting}
@@ -67,9 +67,9 @@ Ainsi les fonctions qui vous aiderons pour charger une image sont :
 Grâce à ces fonctions vous obtenez une surface qui représente votre balle. Gardez la bien sous la main ;).
 
 \subsection{Ouvrir une fenêtre}
-Notre \textit{précieux} désormet entre nos main il est conpréhensible de vouloir l'affichier au joueur. Ça tombe bien on va voir comment initialiser la fenêtre d'affichage.
+Notre \textit{précieux} désormais entre nos mains il est conpréhensible de vouloir l'afficher au joueur. Ça tombe bien on va voir comment initialiser la fenêtre d'affichage.
 
-SDL représente en memoire la fenêtre par une surface spéciale : Tout modification de celle-ci va être afficher lors de la prochaine frame (contenez un peu votre curiosité, on va l'aborder le propos. C'est promit !). Voici la ligne permettant de créer cette surface au combien utile :
+SDL représente en mémoire la fenêtre par une surface spéciale : Tout modification de celle-ci va être afficher lors de la prochaine frame (contenez un peu votre curiosité, on va l'aborder le propos. C'est promit !). Voici la ligne permettant de créer cette surface au combien utile :
 
 \begin{lstlisting}
   val set_video_mode : w:int -> h:int -> ?bpp:int -> video_flag list -> 
@@ -86,18 +86,18 @@ Maintenant que nous avons notre balle et notre fenêtre, il s'agit de leur faire
     ?dst_rect:rect -> unit -> unit
 \end{lstlisting}
 
-Parmis les paramètes se trouve ?src\_rect:rect et ?dst\_rect:rect qui sont par ailleurs optionnels.\par
-Le premier indique le morceau de l'image qu'on veut coller (cela sert surtout pour les animation ou les décors sous forme de titles), si on ne le renseigne pas toute la surface sera collé. Le second correspond l'endroit où la surface sera collée sur la surface source, si on le renseigne pas la surface est collée en haut à gauche. En tout cas ces deux paramètres sont du type rect. C'est l'occasion pour en parler.\bigskip
+Parmi les paramètres se trouve ?src\_rect:rect et ?dst\_rect:rect qui sont par ailleurs optionnels.\par
+Le premier indique le morceau de l'image qu'on veut coller (cela sert surtout pour les animations ou les décors sous forme de titles), si on ne le renseigne pas toute la surface sera collé. Le second correspond l'endroit où la surface sera collée sur la surface source, si on le renseigne pas la surface est collée en haut à gauche. En tout cas ces deux paramètres sont du type rect. C'est l'occasion pour en parler.\bigskip
 
-Le type rect est un enregistrement qui représente les données de dimention (largeur et hauteur) et de position (x y) d'une surface. Voici la fonction pour créer une valeur de ce type :
+Le type rect est un enregistrement qui représente les données de dimension (largeur et hauteur) et de position (x y) d'une surface. Voici la fonction pour créer une valeur de ce type :
 
 \begin{lstlisting}
   val rect : x:int -> y:int -> w:int -> h:int -> rect
 \end{lstlisting}
 
 \subsection{Actualisation et boucle d'exécution}
-À partir de ce point il y a de grandes chances que vous ayez lancer votre programme et qu'il s'est fermer imédiatement et plus encore (si vous êtes un ninja de la vision) que rien n'était visible sur la fenêtre... Reposez votre chaise et arrêtez de menacer votre entourage : ce qui se passe est tout à fait normal. Explication.\par
-Nous avons créer la fenêtre et coller la balle dessus. Oui mais nous n'avons pas actualisé la fenêtre. Pour cela il faut utiliser la fonction flip :
+À partir de ce point il y a de grandes chances que vous ayez lancé votre programme et qu'il se soit immédiatement arreté ou plus encore (sauf si vous êtes un ninja de la vision) que rien n'ai été visible sur la fenêtre... Reposez votre chaise et arrêtez de menacer votre entourage : ce qui se passe est tout à fait normal. Explication.\par
+Nous avons créer la fenêtre et collé la balle dessus. Oui mais nous n'avons pas actualisé la fenêtre. Pour cela il faut utiliser la fonction flip :
 
 \begin{lstlisting}
   val flip : surface -> unit
@@ -106,7 +106,7 @@ Nous avons créer la fenêtre et coller la balle dessus. Oui mais nous n'avons p
 \noindent
 La fonction flip nous servira à rafraîchir la fenêtre pour passer d'une image à une autre.\bigskip
 
-Nous avons maintenant corrigé le problème de rafraîchisement. Il faut désormet s'occuper du problème de la fenêtre qui se ferme toute seule. Un programme selon votre ordinateur est une suite d'action à faire, une fois celles-ci lues, le programme se termine. C'est notre cas, on a fait un tas de choses déjà énumérées mais à aucun moment on demande à l'ordinateur d'en faire plus. Pour ne plus en être encombré nous allons utiliser une boucle. \par
+Nous avons maintenant corrigé le problème de rafraîchisement. Il faut désormais s'occuper du problème de la fenêtre qui se ferme toute seule. Un programme selon votre ordinateur est une suite d'action à faire, une fois celles-ci lues, le programme se termine. C'est notre cas, on a fait un tas de choses déjà énumérées mais à aucun moment on demande à l'ordinateur d'en faire plus. Pour ne plus en être encombré nous allons utiliser une boucle. \par
 
 La boucle d'execution permet au programme de tourner, lire les données de l'utilisateur et calculer la prochaine image à afficher. Une frame correspond donc à un état visuel. Voici un exemple de boucle que vous pouvez adapter au projet :
 
@@ -122,7 +122,7 @@ La boucle d'execution permet au programme de tourner, lire les données de l'uti
   ;;
 \end{lstlisting}
 
-À chaque frame il faudra redessiner entièrement la fenêtre utisateur. Pour cela il faut l'effacer (voir fonction donnée ci-dessous) et recoller les éléments visuels avec de nouvelles position afin de créer un mouvellement.\par
+À chaque frame il faudra redessiner entièrement la fenêtre utisateur. Pour cela il faut l'effacer (voir fonction donnée ci-dessous) et recoller les éléments visuels avec de nouvelles positions afin de créer un renouvellement.\par
 Nous allons aborder maintenant le déplacement de notre balle. Et l'élaboration de notre fonction \textit{updateDisplay()}.
 
 \subsection{Déplacement de la balle}
@@ -133,6 +133,8 @@ Dans cette partie il faut que vous imaginer un systeme pour que la balle se dép
 \textit{N'hésitez pas à en discuter avec vos camarades et responsable de TP.}
 
 \section{Dans Pong il y a aussi des raquettes !}
+
+Que voulez-vous que je vous dise... il faut des raquettes...
 
 
 \end{document}

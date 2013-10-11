@@ -29,7 +29,7 @@
 Ce soir (voir nuit pour les plus téméraires) nous allons nous intéresser au traitement d'images en \textsc{OCaml}, et c'est pour cela que 
 vous êtes restés me direz-vous !\\
 Tout d'abord laissez moi vous dire que durant ce TP nous allons principalement vous introduire les
- bases du traitement d'images afin qu'au final vous soyez capable de réaliser tout le nécéssaire
+ bases du traitement d'images afin qu'au final vous soyez capable de réaliser quasiment tout le nécéssaire
  pour le pré-traitement d'une image dans un OCR (en gros tout ce dont vous avez besoin pour votre première soutenance).\\
 Le TP sera découpé en plusieurs petits exercices mettant en jeu des traitements d'images divers et variés.\\\\
 Durant ce tp 2 armes seulement vous seront nécéssaires:
@@ -40,12 +40,132 @@ Durant ce tp 2 armes seulement vous seront nécéssaires:
 
 \section{Premiers pas avec SDL}
 \subsection{Le chargement des images}
-\subsection{Jouons avec les pixels}
-\section{Les filtres basiques}
-\subsection{Force rouge, force bleue ...}
-\subsection{Nuance de gris}
-\subsection{Inversion}
-\section{Les filtres avancés}
+Avant toute chose ce qui serait utile serait de pouvoir travailler sur une image, mais comment charger une image pour l'utiliser dans mon code me direz-vous ?\\
+Et bien c'est très simple, avec Sdl est livré un module appelé Sdlloader (que vous devrez ouvrir comme un module avec open).\\
+La fonction qui vous sera le plus utile est:
 
+\vspace{3mm}
+\begin{verbatim}
+	val load_image : string -> Sdlvideo.surface
+\end{verbatim}
+\vspace{3mm}
+Tout d'abord pour appeler cette fonction vous devez lui donner en paramètres l'emplacement de votre image depuis le repertoire où est situé votre main.ml.\\
+Ensuite, qu'est-ce qu'une Sdlvideo.surface... Cela représente en réalité le type de surfaces manipulable et affichable par Sdl (que l'on abrègera en surface)
+Pensez donc à bien récuperer cette surface car quelque chose me dis que vous en aurez besoin par la suite.
+
+\subsection{Jouons avec les pixels}
+
+Maintenant que nous avons notre image essayons de la modifier.\\
+Pour cela nous alons avoir recours aux différentes fonctions de manipulation de pixels et d'image.\\
+
+\vspace{3mm}
+\begin{verbatim}
+val lock : surface -> unit
+val unlock : surface -> unit
+\end{verbatim}
+\vspace{3mm}
+Avant même de modifier les pixels d'une surface il vous faudra lock la surface en question et pour 
+les afficher il vous sera en général nécéssaire de les unlock (voir les différents fonctions du module).
+\newpage
+
+\vspace{3mm}
+\begin{verbatim}
+val get_pixel_color : surface -> x:int -> y:int -> color
+\end{verbatim}
+\vspace{3mm}
+
+\vspace{3mm}
+\begin{verbatim}
+val put_pixel_color : surface -> x:int -> y:int -> unit
+\end{verbatim}
+\vspace{3mm}
+
+Pour acceder aux valeurs et les modifier vous pouvez donc utiliser les deux fonctions citées ci-dessus qui ont 
+l'avantage d'être simple d'utilisation.
+
+\subsection{Sauvegarder vos modifications}
+
+Pour sauvegarder vos surfaces en images visible à nouveau par des êtres humains (à part si vous êtes une anomalie systemique), 
+Sdl possède la fonction:
+
+\vspace{3mm}
+\begin{verbatim}
+val save_BMP : surface -> string -> unit
+\end{verbatim}
+\vspace{3mm}
+Le second paramètre est ici le chemin d'accès vers votre fichier de sortie.
+
+\section{Les filtres basiques}
+
+Nous allons enfin pouvoir commencer la partie intéréssante !\\
+Les fonctions de cette partie seront faite, sauf contre indication, selon le prototype suivant:
+
+\vspace{3mm}
+\begin{verbatim}
+val func : surface -> unit
+\end{verbatim}
+\vspace{3mm}
+
+Par ailleurs, nous ne faisont ici que vous présenter différents filtres mais pensez bien que vous pouvez vous servir des objets notement pour créer une class générique dont les méthodes seraient les différents filtres que vous appliquez.
+
+\subsection{Force rouge, force bleue ...}
+Les premiers filtres vont consister en des filtres de couleurs:\\
+\begin{itemize}
+\item Ecrivez un filtre qui ne garde que les pixels rouges.
+\item Puis un filtre qui met une des composante RGB (Red Blue Green) à zéro selon la string 
+passée en paramètre ("blue" pour enlever toute trace de bleu)
+
+\vspace{3mm}
+\begin{verbatim}
+val discard : surface -> string -> unit
+\end{verbatim}
+\vspace{3mm}
+
+\item Ecrivez une fonction qui inverse toutes les couleurs de votre image (par exemple si la composante bleue est à 242 elle passe à 13)
+
+\item Enfin faîtes un filtre noir ou blanc. Les pixels n'ont pas le droit d'être d'une autre couleure, à vous de trouver le juste milieu.
+
+\end{itemize}
+\subsection{Nuance de gris}
+
+En premier lieu ecrivez une fonction qui fait la moyenne de chacune de vos composantes et qui remplace cette moyenne par les valeurs des comosantes.
+
+Ensuite trouvez le moyen de faire un filtre de niveau de gris qui rende compte de la manaière dont l'oeil humain perçoit les composantes RGB (Cf: Wikipedia, Niveau de gris)
+
+\section{Les filtres avancés}
+Tip: Désormais les pixels modifiés influent sur votre environnement et peux fausser vos filtres.\\
+Assurez-vous donc de sauvegarder les nouveaux pixels dans un nouveau fichier.
+\subsection{Les matrices de convolution}
+Malgré le nom barbare que portent ces pauvres matrices, celles-ci nous sont bien utiles pour différents traitement d'image.\\
+Mais commençons par le commencement. Qu'est-ce qu'une matrice de convolution ?\\
+En traitement d'image il existe une technique assez répendue qui consiste à créer une matrice pour chaque pixel plus les 8 pixels alentours.
+C'est-à-dire que lorsque l'on traite un pixel on utilise une matrice (ici 3x3) dont il est le centre.\\
+Ensuite on effectue une opération avec une matrice de convolution (appelé aussi noyau). Cette opération consiste généralement 
+à faire la multiplication de chacun des termes des 2 matrices respectives puis de sommer le tout pour attribuer cette valeure au pixel étudié.\\\\
+Grossièrement: 	\begin{math}
+		P = \Sigma ( M(i,j) \times  N(i,j) )
+		\end{math} \\
+Avec P le pixel, M la matrice initiale et N la matrice de convolution (noyau).
+
+Tout d'abord écrivez déjà la fonction permettant de récuperer une matrice à partir d'un pixel.\\
+Attention: Certains pixels n'ont pas forcément 8 voisins.
+
+\subsubsection{Filtre d'approximation}
+A partir ce cet algorithme, ecrivez une fonction qui pour chaque pixel calcule la moyenne de chaque composante des 9 pixels et donne ce code RGB au pixel étudié.
+\subsubsection{Filtre de Tuckey}
+Maintenant il s'agit de récuperer chacune des composantes RGB séparément, de les mettre dans des listes, 
+vecteurs ou ce que vous souhaitez, puis de renvoyer la méniane de chacune des composantes au pixel étudié.
+\subsubsection{Convolution à volonté (Bonus)}
+L'idée est de créer une fonction qui applique une matrice de convolution passée en paramètre comme filtre de l'image.
+
+
+\section{Vous êtes sur la bonne voie !}
+Vous êtes maintenant capable d'implémenter des filtres utiles (que l'on ne me dise pas que ce qui était avant n'était pas utile) et intéréssants
+Parmis eux nous vous conseillons de chercher:
+\begin{itemize}
+\item Les filtres de filtrages du bruit (Ex: Canny)
+\item Les filtres de detection de contours (Ex: Sobel, Canny)
+\item Opérateurs morphologiques (Cf: Wikipedia, Morphologie mathématique)
+\end{itemize}
 
 \end{document}
